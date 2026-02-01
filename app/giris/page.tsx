@@ -2,7 +2,6 @@
 
 import { useState, Suspense } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function GirisForm() {
@@ -19,33 +18,36 @@ function GirisForm() {
     e.preventDefault();
     setMessage(null);
     setLoading(true);
-    const supabase = createClient();
     try {
-      if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            emailRedirectTo: typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined,
-          },
-        });
-        if (error) throw error;
-        setMessage({ type: "ok", text: "Kayıt başarılı. E-posta doğrulama linki gönderildi (gerekirse spam klasörüne bakın). Giriş yapabilirsiniz." });
-      } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        router.push(next);
-        router.refresh();
+      const endpoint = isSignUp ? "/api/auth/signup" : "/api/auth/login";
+      const body: Record<string, string> = { email, password };
+      if (!isSignUp) body.next = next;
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+        credentials: "same-origin",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setMessage({ type: "err", text: data.error || "Bir hata oluştu." });
         return;
       }
-    } catch (err: unknown) {
-      let text = "Bir hata oluştu.";
-      if (err instanceof Error) {
-        text = err.message;
-        if (text === "Failed to fetch" || text.includes("fetch")) {
-          text = "Bağlantı hatası. İnternet bağlantınızı kontrol edin, reklam engelleyiciyi kapatıp tekrar deneyin.";
-        }
+
+      if (isSignUp) {
+        setMessage({ type: "ok", text: data.message || "Kayıt başarılı. Giriş yapabilirsiniz." });
+      } else {
+        router.push(data.redirect || next);
+        router.refresh();
       }
+    } catch (err: unknown) {
+      const text =
+        err instanceof Error && (err.message === "Failed to fetch" || err.message.includes("fetch"))
+          ? "Bağlantı hatası. İnternet bağlantınızı kontrol edin."
+          : "Bir hata oluştu.";
       setMessage({ type: "err", text });
     } finally {
       setLoading(false);
