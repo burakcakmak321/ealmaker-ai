@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { incrementUsage } from "@/lib/usage";
-import { CopyButton } from "@/components/CopyButton";
+import { useAuth } from "@/components/AuthGuard";
+import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
 import Disclaimer from "@/components/Disclaimer";
 
@@ -15,22 +15,32 @@ const DILEKCE_KATEGORILERI = [
   { grup: "Diğer", secenekler: ["Apartman gürültü şikayeti", "Resmi kurum şikayeti", "Özel dilekçe (aşağıda yazın)"] },
 ];
 
-
 export default function DilekcePage() {
+  const { user, loading: authLoading } = useAuth();
   const [baslik, setBaslik] = useState("");
   const [konu, setKonu] = useState("");
   const [detay, setDetay] = useState("");
   const [sonuc, setSonuc] = useState("");
   const [yukleniyor, setYukleniyor] = useState(false);
   const [hata, setHata] = useState("");
-  const printRef = useRef<HTMLDivElement>(null);
+  const [showBlurred, setShowBlurred] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setHata("");
     setSonuc("");
+    setShowBlurred(false);
+    setLimitReached(false);
     setYukleniyor(true);
     try {
+      if (!user) {
+        await new Promise((r) => setTimeout(r, 1200));
+        setShowBlurred(true);
+        setSonuc("");
+        setYukleniyor(false);
+        return;
+      }
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -42,8 +52,22 @@ export default function DilekcePage() {
         }),
       });
       const data = await res.json();
+      if (res.status === 401) {
+        setShowBlurred(true);
+        setSonuc("");
+        setHata("");
+        setYukleniyor(false);
+        return;
+      }
+      if (res.status === 402) {
+        setLimitReached(true);
+        setShowBlurred(true);
+        setSonuc("");
+        setHata("");
+        setYukleniyor(false);
+        return;
+      }
       if (!res.ok) throw new Error(data.error || "Bir hata oluştu.");
-      incrementUsage();
       setSonuc(data.text);
     } catch (err) {
       setHata(err instanceof Error ? err.message : "Bir hata oluştu.");
@@ -55,6 +79,8 @@ export default function DilekcePage() {
   function handlePrint() {
     window.print();
   }
+
+  const showResult = showBlurred || limitReached || sonuc;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
@@ -89,9 +115,7 @@ export default function DilekcePage() {
       <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700">
-              Dilekçe türü / başlık
-            </label>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Dilekçe türü / başlık</label>
             <select
               value={baslik}
               onChange={(e) => setBaslik(e.target.value)}
@@ -110,9 +134,7 @@ export default function DilekcePage() {
             </select>
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700">
-              Konu (kısa)
-            </label>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Konu (kısa)</label>
             <input
               type="text"
               value={konu}
@@ -133,7 +155,7 @@ export default function DilekcePage() {
           </div>
           <button
             type="submit"
-            disabled={yukleniyor}
+            disabled={yukleniyor || authLoading}
             className="w-full rounded-xl bg-brand-600 py-4 font-semibold text-white shadow-soft transition hover:bg-brand-700 disabled:opacity-60"
           >
             {yukleniyor ? "Dilekçe yazılıyor…" : "Dilekçe metnini oluştur"}
@@ -147,34 +169,21 @@ export default function DilekcePage() {
         </div>
       )}
 
-      {sonuc && (
-        <div className="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-card sm:p-8">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3 no-print">
-            <h2 className="text-lg font-semibold text-slate-800">Dilekçe metni</h2>
-            <div className="flex flex-wrap gap-2">
-              <CopyButton text={sonuc} label="Kopyala" />
-              <button
-                type="button"
-                onClick={handlePrint}
-                className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-200"
-              >
-                🖨️ Yazdır / PDF kaydet
-              </button>
-            </div>
-          </div>
-          <div
-            ref={printRef}
-            className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-6 print:border-0 print:bg-white print:p-0"
-          >
-            <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800">
-              {sonuc}
-            </pre>
-          </div>
-          <p className="mt-4 text-sm text-slate-500 no-print">
-            &quot;Yazdır / PDF kaydet&quot; ile tarayıcıdan PDF olarak kaydedebilir veya
-            doğrudan yazdırabilirsiniz. İmza ve tarih eklemeyi unutmayın.
-          </p>
-        </div>
+      {showResult && (
+        <ResultWithBlur
+          text={sonuc}
+          title="Dilekçe metni"
+          copyLabel="Kopyala"
+          blurred={showBlurred && !limitReached}
+          limitReached={limitReached}
+          showPrint={!!sonuc}
+          onPrint={handlePrint}
+        />
+      )}
+      {showResult && sonuc && (
+        <p className="mt-4 text-sm text-slate-500 no-print">
+          &quot;Yazdır / PDF kaydet&quot; ile tarayıcıdan PDF olarak kaydedebilir veya doğrudan yazdırabilirsiniz. İmza ve tarih eklemeyi unutmayın.
+        </p>
       )}
     </div>
   );

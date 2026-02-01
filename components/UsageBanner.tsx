@@ -2,26 +2,65 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { getRemainingFree, isOverFreeLimit, FREE_LIMIT } from "@/lib/usage";
+import { useAuth } from "@/components/AuthGuard";
+
+const FREE_LIMIT = 2;
 
 export default function UsageBanner() {
+  const { user, loading: authLoading } = useAuth();
   const [remaining, setRemaining] = useState<number | null>(null);
   const [over, setOver] = useState(false);
 
   useEffect(() => {
-    const update = () => {
-      setRemaining(getRemainingFree());
-      setOver(isOverFreeLimit());
-    };
-    update();
-    window.addEventListener("dealmaker-usage-update", update);
-    return () => window.removeEventListener("dealmaker-usage-update", update);
-  }, []);
+    if (!user) {
+      setRemaining(null);
+      setOver(false);
+      return;
+    }
+    fetch("/api/usage")
+      .then((res) => res.json())
+      .then((data) => {
+        setRemaining(data.remaining ?? 0);
+        setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+      })
+      .catch(() => {
+        setRemaining(0);
+        setOver(false);
+      });
+  }, [user]);
 
   const refresh = () => {
-    setRemaining(getRemainingFree());
-    setOver(isOverFreeLimit());
+    if (!user) return;
+    fetch("/api/usage")
+      .then((res) => res.json())
+      .then((data) => {
+        setRemaining(data.remaining ?? 0);
+        setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+      });
   };
+
+  if (authLoading) return null;
+
+  if (!user) {
+    return (
+      <div
+        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-2.5 text-sm text-slate-600 shadow-card"
+        role="status"
+      >
+        <span>
+          <span className="font-medium text-slate-700">2 ücretsiz kullanım</span> için{" "}
+          <Link href="/giris" className="font-semibold text-brand-600 hover:underline">
+            giriş yapın
+          </Link>{" "}
+          veya{" "}
+          <Link href="/giris" className="font-semibold text-brand-600 hover:underline">
+            kayıt olun
+          </Link>
+          .
+        </span>
+      </div>
+    );
+  }
 
   if (remaining === null) return null;
 
@@ -37,7 +76,7 @@ export default function UsageBanner() {
           <Link href="/fiyatlandirma" className="font-semibold text-brand-600 hover:underline">
             Pro
           </Link>
-          ’ya geçin.
+          &apos;ya geçin.
         </span>
       ) : (
         <span>

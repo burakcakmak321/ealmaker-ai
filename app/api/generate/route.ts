@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import OpenAI from "openai";
+import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
+import { getUsageCount, incrementUsage, FREE_LIMIT } from "@/lib/supabase/usage";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -51,6 +56,24 @@ Görevin: Resmi dilekçe formatında (Sayı, Tarih, İlgi, Metin, Talep, Saygıy
 
 export async function POST(req: NextRequest) {
   try {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      return NextResponse.json(
+        { error: "Oturum açmanız gerekiyor.", requiresAuth: true },
+        { status: 401 }
+      );
+    }
+
+    const admin = createAdminClient();
+    const count = await getUsageCount(admin, user.id);
+    if (count >= FREE_LIMIT) {
+      return NextResponse.json(
+        { error: "Ücretsiz kullanım hakkınız doldu. Pro'ya geçin.", limitReached: true },
+        { status: 402 }
+      );
+    }
+
     const body = await req.json();
     const { type, ...payload } = body as { type: ModuleType; [k: string]: unknown };
 
@@ -93,6 +116,8 @@ export async function POST(req: NextRequest) {
     const text =
       completion.choices[0]?.message?.content?.trim() ||
       "Metin oluşturulamadı. Lütfen tekrar dene.";
+
+    await incrementUsage(admin, user.id);
 
     return NextResponse.json({ text });
   } catch (err) {

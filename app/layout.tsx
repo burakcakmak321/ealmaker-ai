@@ -4,6 +4,7 @@ import "./globals.css";
 import Link from "next/link";
 import UsageBanner from "@/components/UsageBanner";
 import PromoBanner from "@/components/PromoBanner";
+import AuthNav from "@/components/AuthNav";
 import { ToastProvider } from "@/components/Toast";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -21,6 +22,8 @@ export const metadata: Metadata = {
     description: "Bilgilendirme amaçlı metin üretim platformu. Hukuki tavsiye değildir.",
   },
 };
+
+export const viewport = { width: "device-width", initialScale: 1 };
 
 const navLinks = [
   { href: "/fatura", label: "Fatura İtirazı" },
@@ -55,17 +58,17 @@ export default function RootLayout({
         <ToastProvider>
           <PromoBanner />
           <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
-            <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6">
+            <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
               <Link
                 href="/"
-                className="flex items-center gap-2.5 text-lg font-bold tracking-tight text-slate-900 transition hover:text-brand-600"
+                className="flex shrink-0 items-center gap-2.5 text-base font-bold tracking-tight text-slate-900 transition hover:text-brand-600 sm:text-lg"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 text-lg text-white shadow-soft">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-soft sm:h-9 sm:w-9">
                   ⚖️
                 </span>
                 <span>DealMaker AI</span>
               </Link>
-              <nav className="flex items-center gap-1" aria-label="Ana menü">
+              <nav className="flex flex-wrap items-center justify-end gap-1 sm:gap-2" aria-label="Ana menü">
                 {navLinks.map(({ href, label }) => (
                   <Link
                     key={href}
@@ -75,12 +78,7 @@ export default function RootLayout({
                     {label}
                   </Link>
                 ))}
-                <Link
-                  href="/fatura"
-                  className="ml-2 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-700"
-                >
-                  Ücretsiz Dene
-                </Link>
+                <AuthNav />
               </nav>
             </div>
           </header>

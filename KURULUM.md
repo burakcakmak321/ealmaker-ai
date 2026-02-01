@@ -90,6 +90,22 @@ Metin üretimi OpenAI API ile yapılıyor. Bunun için bir API anahtarı gerekir
 
 ---
 
+## 4b. Supabase Kurulumu (Giriş / Kayıt, 2 Ücretsiz Hak, Admin)
+
+Site artık giriş/kayıt ve 2 ücretsiz kullanım hakkı kullanıyor. Bunun için Supabase hesabı gerekir.
+
+1. **https://supabase.com** → Giriş yap → **New Project** → İsim ve şifre ver → **Create**.
+2. Proje açılınca **Settings** → **API** → **Project URL**, **anon public** key ve **Service Role** key’i kopyala.
+3. **SQL Editor** → **New query** → Proje kökündeki **`supabase-usage-table.sql`** içeriğini yapıştır → **Run**.
+4. `.env.local` dosyasına ekle (kendi değerlerinle):
+   - `NEXT_PUBLIC_SUPABASE_URL=...`
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY=...`
+   - `SUPABASE_SERVICE_ROLE_KEY=...`
+   - `ADMIN_EMAILS=senin@email.com` (admin paneline girebilecek e-posta)
+5. Admin paneli: Giriş yaptıktan sonra **/admin** adresine git; sadece ADMIN_EMAILS’teki e-postalar bu sayfayı görebilir. Kayıtlı tüm kullanıcılar (telefon veya bilgisayar) listelenir.
+
+---
+
 ## 5. Geliştirme Sunucusunu Başlat
 
 1. Terminalde yine `c:\Users\burak\Desktop\dsa` klasöründe ol.

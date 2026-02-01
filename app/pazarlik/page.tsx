@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { incrementUsage } from "@/lib/usage";
-import { CopyButton } from "@/components/CopyButton";
+import { useAuth } from "@/components/AuthGuard";
+import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
 import Disclaimer from "@/components/Disclaimer";
 
 export default function PazarlikPage() {
+  const { user, loading: authLoading } = useAuth();
   const [platform, setPlatform] = useState("");
   const [urun, setUrun] = useState("");
   const [fiyat, setFiyat] = useState("");
@@ -14,13 +15,24 @@ export default function PazarlikPage() {
   const [sonuc, setSonuc] = useState("");
   const [yukleniyor, setYukleniyor] = useState(false);
   const [hata, setHata] = useState("");
+  const [showBlurred, setShowBlurred] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setHata("");
     setSonuc("");
+    setShowBlurred(false);
+    setLimitReached(false);
     setYukleniyor(true);
     try {
+      if (!user) {
+        await new Promise((r) => setTimeout(r, 1200));
+        setShowBlurred(true);
+        setSonuc("");
+        setYukleniyor(false);
+        return;
+      }
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -33,8 +45,22 @@ export default function PazarlikPage() {
         }),
       });
       const data = await res.json();
+      if (res.status === 401) {
+        setShowBlurred(true);
+        setSonuc("");
+        setHata("");
+        setYukleniyor(false);
+        return;
+      }
+      if (res.status === 402) {
+        setLimitReached(true);
+        setShowBlurred(true);
+        setSonuc("");
+        setHata("");
+        setYukleniyor(false);
+        return;
+      }
       if (!res.ok) throw new Error(data.error || "Bir hata oluştu.");
-      incrementUsage();
       setSonuc(data.text);
     } catch (err) {
       setHata(err instanceof Error ? err.message : "Bir hata oluştu.");
@@ -42,6 +68,8 @@ export default function PazarlikPage() {
       setYukleniyor(false);
     }
   }
+
+  const showResult = showBlurred || limitReached || sonuc;
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
@@ -76,9 +104,7 @@ export default function PazarlikPage() {
       <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700">
-              Platform
-            </label>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Platform</label>
             <input
               type="text"
               value={platform}
@@ -99,9 +125,7 @@ export default function PazarlikPage() {
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                İlan fiyatı
-              </label>
+              <label className="mb-1.5 block text-sm font-medium text-slate-700">İlan fiyatı</label>
               <input
                 type="text"
                 value={fiyat}
@@ -125,7 +149,7 @@ export default function PazarlikPage() {
           </div>
           <button
             type="submit"
-            disabled={yukleniyor}
+            disabled={yukleniyor || authLoading}
             className="w-full rounded-xl bg-brand-600 py-4 font-semibold text-white shadow-soft transition hover:bg-brand-700 disabled:opacity-60"
           >
             {yukleniyor ? "Mesajlar hazırlanıyor…" : "Pazarlık mesajlarını oluştur"}
@@ -139,18 +163,14 @@ export default function PazarlikPage() {
         </div>
       )}
 
-      {sonuc && (
-        <div className="mt-10 animate-fade-in rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
-          <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-lg font-bold text-slate-900">Mesajlar</h2>
-            <CopyButton text={sonuc} label="Kopyala" />
-          </div>
-          <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-5">
-            <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-slate-800">
-              {sonuc}
-            </pre>
-          </div>
-        </div>
+      {showResult && (
+        <ResultWithBlur
+          text={sonuc}
+          title="Mesajlar"
+          copyLabel="Kopyala"
+          blurred={showBlurred && !limitReached}
+          limitReached={limitReached}
+        />
       )}
     </div>
   );
