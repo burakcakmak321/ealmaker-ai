@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
       .filter(Boolean)
       .join(", ");
     return NextResponse.json(
-      { ok: false, error: `Vercel env eksik: ${missing}. Settings > Environment Variables kontrol edin.` },
+      { ok: false, error: `Vercel env eksik (${missing}). Settings > Environment Variables ekleyip Redeploy yapın.` },
       { status: 500 }
     );
   }
