@@ -22,7 +22,13 @@ function GirisForm() {
     const supabase = createClient();
     try {
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({ email, password });
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: typeof window !== "undefined" ? `${window.location.origin}/auth/callback` : undefined,
+          },
+        });
         if (error) throw error;
         setMessage({ type: "ok", text: "Kayıt başarılı. E-posta doğrulama linki gönderildi (gerekirse spam klasörüne bakın). Giriş yapabilirsiniz." });
       } else {
@@ -33,10 +39,14 @@ function GirisForm() {
         return;
       }
     } catch (err: unknown) {
-      setMessage({
-        type: "err",
-        text: err instanceof Error ? err.message : "Bir hata oluştu.",
-      });
+      let text = "Bir hata oluştu.";
+      if (err instanceof Error) {
+        text = err.message;
+        if (text === "Failed to fetch" || text.includes("fetch")) {
+          text = "Bağlantı hatası. İnternet bağlantınızı kontrol edin, reklam engelleyiciyi kapatıp tekrar deneyin.";
+        }
+      }
+      setMessage({ type: "err", text });
     } finally {
       setLoading(false);
     }
