@@ -14,7 +14,13 @@ export async function POST(request: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key) {
-    return NextResponse.json({ ok: false, error: "Sunucu yapılandırma hatası" }, { status: 500 });
+    const missing = [!url && "NEXT_PUBLIC_SUPABASE_URL", !key && "NEXT_PUBLIC_SUPABASE_ANON_KEY"]
+      .filter(Boolean)
+      .join(", ");
+    return NextResponse.json(
+      { ok: false, error: `Vercel env eksik: ${missing}. Settings > Environment Variables kontrol edin.` },
+      { status: 500 }
+    );
   }
 
   const redirectTo = nextPath || "/";
