@@ -45,7 +45,7 @@ Bu rehber, projeyi **Vercel** üzerinde yayına almak için gereken adımları i
 2. [vercel.com](https://vercel.com) → **Add New Project** → **Import Git Repository** → GitHub repo’nuzu seçin.
 
 3. **Environment Variables** ekranında:
-   - `OPENAI_API_KEY` = `sk-...` ekleyin (Production + isterseniz Preview).
+   - `OPENAI_API_KEY`, **`SUPABASE_URL`**, **`SUPABASE_ANON_KEY`**, `SUPABASE_SERVICE_ROLE_KEY`, `ADMIN_EMAILS` ekleyin. Giriş için SUPABASE_URL ve SUPABASE_ANON_KEY bu projede olmalı (Production+Preview+Development). Env sonrası Redeploy yapın.
 
 4. **Deploy**’a tıklayın. Her `main` (veya seçtiğiniz branch) push’unda otomatik yeni deploy alırsınız.
 

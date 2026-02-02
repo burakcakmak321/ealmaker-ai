@@ -1,16 +1,17 @@
 import { NextResponse } from "next/server";
+import { getSupabaseUrl, getSupabaseAnonKey } from "@/lib/supabase/env";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const hasUrl = !!process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const hasKey = !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const hasUrl = !!getSupabaseUrl();
+  const hasKey = !!getSupabaseAnonKey();
   return NextResponse.json({
     hasUrl,
     hasKey,
     ok: hasUrl && hasKey,
     hint: !hasUrl || !hasKey
-      ? "Vercel'de dogru PROJE'ye girdiginden emin ol. URL: ealmakerai.vercel.app olan proje."
+      ? "Vercel: SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin (proje Settings > Environment Variables)."
       : null,
   });
 }

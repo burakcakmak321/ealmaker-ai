@@ -2,28 +2,27 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { createClient } from "@/lib/supabase/client";
 
 export default function AuthNav() {
-  const [user, setUser] = useState<{ email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
+
+  function fetchUser() {
+    return fetch("/api/auth/me", { credentials: "same-origin" })
+      .then((r) => r.json())
+      .then((data) => {
+        setUser(data.user ?? null);
+      })
+      .catch(() => setUser(null))
+      .finally(() => setLoading(false));
+  }
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-    return () => subscription.unsubscribe();
+    fetchUser();
   }, []);
 
   async function handleSignOut() {
-    await supabase.auth.signOut();
+    await fetch("/api/auth/signout", { method: "POST", credentials: "same-origin" });
     window.location.href = "/";
   }
 

@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextRequest, NextResponse } from "next/server";
+import { getSupabaseUrl, getSupabaseAnonKey } from "@/lib/supabase/env";
 
 export const dynamic = "force-dynamic";
 
@@ -11,14 +12,11 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "E-posta ve şifre gerekli" }, { status: 400 });
   }
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const url = getSupabaseUrl();
+  const key = getSupabaseAnonKey();
   if (!url || !key) {
-    const missing = [!url && "NEXT_PUBLIC_SUPABASE_URL", !key && "NEXT_PUBLIC_SUPABASE_ANON_KEY"]
-      .filter(Boolean)
-      .join(", ");
     return NextResponse.json(
-      { ok: false, error: `Vercel env eksik (${missing}). Settings > Environment Variables ekleyip Redeploy yapın.` },
+      { ok: false, error: "Vercel'de SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin (Settings > Environment Variables)." },
       { status: 500 }
     );
   }
