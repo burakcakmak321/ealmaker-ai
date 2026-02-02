@@ -29,14 +29,24 @@ export async function POST(req: NextRequest) {
     const user_name = (user.user_metadata?.full_name as string) || user.email?.split("@")[0] || "Kullanıcı";
     const user_email = user.email || "";
     const user_ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "127.0.0.1";
+    const test_mode = process.env.PAYTR_TEST_MODE === "1" ? "1" : "0";
+    const currency = "TL";
+    const no_installment = "1";
+    const max_installment = "0";
+    const user_basket = Buffer.from(JSON.stringify([["Pro Aylık Abonelik", "24.50", "1"]])).toString("base64");
 
+    // PayTR hash: merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode + merchant_salt
     const hash_str = [
       MERCHANT_ID,
       user_ip,
       merchant_oid,
       user_email,
-      PRO_AMOUNT_CENTS,
-      "TL",
+      String(PRO_AMOUNT_CENTS),
+      user_basket,
+      no_installment,
+      max_installment,
+      currency,
+      test_mode,
       MERCHANT_SALT,
     ].join("");
 
@@ -49,18 +59,18 @@ export async function POST(req: NextRequest) {
       email: user_email,
       payment_amount: String(PRO_AMOUNT_CENTS),
       paytr_token,
-      user_basket: Buffer.from(JSON.stringify([["Pro Aylık Abonelik", "24.50", "1"]])).toString("base64"),
+      user_basket,
       debug_on: "0",
-      no_installment: "1",
-      max_installment: "0",
+      no_installment,
+      max_installment,
       user_name: user_name.substring(0, 50),
       user_address: "Türkiye",
       user_phone: "0000000000",
       merchant_ok_url: `${origin}/odeme/basarili`,
       merchant_fail_url: `${origin}/odeme/iptal`,
       timeout_limit: "30",
-      currency: "TL",
-      test_mode: process.env.PAYTR_TEST_MODE === "1" ? "1" : "0",
+      currency,
+      test_mode,
     });
 
     const res = await fetch("https://www.paytr.com/odeme/api/get-token", {
