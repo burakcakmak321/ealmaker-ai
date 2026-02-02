@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getUsageCount, incrementUsage, FREE_LIMIT } from "@/lib/supabase/usage";
+import { getUsageCount, getIsPro, incrementUsage, FREE_LIMIT } from "@/lib/supabase/usage";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -66,12 +66,15 @@ export async function POST(req: NextRequest) {
     }
 
     const admin = createAdminClient();
-    const count = await getUsageCount(admin, user.id);
-    if (count >= FREE_LIMIT) {
-      return NextResponse.json(
-        { error: "Ücretsiz kullanım hakkınız doldu. Pro'ya geçin.", limitReached: true },
-        { status: 402 }
-      );
+    const isPro = await getIsPro(admin, user.id);
+    if (!isPro) {
+      const count = await getUsageCount(admin, user.id);
+      if (count >= FREE_LIMIT) {
+        return NextResponse.json(
+          { error: "Ücretsiz kullanım hakkınız doldu. Pro'ya geçin.", limitReached: true },
+          { status: 402 }
+        );
+      }
     }
 
     const body = await req.json();

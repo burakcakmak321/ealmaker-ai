@@ -1,12 +1,13 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+import FiyatlandirmaClient from "./FiyatlandirmaClient";
 
 export default function FiyatlandirmaPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
       <PageHeader
         title="Fiyatlandırma"
-        description="İlk 2 kullanım ücretsiz. Sonrası için Pro ile sınırsız kullanın. Ödeme entegrasyonu yakında."
+        description="İlk 2 kullanım ücretsiz. Sonrası için Pro ile sınırsız kullanın. Güvenli ödeme ile anında aktif."
         icon="💰"
       />
 
@@ -46,10 +47,12 @@ export default function FiyatlandirmaPage() {
             Önerilen
           </div>
           <h2 className="text-xl font-bold text-slate-900">Pro</h2>
-          <p className="mt-3 text-3xl font-extrabold tracking-tight text-slate-900">
-            Yakında
-            <span className="text-base font-normal text-slate-500"> / aylık</span>
+          <p className="mt-3 flex items-baseline gap-2">
+            <span className="text-3xl font-extrabold tracking-tight text-slate-900">49 ₺</span>
+            <span className="text-base text-slate-500">/ aylık</span>
+            <span className="ml-2 rounded bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">YENI2026 %50</span>
           </p>
+          <p className="mt-1 text-sm text-slate-500">Kampanya ile 24,50 ₺/ay</p>
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -68,13 +71,7 @@ export default function FiyatlandirmaPage() {
               Yeni modüller öncelikli
             </li>
           </ul>
-          <button
-            type="button"
-            disabled
-            className="mt-10 block w-full rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 py-4 font-semibold text-white shadow-soft opacity-90"
-          >
-            Yakında — Ödeme eklenecek
-          </button>
+          <FiyatlandirmaClient />
         </div>
       </div>
 

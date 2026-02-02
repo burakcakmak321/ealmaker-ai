@@ -3,8 +3,11 @@
 
 create table if not exists public.usage (
   user_id uuid primary key references auth.users(id) on delete cascade,
-  count int not null default 0
+  count int not null default 0,
+  is_pro boolean not null default false
 );
+
+-- Eğer tablo zaten varsa: alter table public.usage add column if not exists is_pro boolean not null default false;
 
 alter table public.usage enable row level security;
 

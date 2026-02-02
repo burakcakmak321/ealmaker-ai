@@ -10,18 +10,27 @@ export default function UsageBanner() {
   const { user, loading: authLoading } = useAuth();
   const [remaining, setRemaining] = useState<number | null>(null);
   const [over, setOver] = useState(false);
+  const [isPro, setIsPro] = useState(false);
 
   useEffect(() => {
     if (!user) {
       setRemaining(null);
       setOver(false);
+      setIsPro(false);
       return;
     }
     fetch("/api/usage")
       .then((res) => res.json())
       .then((data) => {
-        setRemaining(data.remaining ?? 0);
-        setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+        if (data.isPro) {
+          setIsPro(true);
+          setRemaining(null);
+          setOver(false);
+        } else {
+          setIsPro(false);
+          setRemaining(data.remaining ?? 0);
+          setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+        }
       })
       .catch(() => {
         setRemaining(0);
@@ -34,8 +43,15 @@ export default function UsageBanner() {
     fetch("/api/usage")
       .then((res) => res.json())
       .then((data) => {
-        setRemaining(data.remaining ?? 0);
-        setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+        if (data.isPro) {
+          setIsPro(true);
+          setRemaining(null);
+          setOver(false);
+        } else {
+          setIsPro(false);
+          setRemaining(data.remaining ?? 0);
+          setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+        }
       });
   };
 
@@ -62,6 +78,18 @@ export default function UsageBanner() {
     );
   }
 
+  if (isPro) {
+    return (
+      <div
+        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-brand-200/80 bg-brand-50/50 px-4 py-2.5 text-sm text-slate-700 shadow-card"
+        role="status"
+      >
+        <span>
+          <span className="font-semibold text-brand-700">Pro</span> — Sınırsız kullanım
+        </span>
+      </div>
+    );
+  }
   if (remaining === null) return null;
 
   return (
