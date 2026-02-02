@@ -15,8 +15,9 @@ export async function POST(request: NextRequest) {
   const url = getSupabaseUrl();
   const key = getSupabaseAnonKey();
   if (!url || !key) {
+    const host = request.headers.get("host") || "bu site";
     return NextResponse.json(
-      { ok: false, error: "Vercel'de SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin (Settings > Environment Variables)." },
+      { ok: false, error: `${host} için Vercel'de SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin. Projeler → bu domain'i deploy eden proje → Settings → Environment Variables → Add → Redeploy.` },
       { status: 500 }
     );
   }
