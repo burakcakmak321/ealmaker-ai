@@ -24,7 +24,9 @@ export async function GET() {
 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ user: null });
+  const meta = user.user_metadata || {};
+  const fullName = meta.full_name || [meta.first_name, meta.last_name].filter(Boolean).join(" ").trim() || undefined;
   return NextResponse.json({
-    user: { id: user.id, email: user.email ?? undefined },
+    user: { id: user.id, email: user.email ?? undefined, name: fullName },
   });
 }

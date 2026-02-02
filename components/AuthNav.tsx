@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function AuthNav() {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
+  const [user, setUser] = useState<{ id: string; email?: string; name?: string } | null>(null);
   const [loading, setLoading] = useState(true);
 
   function fetchUser() {
@@ -31,8 +31,8 @@ export default function AuthNav() {
   if (user) {
     return (
       <div className="flex items-center gap-2">
-        <span className="max-w-[140px] truncate text-sm text-slate-600 sm:max-w-[200px]">
-          {user.email}
+        <span className="max-w-[140px] truncate text-sm text-slate-600 sm:max-w-[200px]" title={user.email}>
+          {user.name || user.email}
         </span>
         <button
           type="button"

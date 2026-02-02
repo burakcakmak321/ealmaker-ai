@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function GirisForm() {
+  const [ad, setAd] = useState("");
+  const [soyad, setSoyad] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isSignUp, setIsSignUp] = useState(false);
@@ -21,7 +23,12 @@ function GirisForm() {
     try {
       const endpoint = isSignUp ? "/api/auth/signup" : "/api/auth/login";
       const body: Record<string, string> = { email, password };
-      if (!isSignUp) body.next = next;
+      if (isSignUp) {
+        body.firstName = ad.trim();
+        body.lastName = soyad.trim();
+      } else {
+        body.next = next;
+      }
 
       const res = await fetch(endpoint, {
         method: "POST",
@@ -40,8 +47,7 @@ function GirisForm() {
       if (isSignUp) {
         setMessage({ type: "ok", text: data.message || "Kayıt başarılı. Giriş yapabilirsiniz." });
       } else {
-        router.push(data.redirect || next);
-        router.refresh();
+        window.location.href = data.redirect || next;
       }
     } catch (err: unknown) {
       const text =
@@ -73,6 +79,34 @@ function GirisForm() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {isSignUp && (
+            <>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-slate-700">Ad</label>
+                  <input
+                    type="text"
+                    value={ad}
+                    onChange={(e) => setAd(e.target.value)}
+                    required={isSignUp}
+                    placeholder="Adınız"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  />
+                </div>
+                <div>
+                  <label className="mb-1.5 block text-sm font-medium text-slate-700">Soyad</label>
+                  <input
+                    type="text"
+                    value={soyad}
+                    onChange={(e) => setSoyad(e.target.value)}
+                    required={isSignUp}
+                    placeholder="Soyadınız"
+                    className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                  />
+                </div>
+              </div>
+            </>
+          )}
           <div>
             <label className="mb-1.5 block text-sm font-medium text-slate-700">E-posta</label>
             <input

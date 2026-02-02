@@ -6,11 +6,13 @@ export const dynamic = "force-dynamic";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
-  const { email, password } = body;
+  const { email, password, firstName, lastName } = body;
 
   if (!email || !password) {
     return NextResponse.json({ ok: false, error: "E-posta ve şifre gerekli" }, { status: 400 });
   }
+
+  const fullName = [firstName, lastName].filter(Boolean).map((s: string) => String(s).trim()).join(" ").trim() || undefined;
 
   const url = getSupabaseUrl();
   const key = getSupabaseAnonKey();
@@ -41,6 +43,9 @@ export async function POST(request: NextRequest) {
     password,
     options: {
       emailRedirectTo: `${request.nextUrl.origin}/auth/callback`,
+      data: fullName
+        ? { full_name: fullName, first_name: (firstName || "").trim(), last_name: (lastName || "").trim() }
+        : undefined,
     },
   });
 
