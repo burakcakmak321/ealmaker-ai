@@ -3,12 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-type UserRow = { id: string; email: string | undefined; created_at: string };
+type UserRow = { id: string; email: string | undefined; created_at: string; is_pro?: boolean };
 
 export default function AdminPage() {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [settingPro, setSettingPro] = useState<string | null>(null);
 
   useEffect(() => {
     fetch("/api/admin/users")
@@ -23,6 +24,29 @@ export default function AdminPage() {
       .catch((err) => setError(err instanceof Error ? err.message : "Bir hata oluştu."))
       .finally(() => setLoading(false));
   }, []);
+
+  async function handleSetPro(userId?: string) {
+    setSettingPro(userId ?? "self");
+    try {
+      const res = await fetch("/api/admin/set-pro", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userId ? { userId } : {}),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Hata");
+      if (userId) {
+        setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, is_pro: true } : u)));
+      } else {
+        const list = await fetch("/api/admin/users").then((r) => r.json());
+        if (list.users) setUsers(list.users);
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Pro verilemedi.");
+    } finally {
+      setSettingPro(null);
+    }
+  }
 
   if (loading) {
     return (
@@ -58,9 +82,19 @@ export default function AdminPage() {
           ← Siteye dön
         </Link>
       </div>
-      <p className="mb-6 text-sm text-slate-600">
-        Telefondan veya bilgisayardan kayıt olan tüm kullanıcılar burada listelenir.
-      </p>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <p className="text-sm text-slate-600">
+          Telefondan veya bilgisayardan kayıt olan tüm kullanıcılar burada listelenir.
+        </p>
+        <button
+          type="button"
+          onClick={() => handleSetPro()}
+          disabled={!!settingPro}
+          className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
+        >
+          {settingPro === "self" ? "…" : "✨ Hesabımı Pro yap"}
+        </button>
+      </div>
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[400px] text-left text-sm">
@@ -69,12 +103,14 @@ export default function AdminPage() {
                 <th className="px-4 py-3 font-semibold text-slate-700">#</th>
                 <th className="px-4 py-3 font-semibold text-slate-700">E-posta</th>
                 <th className="px-4 py-3 font-semibold text-slate-700">Kayıt tarihi</th>
+                <th className="px-4 py-3 font-semibold text-slate-700">Pro</th>
+                <th className="px-4 py-3 font-semibold text-slate-700">İşlem</th>
               </tr>
             </thead>
             <tbody>
               {users.length === 0 ? (
                 <tr>
-                  <td colSpan={3} className="px-4 py-8 text-center text-slate-500">
+                  <td colSpan={5} className="px-4 py-8 text-center text-slate-500">
                     Henüz kayıtlı kullanıcı yok.
                   </td>
                 </tr>
@@ -90,6 +126,25 @@ export default function AdminPage() {
                             timeStyle: "short",
                           })
                         : "—"}
+                    </td>
+                    <td className="px-4 py-3">
+                      {u.is_pro ? (
+                        <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">Pro</span>
+                      ) : (
+                        <span className="text-slate-400">—</span>
+                      )}
+                    </td>
+                    <td className="px-4 py-3">
+                      {!u.is_pro && (
+                        <button
+                          type="button"
+                          onClick={() => handleSetPro(u.id)}
+                          disabled={!!settingPro}
+                          className="rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
+                        >
+                          {settingPro === u.id ? "…" : "Pro ver"}
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))

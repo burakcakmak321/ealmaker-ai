@@ -46,7 +46,7 @@ export default function DilekcePage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: "dilekce",
-          baslik: baslik || "Dilekçe",
+          baslik: baslik || "Resmi Yazı",
           konu: konu || "",
           detay,
         }),
@@ -85,8 +85,8 @@ export default function DilekcePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <PageHeader
-        title="Dilekçe Sihirbazı"
-        description="Konuyu kısaca anlatın; resmi dilekçe formatında metin hazırlayalım. Yazdırıp imzalayıp gönderebilirsiniz."
+        title="Resmi Yazı Taslağı"
+        description="Konuyu kısaca anlatın; kurumlara hitaben resmi yazı formatında metin taslağı hazırlayalım. Taslak niteliğindedir; yazdırıp imzalayıp göndermeden önce mutlaka kontrol edin."
         icon="📋"
       />
 
@@ -115,7 +115,7 @@ export default function DilekcePage() {
       <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="mb-1.5 block text-sm font-medium text-slate-700">Dilekçe türü / başlık</label>
+            <label className="mb-1.5 block text-sm font-medium text-slate-700">Yazı türü / başlık</label>
             <select
               value={baslik}
               onChange={(e) => setBaslik(e.target.value)}
@@ -158,7 +158,7 @@ export default function DilekcePage() {
             disabled={yukleniyor || authLoading}
             className="w-full rounded-xl bg-brand-600 py-4 font-semibold text-white shadow-soft transition hover:bg-brand-700 disabled:opacity-60"
           >
-            {yukleniyor ? "Dilekçe yazılıyor…" : "Dilekçe metnini oluştur"}
+            {yukleniyor ? "Metin taslağı oluşturuluyor…" : "Resmi yazı taslağını oluştur"}
           </button>
         </form>
       </div>
@@ -172,7 +172,7 @@ export default function DilekcePage() {
       {showResult && (
         <ResultWithBlur
           text={sonuc}
-          title="Dilekçe metni"
+          title="Resmi yazı taslağı"
           copyLabel="Kopyala"
           blurred={showBlurred && !limitReached}
           limitReached={limitReached}

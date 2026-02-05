@@ -10,7 +10,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
 
-type ModuleType = "fatura" | "pazarlik" | "dilekce";
+type ModuleType = "fatura" | "pazarlik" | "dilekce" | "cv";
 
 function buildSystemPrompt(type: ModuleType, payload: Record<string, unknown>): string {
   switch (type) {
@@ -49,6 +49,26 @@ Kullanıcının anlattığı detay: ${detay}
 
 Görevin: Resmi dilekçe formatında (Sayı, Tarih, İlgi, Metin, Talep, Saygıyla) tam bir dilekçe metni yaz. 657 sayılı DMK ve dilekçe usulüne uygun olsun. İmza ve tarih için boşluk bırak. Sadece dilekçe metnini yaz.`;
     }
+    case "cv": {
+      const adSoyad = (payload.adSoyad as string) || "Kullanıcı";
+      const hedefPozisyon = (payload.hedefPozisyon as string) || "Belirtilmedi";
+      const ozet = (payload.ozet as string) || "";
+      const deneyim = (payload.deneyim as string) || "";
+      const egitim = (payload.egitim as string) || "";
+      const beceriler = (payload.beceriler as string) || "";
+      const dil = (payload.dil as string) || "";
+      return `Sen insan kaynakları ve kariyer danışmanlığında deneyimli bir asistansın. Kullanıcı CV (öz geçmiş) taslağı istiyor.
+
+Ad Soyad: ${adSoyad}
+Hedef pozisyon: ${hedefPozisyon}
+Profesyonel özet: ${ozet}
+İş deneyimi: ${deneyim}
+Eğitim: ${egitim}
+Beceriler: ${beceriler}
+Diller: ${dil}
+
+Görevin: Profesyonel, ATS dostu ve okunabilir bir CV metni taslağı oluştur. Başlık (Ad Soyad), Profesyonel Özet, İş Deneyimi, Eğitim, Beceriler ve Diller bölümlerini içeren düz metin formatında yaz. Madde işaretleri kullan, net ve öz ifadeler tercih et. Sadece CV içeriğini yaz, ek açıklama ekleme.`;
+    }
     default:
       return "Genel metin üret.";
   }
@@ -80,9 +100,9 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { type, ...payload } = body as { type: ModuleType; [k: string]: unknown };
 
-    if (!type || !["fatura", "pazarlik", "dilekce"].includes(type)) {
+    if (!type || !["fatura", "pazarlik", "dilekce", "cv"].includes(type)) {
       return NextResponse.json(
-        { error: "Geçersiz modül. type: fatura | pazarlik | dilekce" },
+        { error: "Geçersiz modül. type: fatura | pazarlik | dilekce | cv" },
         { status: 400 }
       );
     }
@@ -110,7 +130,9 @@ export async function POST(req: NextRequest) {
               ? "Fatura/itiraz dilekçesini yaz."
               : type === "pazarlik"
                 ? "Pazarlık mesajlarını yaz."
-                : "Dilekçe metnini yaz.",
+                : type === "cv"
+                  ? "CV taslağını oluştur."
+                  : "Dilekçe metnini yaz.",
         },
       ],
       max_tokens: 1500,

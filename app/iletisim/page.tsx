@@ -3,12 +3,25 @@
 import { useState } from "react";
 import Link from "next/link";
 
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "yaziasistani@gmail.com";
+
 export default function IletisimPage() {
   const [gonderildi, setGonderildi] = useState(false);
 
-  function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Backend olmadan sadece "gönderildi" mesajı göster
+    const form = e.currentTarget;
+    const ad = (form.elements.namedItem("ad") as HTMLInputElement)?.value || "";
+    const email = (form.elements.namedItem("email") as HTMLInputElement)?.value || "";
+    const konu = (form.elements.namedItem("konu") as HTMLSelectElement)?.value || "";
+    const mesaj = (form.elements.namedItem("mesaj") as HTMLTextAreaElement)?.value || "";
+
+    const konuLabel = { genel: "Genel soru", pro: "Pro / Fiyatlandırma", kurumsal: "Kurumsal teklif", teknik: "Teknik destek", kvkk: "KVKK başvurusu / Veri talebi" }[konu] || konu;
+    const subject = `[YazıAsistan İletişim] ${konuLabel}`;
+    const body = `Ad Soyad: ${ad}\nE-posta: ${email}\nKonu: ${konuLabel}\n\nMesaj:\n${mesaj}`;
+
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
     setGonderildi(true);
   }
 
@@ -19,16 +32,17 @@ export default function IletisimPage() {
       </Link>
       <h1 className="mb-4 text-3xl font-bold text-slate-900">İletişim</h1>
       <p className="mb-10 text-slate-600">
-        Soru, öneri veya kurumsal teklif için aşağıdaki formu kullanabilirsiniz. Backend
-        eklendiğinde mesajlarınız iletilecektir.
+        Soru, öneri, KVKK başvurusu veya kurumsal teklif için aşağıdaki formu kullanabilirsiniz. Talepleriniz en kısa sürede değerlendirilecektir.
       </p>
 
       {gonderildi ? (
         <div className="rounded-2xl border border-brand-200 bg-brand-50 p-8 text-center">
-          <p className="mb-2 font-semibold text-brand-800">Mesajınız alındı.</p>
+          <p className="mb-2 font-semibold text-brand-800">E-posta istemciniz açıldı.</p>
           <p className="text-sm text-slate-600">
-            Ödeme ve backend entegrasyonu tamamlandığında gerçek iletişim aktif olacaktır.
-            Şimdilik bu bir demo yanıtıdır.
+            Mesajınızı gönderin. KVKK başvuruları 30 gün içinde yanıtlanacaktır.
+          </p>
+          <p className="mt-4 text-xs text-slate-500">
+            E-posta açılmadıysa: <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-brand-600 underline">{CONTACT_EMAIL}</a> adresine yazabilirsiniz.
           </p>
         </div>
       ) : (
@@ -72,6 +86,7 @@ export default function IletisimPage() {
               <option value="pro">Pro / Fiyatlandırma</option>
               <option value="kurumsal">Kurumsal teklif</option>
               <option value="teknik">Teknik destek</option>
+              <option value="kvkk">KVKK başvurusu / Veri talebi</option>
             </select>
           </div>
           <div>

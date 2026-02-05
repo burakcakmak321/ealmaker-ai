@@ -27,8 +27,8 @@ export default function Home() {
               </span>
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-slate-600 sm:text-xl">
-              Fatura itirazı, pazarlık ve dilekçe taslakları —
-              <strong> 50+ senaryo</strong> ile metin üretin. 
+              Fatura itirazı, pazarlık, resmi yazı taslağı ve CV —
+              <strong> 50+ senaryo</strong> ile metin taslağı üretin. 
               <span className="font-semibold text-amber-700"> ⚠️ Hukuki tavsiye değildir.</span>
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -96,11 +96,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Neden DealMaker AI - 6 özellik */}
+      {/* Neden YazıAsistan - 6 özellik */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
-            Neden DealMaker AI?
+            Neden YazıAsistan?
           </h2>
           <p className="mt-4 text-lg text-slate-600">
             Profesyonel metin hazırlamanın en kolay, en hızlı ve en güvenilir yolu
@@ -152,7 +152,7 @@ export default function Home() {
               </div>
               <h3 className="mt-5 text-lg font-bold text-slate-900">Kategori / modül seçin</h3>
               <p className="mt-2 text-slate-600">
-                Fatura itirazı, pazarlık veya dilekçe — ihtiyacınıza uygun modülü seçin.
+                Fatura, pazarlık, resmi yazı taslağı veya CV — ihtiyacınıza uygun modülü seçin.
               </p>
             </div>
             <div className="text-center">
@@ -367,7 +367,7 @@ export default function Home() {
               Profesyonel metninizi hemen oluşturun
             </h2>
             <p className="mt-4 text-lg text-white/90">
-              2.800+ kullanıcı DealMaker AI ile profesyonel metinler hazırlıyor. Siz de katılın.
+              2.800+ kullanıcı YazıAsistan ile profesyonel metinler hazırlıyor. Siz de katılın.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link

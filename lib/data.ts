@@ -17,10 +17,10 @@ export const TRUST_BADGES = [
 
 export const FEATURES = [
   {
-    title: "3 güçlü modül, onlarca senaryo",
-    description: "Fatura itirazı, pazarlık mesajları ve resmi dilekçe. Her modülde hazır senaryolar; kurum ve konuya göre metin üretilir.",
+    title: "4 güçlü modül, 50+ senaryo",
+    description: "Fatura itirazı, pazarlık, resmi yazı taslağı ve CV. Her modülde hazır senaryolar; kurum ve konuya göre metin taslağı üretilir.",
     icon: "📋",
-    items: ["Fatura & abonelik itirazı", "Pazarlık mesajları", "Belediye, mahkeme, tüketici dilekçeleri"],
+    items: ["Fatura & abonelik itirazı", "Pazarlık mesajları", "Resmi yazı taslağı", "CV & öz geçmiş taslağı"],
   },
   {
     title: "Saniyeler içinde hazır",
@@ -30,9 +30,9 @@ export const FEATURES = [
   },
   {
     title: "T.C. standartlarında",
-    description: "Tüm metinler resmi yazışma kurallarına ve dilekçe formatına uyumlu. Kurumun dilinde, hukuki jargonla.",
+    description: "Resmi yazı taslakları ve CV formatları Türkiye standartlarına uyumlu. Kurumun dilinde, profesyonel ifadelerle.",
     icon: "🇹🇷",
-    items: ["Resmi hitap ve sonuç", "657 DMK uyumlu dilekçe", "İkna edici pazarlık metni"],
+    items: ["Resmi hitap ve sonuç", "657 DMK uyumlu format", "İkna edici pazarlık metni"],
   },
   {
     title: "PDF & yazdır",
@@ -109,12 +109,21 @@ export const TEMPLATE_CATEGORIES = [
     href: "/dilekce",
     tags: ["Boşanma", "Velayet", "İcra", "+7"],
   },
+  {
+    title: "CV & Öz Geçmiş",
+    description: "Profesyonel CV taslağı oluşturucu",
+    icon: "📋",
+    count: "Tüm sektörler",
+    usage: "Yeni",
+    href: "/cv",
+    tags: ["CV", "Öz geçmiş", "Kariyer", "İK"],
+  },
 ];
 
 export const POPULAR_TEMPLATES = [
   { title: "İnternet faturası itirazı", success: 87, usage: "2.450+", price: "Ücretsiz", href: "/fatura", icon: "📶" },
-  { title: "Banka aidatı iadesi", success: 82, usage: "1.890+", price: "Ücretsiz", href: "/fatura", icon: "🏦" },
   { title: "Sahibinden pazarlık", success: 91, usage: "3.100+", price: "Ücretsiz", href: "/pazarlik", icon: "🤝" },
+  { title: "Profesyonel CV taslağı", success: 88, usage: "Yeni", price: "Ücretsiz", href: "/cv", icon: "📋" },
   { title: "Tüketici hakem heyeti", success: 78, usage: "1.220+", price: "Ücretsiz", href: "/dilekce", icon: "🛒" },
   { title: "Kira artışı itirazı", success: 75, usage: "980+", price: "Ücretsiz", href: "/dilekce", icon: "🏠" },
   { title: "Belediye şikayeti", success: 85, usage: "1.540+", price: "Ücretsiz", href: "/dilekce", icon: "🏛️" },
@@ -122,9 +131,9 @@ export const POPULAR_TEMPLATES = [
 
 export const TESTIMONIALS = [
   { name: "Ahmet K.", city: "İstanbul", type: "Fatura itirazı", text: "İnternet faturası yüksek gelmişti. Bu siteyle yazdığım itiraz metnini operatöre gönderdim, indirim yaptılar. Çok memnunum.", rating: 5, initials: "AK" },
-  { name: "Fatma Y.", city: "Ankara", type: "Dilekçe", text: "Belediyeye yol şikayeti dilekçesi yazmam gerekiyordu. 2 dakikada profesyonel metin hazırladım, kabul edildi.", rating: 5, initials: "FY" },
+  { name: "Fatma Y.", city: "Ankara", type: "Resmi yazı", text: "Belediyeye yol şikayeti yazmam gerekiyordu. 2 dakikada profesyonel taslak hazırladım, düzenleyip gönderdim.", rating: 5, initials: "FY" },
   { name: "Mehmet E.", city: "İzmir", type: "Pazarlık", text: "Sahibinden’de laptop alacaktım. Hazırladığı mesajlarla satıcıyla anlaştık, istediğim fiyata indi. Harika.", rating: 5, initials: "ME" },
-  { name: "Sevgi Ö.", city: "Bursa", type: "Tüketici dilekçesi", text: "Mağazadan iade talebim reddedilmişti. Tüketici hakem heyeti dilekçesini buradan hazırladım, sonuç aldım.", rating: 5, initials: "SÖ" },
+  { name: "Sevgi Ö.", city: "Bursa", type: "CV taslağı", text: "CV'mi güncellemem gerekiyordu. Taslak çok iyi çıktı, Word'e yapıştırıp detayları ekledim. Hızlı ve pratik.", rating: 5, initials: "SÖ" },
 ];
 
 export const FAQ_HOME = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthGuard";
 import PageHeader from "@/components/PageHeader";
@@ -9,6 +9,7 @@ export default function CheckoutPage() {
   const { user, loading: authLoading } = useAuth();
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -20,6 +21,21 @@ export default function CheckoutPage() {
       })
       .catch(() => setError("Bağlantı hatası."));
   }, [user]);
+
+  // PayTR iframe boyutlandırma
+  useEffect(() => {
+    if (!token) return;
+    const script = document.createElement("script");
+    script.src = "https://www.paytr.com/js/iframeResizer.min.js";
+    script.async = true;
+    script.onload = () => {
+      if (typeof (window as unknown as { iFrameResize?: (opts: unknown, id: string) => void }).iFrameResize === "function") {
+        (window as unknown as { iFrameResize: (opts: unknown, id: string) => void }).iFrameResize({}, "#paytriframe");
+      }
+    };
+    document.body.appendChild(script);
+    return () => { script.remove(); };
+  }, [token]);
 
   if (authLoading) {
     return (
@@ -37,7 +53,7 @@ export default function CheckoutPage() {
           href="/giris?next=/odeme/checkout"
           className="inline-block rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-700"
         >
-          Giris yap
+          Giriş yap
         </Link>
       </div>
     );
@@ -71,17 +87,23 @@ export default function CheckoutPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <PageHeader
-        title="Pro Odeme"
+        title="Pro Ödeme"
         description="Güvenli ödeme ile Pro'ya geçin. 24,50 ₺/ay (YENI2026 ile %50 indirim)."
         icon="💰"
       />
-      <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
+      <p className="mb-4 text-center text-xs text-slate-500">
+        Ödemeye devam ederek{" "}
+        <Link href="/mesafeli-satis" className="text-brand-600 hover:underline">Mesafeli Satış Sözleşmesi</Link> ve{" "}
+        <Link href="/on-bilgilendirme" className="text-brand-600 hover:underline">Ön Bilgilendirme Formu</Link>&apos;nu kabul etmiş olursunuz.
+      </p>
+      <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
         <iframe
+          ref={iframeRef}
           src={"https://www.paytr.com/odeme/guvenli/" + token}
           id="paytriframe"
           frameBorder="0"
           scrolling="no"
-          style={{ width: "100%", height: "500px" }}
+          style={{ width: "100%", minHeight: "500px" }}
           title="PayTR Ödeme"
         />
       </div>

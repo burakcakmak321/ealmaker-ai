@@ -1,6 +1,6 @@
-# DealMaker AI — Pazarlıkçı ve Hak Arayıcı
+# YazıAsistan — Metin Taslağı Üretim Platformu
 
-Fatura itirazı, pazarlık mesajları ve resmi dilekçe metinlerini saniyeler içinde yazan yapay zeka asistanı. Profesyonel tek sayfa uygulama; backend ve ödeme entegrasyonu sonradan eklenebilir.
+Fatura itirazı, pazarlık mesajları, resmi yazı taslağı ve CV metnini saniyeler içinde üreten yapay zeka asistanı. Profesyonel tek sayfa uygulama; backend ve ödeme entegrasyonu sonradan eklenebilir.
 
 ## Özellikler
 

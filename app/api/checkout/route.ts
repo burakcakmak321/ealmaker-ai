@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { createHash } from "crypto";
+import { createHmac } from "crypto";
 
 export const dynamic = "force-dynamic";
 
@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
     const max_installment = "0";
     const user_basket = Buffer.from(JSON.stringify([["Pro Aylık Abonelik", "24.50", "1"]])).toString("base64");
 
-    // PayTR hash: merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode + merchant_salt
+    // PayTR 1. ADIM hash: merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode + merchant_salt
+    // HMAC-SHA256 ile merchant_key kullanılır (https://dev.paytr.com/iframe-api/iframe-api-1-adim)
     const hash_str = [
       MERCHANT_ID,
       user_ip,
@@ -49,11 +50,12 @@ export async function POST(req: NextRequest) {
       test_mode,
       MERCHANT_SALT,
     ].join("");
-
-    const paytr_token = createHash("sha256").update(hash_str).digest("base64");
+    const paytr_token = createHmac("sha256", MERCHANT_KEY).update(hash_str).digest("base64");
 
     const form = new URLSearchParams({
       merchant_id: MERCHANT_ID,
+      merchant_key: MERCHANT_KEY,
+      merchant_salt: MERCHANT_SALT,
       user_ip,
       merchant_oid,
       email: user_email,
@@ -65,7 +67,7 @@ export async function POST(req: NextRequest) {
       max_installment,
       user_name: user_name.substring(0, 50),
       user_address: "Türkiye",
-      user_phone: "0000000000",
+      user_phone: (user.user_metadata?.phone as string) || "05550000000",
       merchant_ok_url: `${origin}/odeme/basarili`,
       merchant_fail_url: `${origin}/odeme/iptal`,
       timeout_limit: "30",

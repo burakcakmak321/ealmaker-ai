@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHash } from "crypto";
+import { createHmac } from "crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { setPro } from "@/lib/supabase/usage";
+import { getIsPro, setPro } from "@/lib/supabase/usage";
 
 export const dynamic = "force-dynamic";
 
+const MERCHANT_KEY = process.env.PAYTR_MERCHANT_KEY;
 const MERCHANT_SALT = process.env.PAYTR_MERCHANT_SALT;
 
 export async function POST(req: NextRequest) {
@@ -15,19 +16,13 @@ export async function POST(req: NextRequest) {
     const status = body.get("status") as string | null;
     const total_amount = body.get("total_amount") as string | null;
 
-    if (!MERCHANT_SALT || !hash || !merchant_oid) {
+    if (!MERCHANT_KEY || !MERCHANT_SALT || !hash || !merchant_oid) {
       return new NextResponse("OK", { status: 200 });
     }
 
-    const token_str = [
-      merchant_oid,
-      body.get("status"),
-      body.get("total_amount"),
-      body.get("hash"),
-      MERCHANT_SALT,
-    ].join("");
-
-    const expectedHash = createHash("sha256").update(token_str).digest("base64");
+    // PayTR 2. ADIM callback hash: merchant_oid + merchant_salt + status + total_amount (HMAC-SHA256, merchant_key)
+    const hash_str = merchant_oid + MERCHANT_SALT + status + total_amount;
+    const expectedHash = createHmac("sha256", MERCHANT_KEY).update(hash_str).digest("base64");
 
     if (hash !== expectedHash) {
       return new NextResponse("OK", { status: 200 });
@@ -42,7 +37,11 @@ export async function POST(req: NextRequest) {
     const userId = parts[1];
 
     const admin = createAdminClient();
-    await setPro(admin, userId, true);
+    // Tekrarlayan bildirime karşı: zaten Pro ise tekrar işlem yapma (PayTR önerisi)
+    const alreadyPro = await getIsPro(admin, userId);
+    if (!alreadyPro) {
+      await setPro(admin, userId, true);
+    }
 
     return new NextResponse("OK", { status: 200 });
   } catch (err) {

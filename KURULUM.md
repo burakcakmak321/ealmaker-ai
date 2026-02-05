@@ -1,4 +1,4 @@
-# DealMaker AI — Çalıştırma Rehberi (Adım Adım)
+# YazıAsistan — Çalıştırma Rehberi (Adım Adım)
 
 Bu rehber, projeyi bilgisayarınızda ilk kez çalıştırmak için gereken tüm adımları anlatır.
 
@@ -129,7 +129,7 @@ Site artık giriş/kayıt ve 2 ücretsiz kullanım hakkı kullanıyor. Bunun iç
    ```text
    http://localhost:3000
    ```
-3. Enter’a bas. DealMaker AI ana sayfası açılmalı.
+3. Enter’a bas. YazıAsistan ana sayfası açılmalı.
 4. **Fatura İtirazı**, **Pazarlık** veya **Dilekçe** sayfalarına girip formu doldurup “Oluştur” dersen, OpenAI API anahtarın geçerliyse metin üretilir.
 
 ---

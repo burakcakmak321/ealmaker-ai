@@ -24,10 +24,20 @@ export async function GET() {
       console.error("Admin listUsers error:", error);
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
+    const userIds = (data?.users ?? []).map((u) => u.id);
+    const { data: usageRows } =
+      userIds.length > 0
+        ? await admin.from("usage").select("user_id, is_pro").in("user_id", userIds)
+        : { data: [] };
+    const proMap = new Map<string, boolean>();
+    for (const r of usageRows ?? []) {
+      proMap.set((r as { user_id: string; is_pro: boolean }).user_id, !!(r as { is_pro?: boolean }).is_pro);
+    }
     const users = (data?.users ?? []).map((u) => ({
       id: u.id,
       email: u.email,
       created_at: u.created_at,
+      is_pro: proMap.get(u.id) ?? false,
     }));
     return NextResponse.json({ users });
   } catch (err) {

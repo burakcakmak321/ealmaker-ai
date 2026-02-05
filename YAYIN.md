@@ -1,4 +1,4 @@
-# DealMaker AI — Siteyi Yayınlama (Vercel)
+# YazıAsistan — Siteyi Yayınlama (Vercel)
 
 Bu rehber, projeyi **Vercel** üzerinde yayına almak için gereken adımları içerir.
 

@@ -22,11 +22,11 @@ export default function FiyatlandirmaPage() {
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              2 dilekçe / mesaj ücretsiz
+              2 metin taslağı ücretsiz
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              Tüm modüller (Fatura, Pazarlık, Dilekçe)
+              Tüm modüller (Fatura, Pazarlık, Resmi Yazı, CV)
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -56,7 +56,7 @@ export default function FiyatlandirmaPage() {
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              Sınırsız dilekçe ve mesaj
+              Sınırsız metin taslağı üretimi
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -72,6 +72,11 @@ export default function FiyatlandirmaPage() {
             </li>
           </ul>
           <FiyatlandirmaClient />
+          <p className="mt-4 text-center text-xs text-slate-500">
+            <Link href="/mesafeli-satis" className="text-brand-600 hover:underline">Mesafeli Satış Sözleşmesi</Link>
+            {" · "}
+            <Link href="/on-bilgilendirme" className="text-brand-600 hover:underline">Ön Bilgilendirme</Link>
+          </p>
         </div>
       </div>
 

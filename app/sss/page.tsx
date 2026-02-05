@@ -1,55 +1,64 @@
 import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
 
 const faqs = [
   {
-    s: "DealMaker AI ne yapar?",
-    c: "Fatura itirazı, pazarlık mesajları ve resmi dilekçe metinlerini yapay zeka ile sizin yerinize yazar. Kurum adı, konu ve detayları girdiğinizde profesyonel bir metin üretir; kopyalayıp kullanabilirsiniz.",
-  },
-  {
-    s: "Ücretsiz kullanım nasıl?",
-    c: "İlk 2 kullanım (hangi modülde olursa olsun toplam 2) ücretsizdir. Sonrasında Pro üyelik ile sınırsız kullanım planlanmaktadır. Ödeme entegrasyonu eklendiğinde bu sayfa güncellenecektir.",
-  },
-  {
-    s: "Verilerim saklanıyor mu?",
-    c: "Şu anki sürümde metin üretmek için girdiğiniz bilgiler yalnızca yanıt almak için kullanılır; kalıcı hesap olmadığı sürece sunucuda saklanmaz. Ücretsiz kullanım sayacı tarayıcı belleğinde (localStorage) tutulur.",
+    s: "YazıAsistan ne yapar?",
+    c: "Fatura itirazı, pazarlık mesajları, resmi yazı taslağı ve CV taslağı oluşturur. Yapay zeka ile girdiğiniz bilgilere göre profesyonel metin taslakları üretir. Taslaklar kopyalanıp düzenlenebilir.",
   },
   {
     s: "Üretilen metinler hukuki geçerli mi?",
-    c: "Metinler bilgilendirme amaçlıdır; hukuki veya mali tavsiye niteliği taşımaz. Önemli işlemler öncesinde ilgili kurum veya bir hukuk danışmanına danışmanız önerilir.",
+    c: "Hayır. Üretilen metinler bilgilendirme amaçlı taslaktır; hukuki veya mali tavsiye değildir. Avukatlık hizmeti sunulmamaktadır. Önemli işlemlerde mutlaka yetkili uzmana (avukat, mali müşavir vb.) danışınız.",
+  },
+  {
+    s: "CV taslağı nasıl çalışır?",
+    c: "Deneyim, eğitim, beceriler ve hedef pozisyonunuzu girin; AI profesyonel bir CV metni taslağı oluşturur. Taslağı Word, Canva veya LinkedIn'e yapıştırarak düzenleyebilirsiniz. Son kontrolden siz sorumlusunuz.",
+  },
+  {
+    s: "Ücretsiz kullanım nasıl?",
+    c: "İlk 2 kullanım (tüm modüller dahil, toplam 2) ücretsizdir. Sonrasında Pro üyelik ile sınırsız kullanım sunulur.",
+  },
+  {
+    s: "Verilerim saklanıyor mu? KVKK uyumlu mu?",
+    c: "6698 sayılı KVKK kapsamında kişisel verileriniz işlenir. Metin üretim verileri kalıcı sunucu kaydı tutulmadan işlenir. Detaylar için Gizlilik Politikası ve KVKK Aydınlatma Metni sayfamızı inceleyebilirsiniz.",
+  },
+  {
+    s: "Çerezler ne için kullanılıyor?",
+    c: "Oturum yönetimi, güvenlik ve kullanıcı deneyimi için çerezler kullanılır. Detaylar için Çerez Politikası sayfamıza bakınız.",
   },
   {
     s: "Hangi diller destekleniyor?",
-    c: "Şu an Türkçe odaklı çalışıyoruz. Resmi dile ve Türkiye mevzuatına uygun dilekçe ve itiraz metinleri üretilir.",
+    c: "Şu an Türkçe odaklı çalışıyoruz. Resmi yazı taslakları ve CV taslakları Türkiye standartlarına uygun üretilir.",
   },
   {
-    s: "Pro ne zaman gelecek?",
-    c: "Pro planı ve ödeme entegrasyonu (Stripe vb.) backend tamamlandıktan sonra eklenecek. Gelişmelerden haberdar olmak için siteyi takip edebilir veya iletişim sayfasından yazabilirsiniz.",
+    s: "Pro abonelik nasıl iptal edilir?",
+    c: "Pro abonelik iptali ve cayma hakkı 6502 sayılı Tüketici Kanunu ve Mesafeli Sözleşmeler Yönetmeliği kapsamındadır. İletişim sayfası üzerinden talebinizi iletebilirsiniz.",
   },
 ];
 
 export default function SSSPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:py-24">
-      <Link href="/" className="mb-8 inline-block text-sm text-slate-600 hover:text-brand-600">
-        ← Ana sayfa
-      </Link>
-      <h1 className="mb-4 text-3xl font-bold text-slate-900">Sıkça Sorulan Sorular</h1>
-      <p className="mb-12 text-slate-600">
-        Aklınıza takılan soruların cevapları aşağıda. Bulamazsanız{" "}
-        <Link href="/iletisim" className="text-brand-600 hover:underline">
-          iletişime geçin
-        </Link>
-        .
-      </p>
+    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
+      <PageHeader
+        title="Sıkça Sorulan Sorular"
+        description="Aklınıza takılan soruların cevapları. Bulamazsanız iletişime geçebilirsiniz."
+        icon="❓"
+      />
 
       <dl className="space-y-8">
         {faqs.map(({ s, c }) => (
-          <div key={s} className="border-b border-slate-200 pb-8 last:border-0">
+          <div key={s} className="rounded-xl border border-slate-200/80 bg-white p-6 shadow-card">
             <dt className="mb-2 font-semibold text-slate-800">{s}</dt>
             <dd className="text-slate-600">{c}</dd>
           </div>
         ))}
       </dl>
+
+      <div className="mt-12 text-center">
+        <Link href="/iletisim" className="inline-flex items-center gap-2 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-700">
+          İletişime geç
+        </Link>
+      </div>
     </div>
   );
 }
