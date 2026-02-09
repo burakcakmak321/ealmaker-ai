@@ -7,7 +7,7 @@ import UsageBanner from "@/components/UsageBanner";
 import PromoBanner from "@/components/PromoBanner";
 import AuthNav from "@/components/AuthNav";
 import CookieConsent from "@/components/CookieConsent";
-import { SITE_NAME } from "@/lib/brand";
+import { SITE_NAME, BUSINESS } from "@/lib/brand";
 import { ToastProvider } from "@/components/Toast";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -66,7 +66,7 @@ export default function RootLayout({
       <body className="min-h-screen antialiased font-sans">
         <ToastProvider>
           <PromoBanner />
-          <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
+          <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/98 shadow-sm backdrop-blur-xl">
             <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
               <Link
                 href="/"
@@ -100,7 +100,7 @@ export default function RootLayout({
 
           <CookieConsent />
 
-          <footer className="border-t border-slate-200 bg-slate-900 text-slate-300">
+          <footer className="border-t border-slate-200 bg-slate-900 text-slate-300 shadow-[0_-4px_24px_-4px_rgba(0,0,0,.08)]">
             <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
               <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
                 <div className="sm:col-span-2 lg:col-span-2">
@@ -155,13 +155,20 @@ export default function RootLayout({
                   </ul>
                 </div>
               </div>
-              <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800 pt-8 sm:flex-row">
-                <p className="text-sm text-slate-500">
-                  © {new Date().getFullYear()} {SITE_NAME}. Tüm hakları saklıdır.
-                </p>
-                <p className="text-sm text-slate-500">
-                  Metin taslaklarınızı oluşturun. Hukuki tavsiye değildir.
-                </p>
+              <div className="mt-12 space-y-6 border-t border-slate-800 pt-8">
+                <div className="rounded-lg bg-slate-800/50 px-4 py-4 text-xs text-slate-400">
+                  <p className="font-semibold text-slate-300">{BUSINESS.unvan}</p>
+                  <p className="mt-1">Vergi Dairesi: {BUSINESS.vergiDairesi}{BUSINESS.vkn ? ` · VKN: ${BUSINESS.vkn}` : ""}</p>
+                  <p>{BUSINESS.adres} · Tel: {BUSINESS.telefon} · {BUSINESS.email}</p>
+                </div>
+                <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+                  <p className="text-sm text-slate-500">
+                    © {new Date().getFullYear()} {SITE_NAME}. Tüm hakları saklıdır.
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Metin taslaklarınızı oluşturun. Hukuki tavsiye değildir.
+                  </p>
+                </div>
               </div>
             </div>
           </footer>

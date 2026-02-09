@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #0f172a;
+  --foreground: #1e293b;
   --background: #f8fafc;
 }
 
@@ -20,7 +20,7 @@ body {
 
 /* Seçim rengi */
 ::selection {
-  background-color: rgba(5, 150, 105, 0.2);
+  background-color: rgba(79, 70, 229, 0.2);
 }
 
 /* Yazdır / PDF için */
@@ -52,13 +52,13 @@ select:focus {
   outline: none;
 }
 
-/* Arka plan deseni (hero vb.) */
+/* Arka plan deseni (hero vb.) - profesyonel indigo tonları */
 .bg-mesh {
-  background-color: #f8fafc;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eef2ff 100%);
   background-image:
-    radial-gradient(at 40% 20%, rgba(5, 150, 105, 0.06) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(5, 150, 105, 0.04) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(5, 150, 105, 0.05) 0px, transparent 50%);
+    radial-gradient(at 40% 20%, rgba(79, 70, 229, 0.06) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(79, 70, 229, 0.05) 0px, transparent 50%);
 }
 
 .bg-grid {

@@ -50,14 +50,14 @@ export default function MesafeliSatisPage() {
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">5. Cayma Hakkı</h2>
           <p>
-            Mesafeli Sözleşmeler Yönetmeliği&apos;nin 15. maddesi uyarınca, dijital içerik niteliğindeki hizmetlerde cayma hakkı, Alıcı onayı ile hizmetin ifasına başlanmasından sonra kullanılamaz. Alıcı, ödeme öncesinde Ön Bilgilendirme Formu&apos;nu okuyup onaylayarak bu durumu kabul etmiş sayılır.
+            Mesafeli Sözleşmeler Yönetmeliği&apos;nin 15. maddesi uyarınca, dijital içerik niteliğindeki hizmetlerde cayma hakkı, Alıcı onayı ile hizmetin ifasına başlanmasından sonra kullanılamaz. Pro aboneliğiniz ödeme onayıyla derhal aktifleşir. Alıcı, ödeme öncesinde Ön Bilgilendirme Formu&apos;nu okuyup onaylayarak bu durumu kabul etmiş sayılır. Hizmetin dijital olduğundan bahisle 14 günlük cayma hakkı sınırlanabilir.
           </p>
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-slate-800">6. İade</h2>
+          <h2 className="mb-3 text-xl font-bold text-slate-800">6. İade ve Abonelik Yenileme</h2>
           <p>
-            Cayma hakkı kullanılamayan hallerde, Alıcının talep etmesi ve yasal zorunluluk bulunması halinde iade yapılır. İade koşulları 6502 sayılı Kanun ve ilgili mevzuata tabidir.
+            Cayma hakkı kullanılamayan hallerde, Alıcının talep etmesi ve yasal zorunluluk bulunması halinde iade yapılır. İade talepleri ödeme tarihi itibarıyla 5 iş günü içinde değerlendirilir. Abonelik aylık olarak otomatik yenilenir; iptal için <Link href="/iletisim" className="text-brand-600 hover:underline">İletişim</Link> sayfasından talepte bulunulmalıdır. İade koşulları 6502 sayılı Kanun ve ilgili mevzuata tabidir.
           </p>
         </section>
 

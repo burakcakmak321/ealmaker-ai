@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
-const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "yaziasistani@gmail.com";
+import { BUSINESS } from "@/lib/brand";
 
 export default function IletisimPage() {
   const [gonderildi, setGonderildi] = useState(false);
@@ -20,7 +19,7 @@ export default function IletisimPage() {
     const subject = `[YazıAsistan İletişim] ${konuLabel}`;
     const body = `Ad Soyad: ${ad}\nE-posta: ${email}\nKonu: ${konuLabel}\n\nMesaj:\n${mesaj}`;
 
-    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailto = `mailto:${BUSINESS.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
     setGonderildi(true);
   }
@@ -31,9 +30,23 @@ export default function IletisimPage() {
         ← Ana sayfa
       </Link>
       <h1 className="mb-4 text-3xl font-bold text-slate-900">İletişim</h1>
-      <p className="mb-10 text-slate-600">
+      <p className="mb-6 text-slate-600">
         Soru, öneri, KVKK başvurusu veya kurumsal teklif için aşağıdaki formu kullanabilirsiniz. Talepleriniz en kısa sürede değerlendirilecektir.
       </p>
+
+      <div className="mb-10 rounded-xl border border-slate-200 bg-slate-50 p-6">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-slate-500">İşletme Bilgileri</h2>
+        <p className="font-medium text-slate-800">{BUSINESS.unvan}</p>
+        <p className="mt-1 text-sm text-slate-600">{BUSINESS.adres}</p>
+        <p className="mt-1 text-sm text-slate-600">Vergi Dairesi: {BUSINESS.vergiDairesi}</p>
+        <p className="mt-2 flex items-center gap-2 text-sm">
+          <span>📞</span> <a href={`tel:${BUSINESS.telefon.replace(/\s/g, "")}`} className="text-brand-600 hover:underline">{BUSINESS.telefon}</a>
+        </p>
+        <p className="mt-1 flex items-center gap-2 text-sm">
+          <span>✉️</span> <a href={`mailto:${BUSINESS.email}`} className="text-brand-600 hover:underline">{BUSINESS.email}</a>
+        </p>
+        <p className="mt-3 text-xs text-slate-500">Destek: Hafta içi 09:00–18:00 · KVKK başvuruları 30 gün içinde yanıtlanır</p>
+      </div>
 
       {gonderildi ? (
         <div className="rounded-2xl border border-brand-200 bg-brand-50 p-8 text-center">
@@ -42,7 +55,7 @@ export default function IletisimPage() {
             Mesajınızı gönderin. KVKK başvuruları 30 gün içinde yanıtlanacaktır.
           </p>
           <p className="mt-4 text-xs text-slate-500">
-            E-posta açılmadıysa: <a href={`mailto:${CONTACT_EMAIL}`} className="font-medium text-brand-600 underline">{CONTACT_EMAIL}</a> adresine yazabilirsiniz.
+            E-posta açılmadıysa: <a href={`mailto:${BUSINESS.email}`} className="font-medium text-brand-600 underline">{BUSINESS.email}</a> adresine yazabilirsiniz.
           </p>
         </div>
       ) : (

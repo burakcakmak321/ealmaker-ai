@@ -83,13 +83,13 @@ export default function Home() {
       </section>
 
       {/* Güven rozetleri */}
-      <section className="border-b border-slate-200/80 bg-slate-50/80 py-6">
+      <section className="border-b border-slate-200/80 bg-gradient-to-b from-slate-50 to-white py-8">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-center text-sm text-slate-600">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-5 text-center text-sm text-slate-600">
             {TRUST_BADGES.map((badge, i) => (
-              <span key={i} className="flex items-center gap-2">
+              <span key={i} className="flex items-center gap-2.5 rounded-full bg-white px-4 py-2 shadow-sm ring-1 ring-slate-200/80">
                 <span className="text-lg">{badge.icon}</span>
-                {badge.label}
+                <span className="font-medium text-slate-700">{badge.label}</span>
               </span>
             ))}
           </div>
@@ -360,7 +360,7 @@ export default function Home() {
 
       {/* Son CTA */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-700 p-10 shadow-glow sm:p-16">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-600 via-brand-600 to-brand-800 p-10 shadow-glow sm:p-16">
           <div className="absolute inset-0 bg-grid opacity-10" aria-hidden />
           <div className="relative mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
