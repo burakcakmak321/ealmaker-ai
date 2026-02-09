@@ -9,8 +9,8 @@ export const PRICES = {
   onetime: {
     normal: 49,
     discounted: 29,
-    label: "Tek Seferlik 10 Kullanım",
-    credits: 10,
+    label: "Tek Seferlik 2 Kullanım",
+    credits: 2,
   },
 } as const;
 

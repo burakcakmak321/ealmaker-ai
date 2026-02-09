@@ -13,7 +13,7 @@ function CheckoutContent() {
   const plan = (searchParams.get("plan") === "onetime" ? "onetime" : "pro") as "pro" | "onetime";
   const isPro = plan === "pro";
   const amount = isPro ? PRICES.pro.discounted : PRICES.onetime.discounted;
-  const desc = isPro ? `${amount} ₺/ay (YENI2026)` : `${amount} ₺ — 10 kullanım (YENI2026)`;
+  const desc = isPro ? `${amount} ₺/ay (YENI2026)` : `${amount} ₺ — ${PRICES.onetime.credits} kullanım (YENI2026)`;
 
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);

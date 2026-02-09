@@ -21,7 +21,7 @@ export default function OnBilgilendirmePage() {
         </p>
         <ul className="list-disc space-y-2 pl-6">
           <li><strong>Satıcı:</strong> YazıAsistan</li>
-          <li><strong>Hizmet:</strong> Pro abonelik (sınırsız) veya Tek seferlik (10 kullanım)</li>
+          <li><strong>Hizmet:</strong> Pro abonelik (sınırsız) veya Tek seferlik (2 kullanım)</li>
           <li><strong>Tutar:</strong> Pro 99 ₺/ay, Tek seferlik 29 ₺ — site üzerinde belirtilir (KDV dahil)</li>
           <li><strong>Ödeme:</strong> Kredi kartı ile güvenli ödeme (PayTR altyapısı)</li>
           <li><strong>Cayma hakkı:</strong> Dijital içerik niteliğindeki hizmetlerde, hizmet ifasına başlanmasından sonra cayma hakkı kullanılamaz.</li>

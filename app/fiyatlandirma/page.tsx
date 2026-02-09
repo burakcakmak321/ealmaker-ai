@@ -50,7 +50,7 @@ export default function FiyatlandirmaPage() {
             <span className="text-3xl font-extrabold tracking-tight text-slate-900">{PRICES.onetime.discounted} ₺</span>
             <span className="rounded bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">YENI2026</span>
           </p>
-          <p className="mt-1 text-sm text-slate-500">10 ek kullanım hakkı</p>
+          <p className="mt-1 text-sm text-slate-500">{PRICES.onetime.credits} ek kullanım hakkı</p>
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
