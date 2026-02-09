@@ -10,6 +10,8 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [settingPro, setSettingPro] = useState<string | null>(null);
+  const [migrating, setMigrating] = useState(false);
+  const [migrateMsg, setMigrateMsg] = useState("");
 
   useEffect(() => {
     fetch("/api/admin/users")
@@ -45,6 +47,27 @@ export default function AdminPage() {
       setError(err instanceof Error ? err.message : "Pro verilemedi.");
     } finally {
       setSettingPro(null);
+    }
+  }
+
+  async function handleMigrate() {
+    setMigrating(true);
+    setMigrateMsg("");
+    try {
+      const res = await fetch("/api/admin/migrate", { method: "POST" });
+      const data = await res.json();
+      if (!res.ok) {
+        const parts = [data.error || "Hata"];
+        if (data.instructions?.length) parts.push(...data.instructions);
+        if (data.sql) parts.push("SQL: " + data.sql);
+        setMigrateMsg(parts.join("\n"));
+        return;
+      }
+      setMigrateMsg(data.message || "Migration tamamlandı.");
+    } catch (err) {
+      setMigrateMsg(err instanceof Error ? err.message : "Bağlantı hatası.");
+    } finally {
+      setMigrating(false);
     }
   }
 
@@ -86,15 +109,30 @@ export default function AdminPage() {
         <p className="text-sm text-slate-600">
           Telefondan veya bilgisayardan kayıt olan tüm kullanıcılar burada listelenir.
         </p>
-        <button
-          type="button"
-          onClick={() => handleSetPro()}
-          disabled={!!settingPro}
-          className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
-        >
-          {settingPro === "self" ? "…" : "✨ Hesabımı Pro yap"}
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={handleMigrate}
+            disabled={migrating}
+            className="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 disabled:opacity-50"
+          >
+            {migrating ? "…" : "🔄 one_time_credits migration"}
+          </button>
+          <button
+            type="button"
+            onClick={() => handleSetPro()}
+            disabled={!!settingPro}
+            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
+          >
+            {settingPro === "self" ? "…" : "✨ Hesabımı Pro yap"}
+          </button>
+        </div>
       </div>
+      {migrateMsg && (
+        <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 whitespace-pre-line">
+          {migrateMsg}
+        </div>
+      )}
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[400px] text-left text-sm">

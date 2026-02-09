@@ -1,17 +1,18 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import FiyatlandirmaClient from "./FiyatlandirmaClient";
+import { PRICES } from "@/lib/pricing";
 
 export default function FiyatlandirmaPage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-20">
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       <PageHeader
         title="Fiyatlandırma"
-        description="İlk 2 kullanım ücretsiz. Sonrası için Pro ile sınırsız kullanın. Güvenli ödeme ile anında aktif."
+        description="İlk 2 kullanım ücretsiz. Tek seferlik paket veya Pro ile devam edin. Güvenli ödeme ile anında aktif."
         icon="💰"
       />
 
-      <div className="grid gap-8 sm:grid-cols-2">
+      <div className="grid gap-8 sm:grid-cols-3">
         {/* Ücretsiz */}
         <div className="rounded-2xl border-2 border-slate-200/80 bg-white p-8 shadow-card transition hover:border-slate-300 hover:shadow-soft sm:p-10">
           <h2 className="text-xl font-bold text-slate-900">Ücretsiz</h2>
@@ -26,7 +27,7 @@ export default function FiyatlandirmaPage() {
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              Tüm modüller (Fatura, Pazarlık, Resmi Yazı, CV)
+              Tüm modüller
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -41,6 +42,32 @@ export default function FiyatlandirmaPage() {
           </Link>
         </div>
 
+        {/* Tek Seferlik */}
+        <div className="rounded-2xl border-2 border-slate-200/80 bg-white p-8 shadow-card transition hover:border-brand-200 hover:shadow-soft sm:p-10">
+          <h2 className="text-xl font-bold text-slate-900">Tek Seferlik</h2>
+          <p className="mt-3 flex items-baseline gap-2">
+            <span className="text-2xl text-slate-400 line-through">{PRICES.onetime.normal} ₺</span>
+            <span className="text-3xl font-extrabold tracking-tight text-slate-900">{PRICES.onetime.discounted} ₺</span>
+            <span className="rounded bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">YENI2026</span>
+          </p>
+          <p className="mt-1 text-sm text-slate-500">10 ek kullanım hakkı</p>
+          <ul className="mt-8 space-y-4 text-slate-600">
+            <li className="flex items-center gap-3">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
+              {PRICES.onetime.credits} metin taslağı hakkı
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
+              Tüm modüller
+            </li>
+            <li className="flex items-center gap-3">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
+              Tek seferlik, abonelik yok
+            </li>
+          </ul>
+          <FiyatlandirmaClient plan="onetime" />
+        </div>
+
         {/* Pro */}
         <div className="relative rounded-2xl border-2 border-brand-500 bg-white p-8 shadow-soft sm:p-10">
           <div className="absolute -top-3.5 left-6 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-1.5 text-xs font-bold text-white shadow-soft">
@@ -48,15 +75,16 @@ export default function FiyatlandirmaPage() {
           </div>
           <h2 className="text-xl font-bold text-slate-900">Pro</h2>
           <p className="mt-3 flex items-baseline gap-2">
-            <span className="text-3xl font-extrabold tracking-tight text-slate-900">49 ₺</span>
-            <span className="text-base text-slate-500">/ aylık</span>
-            <span className="ml-2 rounded bg-green-100 px-2 py-0.5 text-xs font-semibold text-green-800">YENI2026 %50</span>
+            <span className="text-2xl text-slate-400 line-through">{PRICES.pro.normal} ₺</span>
+            <span className="text-3xl font-extrabold tracking-tight text-slate-900">{PRICES.pro.discounted} ₺</span>
+            <span className="text-base text-slate-500">/ ay</span>
+            <span className="rounded bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">YENI2026</span>
           </p>
-          <p className="mt-1 text-sm text-slate-500">Kampanya ile 24,50 ₺/ay</p>
+          <p className="mt-1 text-sm text-slate-500">Sınırsız kullanım</p>
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              Sınırsız metin taslağı üretimi
+              Sınırsız metin taslağı
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -66,14 +94,10 @@ export default function FiyatlandirmaPage() {
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
               Öncelikli destek
             </li>
-            <li className="flex items-center gap-3">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              Yeni modüller öncelikli
-            </li>
           </ul>
-          <FiyatlandirmaClient />
+          <FiyatlandirmaClient plan="pro" />
           <p className="mt-4 text-center text-xs text-slate-500">
-            <Link href="/mesafeli-satis" className="text-brand-600 hover:underline">Mesafeli Satış Sözleşmesi</Link>
+            <Link href="/mesafeli-satis" className="text-brand-600 hover:underline">Mesafeli Satış</Link>
             {" · "}
             <Link href="/on-bilgilendirme" className="text-brand-600 hover:underline">Ön Bilgilendirme</Link>
           </p>

@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useAuth } from "@/components/AuthGuard";
 
-const FREE_LIMIT = 2;
-
 export default function UsageBanner() {
   const { user, loading: authLoading } = useAuth();
   const [remaining, setRemaining] = useState<number | null>(null);
@@ -29,7 +27,7 @@ export default function UsageBanner() {
         } else {
           setIsPro(false);
           setRemaining(data.remaining ?? 0);
-          setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+          setOver((data.count ?? 0) >= (data.limit ?? 2));
         }
       })
       .catch(() => {
@@ -50,7 +48,7 @@ export default function UsageBanner() {
         } else {
           setIsPro(false);
           setRemaining(data.remaining ?? 0);
-          setOver((data.count ?? 0) >= (data.limit ?? FREE_LIMIT));
+          setOver((data.count ?? 0) >= (data.limit ?? 2));
         }
       });
   };
@@ -100,7 +98,7 @@ export default function UsageBanner() {
     >
       {over ? (
         <span>
-          Ücretsiz {FREE_LIMIT} kullanım doldu. Sınırsız kullanım için{" "}
+          Kullanım hakkınız doldu. Tek seferlik paket veya{" "}
           <Link href="/fiyatlandirma" className="font-semibold text-brand-600 hover:underline">
             Pro
           </Link>
@@ -108,8 +106,8 @@ export default function UsageBanner() {
         </span>
       ) : (
         <span>
-          <span className="font-medium text-slate-700">Ücretsiz kullanım:</span>{" "}
-          <strong className="text-brand-600">{remaining}</strong> / {FREE_LIMIT} kaldı
+          <span className="font-medium text-slate-700">Kalan kullanım:</span>{" "}
+          <strong className="text-brand-600">{remaining}</strong>
         </span>
       )}
       <button

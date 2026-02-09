@@ -2,9 +2,14 @@
 
 import Link from "next/link";
 import { useAuth } from "@/components/AuthGuard";
+import { PRICES } from "@/lib/pricing";
 
-export default function FiyatlandirmaClient() {
+type Plan = "pro" | "onetime";
+
+export default function FiyatlandirmaClient({ plan = "pro" }: { plan?: Plan }) {
   const { user, loading } = useAuth();
+  const isPro = plan === "pro";
+  const label = isPro ? `Pro'ya geç — ${PRICES.pro.discounted} ₺/ay` : `Satın al — ${PRICES.onetime.discounted} ₺ (10 kullanım)`;
 
   if (loading) {
     return (
@@ -17,20 +22,20 @@ export default function FiyatlandirmaClient() {
   if (!user) {
     return (
       <Link
-        href="/giris?next=/fiyatlandirma"
+        href={`/giris?next=/odeme/checkout?plan=${plan}`}
         className="mt-10 block w-full rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 py-4 text-center font-semibold text-white shadow-soft transition hover:from-brand-700 hover:to-brand-600"
       >
-        Pro&apos;ya geç — Giriş yap
+        {label} — Giriş yap
       </Link>
     );
   }
 
   return (
     <Link
-      href="/odeme/checkout"
+      href={`/odeme/checkout?plan=${plan}`}
       className="mt-10 block w-full rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 py-4 text-center font-semibold text-white shadow-soft transition hover:from-brand-700 hover:to-brand-600"
     >
-      Pro&apos;ya geç — 24,50 ₺/ay (YENI2026)
+      {label}
     </Link>
   );
 }

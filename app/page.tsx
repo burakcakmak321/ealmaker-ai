@@ -266,7 +266,7 @@ export default function Home() {
             Basit ve şeffaf fiyatlandırma
           </h2>
           <p className="mt-4 text-lg text-slate-600">
-            İlk 2 kullanım ücretsiz. Sonra ihtiyacına göre Pro.
+            İlk 2 kullanım ücretsiz. Tek seferlik 29 ₺ veya Pro 99 ₺/ay ile devam edin.
           </p>
         </div>
         <div className="mt-14 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-card">
@@ -381,7 +381,7 @@ export default function Home() {
                 href="/fiyatlandirma"
                 className="inline-flex items-center gap-2 rounded-xl border-2 border-white/50 bg-white/10 px-8 py-4 font-semibold text-white transition hover:bg-white/20"
               >
-                Pro — %50 indirimli
+                Pro — 99 ₺/ay
               </Link>
             </div>
             <p className="mt-6 text-sm text-white/80">

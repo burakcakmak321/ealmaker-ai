@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createHmac } from "crypto";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getIsPro, setPro } from "@/lib/supabase/usage";
+import { getIsPro, setPro, addOneTimeCredits } from "@/lib/supabase/usage";
+import { PRICES } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
@@ -28,19 +29,21 @@ export async function POST(req: NextRequest) {
       return new NextResponse("OK", { status: 200 });
     }
 
-    if (status !== "success" || !merchant_oid.startsWith("pro-")) {
+    if (status !== "success" || (!merchant_oid.startsWith("pro-") && !merchant_oid.startsWith("onetime-"))) {
       return new NextResponse("OK", { status: 200 });
     }
 
     const parts = merchant_oid.split("-");
     if (parts.length < 3) return new NextResponse("OK", { status: 200 });
+    const plan = parts[0];
     const userId = parts[1];
 
     const admin = createAdminClient();
-    // Tekrarlayan bildirime karşı: zaten Pro ise tekrar işlem yapma (PayTR önerisi)
-    const alreadyPro = await getIsPro(admin, userId);
-    if (!alreadyPro) {
-      await setPro(admin, userId, true);
+    if (plan === "pro") {
+      const alreadyPro = await getIsPro(admin, userId);
+      if (!alreadyPro) await setPro(admin, userId, true);
+    } else if (plan === "onetime") {
+      await addOneTimeCredits(admin, userId, PRICES.onetime.credits);
     }
 
     return new NextResponse("OK", { status: 200 });

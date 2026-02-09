@@ -1,12 +1,20 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/AuthGuard";
 import PageHeader from "@/components/PageHeader";
+import { PRICES } from "@/lib/pricing";
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const { user, loading: authLoading } = useAuth();
+  const searchParams = useSearchParams();
+  const plan = (searchParams.get("plan") === "onetime" ? "onetime" : "pro") as "pro" | "onetime";
+  const isPro = plan === "pro";
+  const amount = isPro ? PRICES.pro.discounted : PRICES.onetime.discounted;
+  const desc = isPro ? `${amount} ₺/ay (YENI2026)` : `${amount} ₺ — 10 kullanım (YENI2026)`;
+
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [accepted, setAccepted] = useState(false);
@@ -19,7 +27,12 @@ export default function CheckoutPage() {
   function handleProceed() {
     if (!canProceed || !user) return;
     setAccepted(true);
-    fetch("/api/checkout", { method: "POST", credentials: "same-origin" })
+    fetch("/api/checkout", {
+      method: "POST",
+      credentials: "same-origin",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan }),
+    })
       .then((r) => r.json())
       .then((data) => {
         if (data.token) setToken(data.token);
@@ -56,7 +69,7 @@ export default function CheckoutPage() {
       <div className="mx-auto max-w-2xl px-4 py-16 text-center">
         <PageHeader title="Pro Ödeme" description="Ödeme için giriş yapın." icon="🔒" />
         <Link
-          href="/giris?next=/odeme/checkout"
+          href={`/giris?next=/odeme/checkout?plan=${plan}`}
           className="inline-block rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-700"
         >
           Giriş yap
@@ -86,8 +99,8 @@ export default function CheckoutPage() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12">
         <PageHeader
-          title="Pro Ödeme"
-          description="Güvenli ödeme ile Pro'ya geçin. 24,50 ₺/ay (YENI2026 ile %50 indirim)."
+          title={isPro ? "Pro Ödeme" : "Tek Seferlik Ödeme"}
+          description={`Güvenli ödeme — ${desc}`}
           icon="💰"
         />
         <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-card">
@@ -132,8 +145,8 @@ export default function CheckoutPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <PageHeader
-        title="Pro Ödeme"
-        description="Güvenli ödeme ile Pro'ya geçin. 24,50 ₺/ay (YENI2026 ile %50 indirim)."
+        title={isPro ? "Pro Ödeme" : "Tek Seferlik Ödeme"}
+        description={`Güvenli ödeme — ${desc}`}
         icon="💰"
       />
       <div className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
@@ -151,5 +164,13 @@ export default function CheckoutPage() {
         <Link href="/fiyatlandirma" className="text-brand-600 hover:underline">← İptal et, fiyatlandırmaya dön</Link>
       </p>
     </div>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-2xl px-4 py-16 text-center text-slate-600">Yükleniyor…</div>}>
+      <CheckoutContent />
+    </Suspense>
   );
 }

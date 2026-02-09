@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createHmac } from "crypto";
+import { PRICES } from "@/lib/pricing";
 
 export const dynamic = "force-dynamic";
 
-const PRO_AMOUNT_CENTS = 2450; // 24,50 TL (YENI2026 indirimli)
+const PRO_AMOUNT_CENTS = PRICES.pro.discounted * 100; // 99 TL
+const ONETIME_AMOUNT_CENTS = PRICES.onetime.discounted * 100; // 29 TL
 const MERCHANT_ID = process.env.PAYTR_MERCHANT_ID;
 const MERCHANT_KEY = process.env.PAYTR_MERCHANT_KEY;
 const MERCHANT_SALT = process.env.PAYTR_MERCHANT_SALT;
@@ -24,8 +26,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const body = await req.json().catch(() => ({})) as { plan?: string };
+    const plan = body.plan === "onetime" ? "onetime" : "pro";
+    const amountCents = plan === "onetime" ? ONETIME_AMOUNT_CENTS : PRO_AMOUNT_CENTS;
+    const basketLabel = plan === "onetime" ? PRICES.onetime.label : PRICES.pro.label;
+    const basketPrice = (amountCents / 100).toFixed(2);
+
     const origin = req.nextUrl.origin;
-    const merchant_oid = `pro-${user.id}-${Date.now()}`;
+    const merchant_oid = `${plan}-${user.id}-${Date.now()}`;
     const user_name = (user.user_metadata?.full_name as string) || user.email?.split("@")[0] || "Kullanıcı";
     const user_email = user.email || "";
     const user_ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "127.0.0.1";
@@ -33,7 +41,7 @@ export async function POST(req: NextRequest) {
     const currency = "TL";
     const no_installment = "1";
     const max_installment = "0";
-    const user_basket = Buffer.from(JSON.stringify([["Pro Aylık Abonelik", "24.50", "1"]])).toString("base64");
+    const user_basket = Buffer.from(JSON.stringify([[basketLabel, basketPrice, "1"]])).toString("base64");
 
     // PayTR 1. ADIM hash: merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode + merchant_salt
     // HMAC-SHA256 ile merchant_key kullanılır (https://dev.paytr.com/iframe-api/iframe-api-1-adim)
@@ -42,7 +50,7 @@ export async function POST(req: NextRequest) {
       user_ip,
       merchant_oid,
       user_email,
-      String(PRO_AMOUNT_CENTS),
+      String(amountCents),
       user_basket,
       no_installment,
       max_installment,
@@ -59,7 +67,7 @@ export async function POST(req: NextRequest) {
       user_ip,
       merchant_oid,
       email: user_email,
-      payment_amount: String(PRO_AMOUNT_CENTS),
+      payment_amount: String(amountCents),
       paytr_token,
       user_basket,
       debug_on: "0",
@@ -68,7 +76,7 @@ export async function POST(req: NextRequest) {
       user_name: user_name.substring(0, 50),
       user_address: "Türkiye",
       user_phone: (user.user_metadata?.phone as string) || "05550000000",
-      merchant_ok_url: `${origin}/odeme/basarili`,
+      merchant_ok_url: `${origin}/odeme/basarili?plan=${plan}`,
       merchant_fail_url: `${origin}/odeme/iptal`,
       timeout_limit: "30",
       currency,
