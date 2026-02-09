@@ -51,18 +51,20 @@ export async function addOneTimeCredits(supabase: SupabaseClient, userId: string
   }
 }
 
+type UsageRow = { count?: number; is_pro?: boolean; one_time_credits?: number } | null;
+
 export async function incrementUsage(supabase: SupabaseClient, userId: string): Promise<number> {
-  let row: { count?: number; is_pro?: boolean; one_time_credits?: number } | null = null;
+  let row: UsageRow = null;
   let hasOneTimeColumn = true;
   const r1 = await supabase.from("usage").select("count, is_pro, one_time_credits").eq("user_id", userId).single();
   if (r1.error && /one_time_credits|column|does not exist/i.test(r1.error.message)) {
     hasOneTimeColumn = false;
     const r2 = await supabase.from("usage").select("count, is_pro").eq("user_id", userId).single();
-    row = r2.data as typeof row;
+    row = r2.data as UsageRow;
   } else {
-    row = r1.data as typeof row;
+    row = r1.data as UsageRow;
   }
-  const count = (row?.count as number) ?? 0;
+  const count = (row?.count ?? 0) as number;
   const isPro = !!(row as { is_pro?: boolean } | null)?.is_pro;
   const oneTimeCredits = (row?.one_time_credits as number) ?? 0;
   const newCount = count + 1;
