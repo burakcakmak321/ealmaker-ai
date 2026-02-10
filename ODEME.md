@@ -1,57 +1,35 @@
-# PayTR Ödeme Altyapısı
+# Param (ParamPOS) Ödeme Altyapısı
 
-Pro abonelik ödemesi PayTR iframe API ile alınır. Bu doküman PayTR başvurusu ve entegrasyonu için hazırlanmıştır.
+Pro ve tek seferlik ödemeler Param (ParamPOS) 3D Secure API ile alınır. Entegrasyon: [Param entegrasyon dokümanı](https://dev.param.com.tr/dosya/integration-document.pdf).
 
-## PayTR Başvurusu İçin Gerekli Site Özellikleri
+## Gerekli bilgiler
 
-✅ **Yasal sayfalar:** Gizlilik Politikası, Kullanım Koşulları, Mesafeli Satış Sözleşmesi, Ön Bilgilendirme Formu, Çerez Politikası  
-✅ **Ürün/hizmet tanımı:** Net fiyat ve açıklama  
-✅ **İletişim:** İletişim formu ve KVKK başvuru seçeneği  
-✅ **SSL:** HTTPS zorunlu (Vercel otomatik sağlar)  
-✅ **Callback URL:** Bildirim URL erişilebilir olmalı (oturum kısıtlaması olmamalı)
+Param’dan alınacak: **CLIENT_CODE**, **CLIENT_USERNAME**, **CLIENT_PASSWORD**, **GUID**. Canlı kullanım için sunucu IP adresinizi Param’a iletmeniz gerekir.
 
-## 1. Supabase: usage tablosu
-
-```sql
--- Zaten varsa atla; yoksa çalıştır:
-alter table public.usage add column if not exists is_pro boolean not null default false;
-```
-
-## 2. PayTR Üye İşyeri Paneli
-
-1. [PayTR](https://www.paytr.com) üzerinden başvuru yapın.
-2. Onay sonrası **Destek & Kurulum** → **Entegrasyon Bilgileri** bölümünden:
-   - **Mağaza No** → `PAYTR_MERCHANT_ID`
-   - **Mağaza Parola** → `PAYTR_MERCHANT_KEY`
-   - **Mağaza Gizli Anahtar** → `PAYTR_MERCHANT_SALT`
-3. **Destek & Kurulum** → **Ayarlar** → **Bildirim URL**:
-   - `https://SITENIZ.com/api/payment/callback`
-   - Örnek: `https://ealmaker-ai.vercel.app/api/payment/callback`
-   - **HTTPS** kullanın; HTTP kabul edilmez.
-
-## 3. Ortam Değişkenleri (Vercel / .env.local)
+## Ortam değişkenleri (Vercel / .env.local)
 
 | Key | Açıklama |
 |-----|----------|
-| `PAYTR_MERCHANT_ID` | Mağaza No |
-| `PAYTR_MERCHANT_KEY` | Mağaza Parola |
-| `PAYTR_MERCHANT_SALT` | Mağaza Gizli Anahtar |
-| `PAYTR_TEST_MODE` | Test için `1`, canlı için `0` veya boş |
+| `PARAMPOS_CLIENT_CODE` | Terminal ID |
+| `PARAMPOS_CLIENT_USERNAME` | Kullanıcı adı |
+| `PARAMPOS_CLIENT_PASSWORD` | Şifre |
+| `PARAMPOS_GUID` | Üye iş yeri anahtarı (GUID) |
+| `PARAMPOS_TEST` | Test için `1`, canlı için `0` veya boş |
 
-Vercel: Proje → Settings → Environment Variables → ekle → Redeploy.
+## Ödeme akışı
 
-## 4. Ödeme Akışı
+1. Kullanıcı **Fiyatlandırma** → **Pro'ya geç** veya **Tek seferlik** → giriş yoksa **Giriş yap**.
+2. **/odeme/checkout** sayfasında sözleşmeleri onaylar, **Ödemeye geç** ile kart formu açılır.
+3. Kart bilgileri **POST /api/checkout/parampos** ile gönderilir; Param **TP_WMD_UCD** ile 3D HTML döner.
+4. 3D Secure banka sayfası gösterilir; kullanıcı doğrulama yapar.
+5. Banka **POST /api/payment/parampos/success** veya **/api/payment/parampos/fail** ile sonucu iletir.
+6. Success’te hash doğrulanır, **TP_WMD_Pay** ile tahsilat tamamlanır, `usage.is_pro` veya `one_time_credits` güncellenir.
+7. Kullanıcı **/odeme/basarili** veya **/odeme/iptal** sayfasına yönlendirilir.
 
-1. Kullanıcı **Fiyatlandırma** → **Pro'ya geç** → giriş yoksa **Giriş yap**.
-2. **/odeme/checkout** sayfası açılır; Mesafeli Satış ve Ön Bilgilendirme linkleri gösterilir.
-3. `/api/checkout` POST ile token alınır; PayTR iframe yüklenir.
-4. Ödeme tamamlanınca PayTR **POST /api/payment/callback** ile bildirim gönderir.
-5. Callback'te hash doğrulanır, `usage.is_pro = true` yapılır.
-6. Kullanıcı **/odeme/basarili** veya **/odeme/iptal** sayfasına yönlendirilir.
+## API route’lar
 
-## 5. Hash Hesaplama (Referans)
+- **POST /api/checkout/parampos** — Kart bilgileri + plan; yanıt: `ucdHtml` (3D sayfası) veya hata.
+- **POST /api/payment/parampos/success** — Banka 3D dönüşü (md, mdStatus, orderId, islemGUID, islemHash); TP_WMD_Pay + usage güncellemesi; redirect `/odeme/basarili?plan=...`.
+- **POST /api/payment/parampos/fail** — Redirect `/odeme/iptal`.
 
-- **1. ADIM (get-token):** `merchant_id + user_ip + merchant_oid + email + payment_amount + user_basket + no_installment + max_installment + currency + test_mode + merchant_salt` → HMAC-SHA256(merchant_key).
-- **2. ADIM (callback):** `merchant_oid + merchant_salt + status + total_amount` → HMAC-SHA256(merchant_key).
-
-Kaynak: [PayTR iFrame API](https://dev.paytr.com/iframe-api)
+Kaynak: [Param entegrasyon dokümanı](https://dev.param.com.tr/dosya/integration-document.pdf)

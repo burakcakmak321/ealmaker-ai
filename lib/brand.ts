@@ -1,8 +1,8 @@
-/** Merkezi marka ve işletme bilgisi - PayTR uyumluluğu için gerekli */
+/** Merkezi marka ve işletme bilgisi */
 export const SITE_NAME = "YazıAsistan";
 export const SITE_TAGLINE = "Metin taslağı üretim platformu";
 
-/** İşletme bilgileri - Footer ve İletişim sayfasında kullanılır (PayTR için) */
+/** İşletme bilgileri - Footer ve İletişim sayfasında kullanılır */
 export const BUSINESS = {
   unvan: "Burak Çakmak - YazıAsistan",
   vergiDairesi: "Çorlu",

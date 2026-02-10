@@ -1,86 +1,75 @@
-# Ödeme (PayTR) — Adım Adım
+# Ödeme (Param) — Adım Adım
 
-Pro ödemesini açmak için aşağıdakileri sırayla yap.
-
----
-
-## 1. PayTR üye işyeri hesabı
-
-1. **https://www.paytr.com** → Üye İşyeri Başvurusu veya Giriş.
-2. Hesabın onaylı ve **Entegrasyon Bilgileri** açılmış olsun (Mağaza No, Parola, Gizli Anahtar görünüyor olmalı).
+Ödemeyi açmak için aşağıdakileri sırayla yap.
 
 ---
 
-## 2. PayTR panelinden bilgileri al
+## 1. Param üye işyeri hesabı
 
-1. PayTR’ye giriş yap.
-2. **Destek & Kurulum** (veya **Kurulum / Entegrasyon**) bölümüne gir.
-3. **Entegrasyon Bilgileri** / **API Bilgileri** sayfasını aç.
-4. Şunları not al (birebir kopyala):
-   - **Mağaza No** → bu `PAYTR_MERCHANT_ID`
-   - **Mağaza Parola** → bu `PAYTR_MERCHANT_KEY`
-   - **Mağaza Gizli Anahtar** → bu `PAYTR_MERCHANT_SALT`
+1. **https://dev.param.com.tr** veya Param ile iletişime geçip üye işyeri hesabı aç.
+2. Entegrasyon tamamlandığında **CLIENT_CODE**, **CLIENT_USERNAME**, **CLIENT_PASSWORD**, **GUID** bilgileri iletilecek.
 
 ---
 
-## 3. Callback adresini PayTR’ye tanıt
+## 2. Param’dan bilgileri al
 
-PayTR, ödeme sonucunu sunucumuza POST ile gönderir. Bu adres panelde tanımlı olmalı.
+Param / entegrasyon ekibinden şunları al (birebir kopyala):
 
-1. PayTR panelinde **Callback URL** / **Bildirim URL** / **IPN URL** gibi bir alan ara.
-2. Şu adresi yaz:
-   ```
-   https://ealmaker-ai.vercel.app/api/payment/callback
-   ```
-3. Kaydet.
+- **CLIENT_CODE** (Terminal ID)
+- **CLIENT_USERNAME**
+- **CLIENT_PASSWORD**
+- **GUID** (üye iş yeri anahtarı)
 
-(Bazı panellerde bu alan “iframe callback” veya “Sunucu Bildirimi” diye geçer.)
+Canlı ortam için **sunucu IP adresinizi** (veya Vercel outbound IP’lerini) ve **site adresinizi** Param’a iletin.
 
 ---
 
-## 4. Vercel’e env değişkenlerini ekle
+## 3. Vercel’e env değişkenlerini ekle
 
-1. **https://vercel.com** → **ealmaker-ai** projesini aç.
-2. **Settings** → **Environment Variables**.
-3. Aşağıdaki 3 değişkeni tek tek ekle (Value’lara PayTR’den kopyaladığın değerleri yapıştır):
+1. **https://vercel.com** → Projeni aç → **Settings** → **Environment Variables**.
+2. Aşağıdaki değişkenleri ekle:
 
 | Key | Value | Environments |
 |-----|--------|--------------|
-| `PAYTR_MERCHANT_ID` | Mağaza No | Production, Preview, Development |
-| `PAYTR_MERCHANT_KEY` | Mağaza Parola | Production, Preview, Development |
-| `PAYTR_MERCHANT_SALT` | Mağaza Gizli Anahtar | Production, Preview, Development |
+| `PARAMPOS_CLIENT_CODE` | Param’dan gelen değer | Production, Preview, Development |
+| `PARAMPOS_CLIENT_USERNAME` | Param’dan gelen değer | Production, Preview, Development |
+| `PARAMPOS_CLIENT_PASSWORD` | Param’dan gelen değer | Production, Preview, Development |
+| `PARAMPOS_GUID` | Param’dan gelen GUID | Production, Preview, Development |
 
-4. **Test modu** için (isteğe bağlı):
-   - Key: `PAYTR_TEST_MODE`
+3. **Test** için:
+   - Key: `PARAMPOS_TEST`
    - Value: `1`
-   - Canlıya geçince bu değişkeni sil veya `0` yap.
+   - Canlıya geçince `0` yap veya kaldır.
 
-5. Her biri için **Save** de.
-
----
-
-## 5. Redeploy
-
-1. Vercel’de **Deployments** sekmesine geç.
-2. En üstteki deployment’ın yanındaki **⋯** → **Redeploy** → **Redeploy**.
-3. 1–2 dakika bekle.
+4. **Save** → **Redeploy**.
 
 ---
 
-## 6. Test
+## 4. Callback adresleri
 
-1. **https://ealmaker-ai.vercel.app** → Giriş yap.
-2. **Fiyatlandırma** → **Pro'ya geç — 24,50 ₺/ay**.
-3. **/odeme/checkout** açılmalı, PayTR ödeme ekranı (iframe) gelmeli.
-4. Test modundaysan test kartı ile ödeme dene; canlıdaysan gerçek kart ile dene.
-5. Başarılı ödemede **/odeme/basarili** sayfasına yönlenmeli ve hesabın Pro (sınırsız kullanım) olmalı.
+Param tarafında (gerekirse) başarı ve hata URL’leri şöyle tanımlanır:
+
+- **Başarılı:** `https://SITENIZ.com/api/payment/parampos/success`
+- **Hata/İptal:** `https://SITENIZ.com/api/payment/parampos/fail`
+
+(Bu adresler kodda zaten kullanılıyor; Param panelinde ayrıca girilmesi istenirse yukarıdakileri kullan.)
+
+---
+
+## 5. Test
+
+1. Siteye giriş yap.
+2. **Fiyatlandırma** → **Pro'ya geç** veya **Tek seferlik**.
+3. **/odeme/checkout** açılmalı; sözleşmeleri onayla → **Ödemeye geç** → kart formu gelmeli.
+4. Test kartı (Param dokümanındaki) veya canlı kart ile ödeme dene.
+5. Başarılı ödemede **/odeme/basarili** sayfasına yönlenmeli; Pro veya tek seferlik kredi hesaba işlenmeli.
 
 ---
 
 ## Hata alırsan
 
-- **“Token alınamadı” / hash hatası:** PayTR panelindeki Mağaza No, Parola, Gizli Anahtar’ın Vercel’deki değerlerle birebir aynı olduğundan emin ol. Başında/sonunda boşluk olmasın.
-- **Callback çalışmıyor (Pro aktif olmuyor):** PayTR panelinde Callback URL’nin `https://ealmaker-ai.vercel.app/api/payment/callback` olduğunu kontrol et. Canlı ortamda HTTP değil HTTPS kullan.
-- **401 / yetki hatası:** Giriş yapmadan checkout’a gidemezsin; önce **Giriş yap**, sonra **Pro'ya geç** butonuna tıkla.
+- **“ParamPOS yapılandırılmadı”:** Vercel’de dört env değişkeninin (CLIENT_CODE, USERNAME, PASSWORD, GUID) tanımlı olduğundan emin ol.
+- **“Ödeme başlatılamadı” / SOAP hatası:** Param’dan aldığın değerlerin doğru olduğunu kontrol et; test ortamı için `PARAMPOS_TEST=1` kullan.
+- **3D sonrası Pro/kredi gelmiyor:** Param’a ilettiğin IP ve site adresinin canlı ortamla uyumlu olduğunu kontrol et; success callback’in erişilebilir olduğundan emin ol.
 
-Bu adımları tamamlayınca ödeme işlemi halledilmiş olur.
+Bu adımları tamamlayınca ödeme işlemi Param üzerinden çalışır.

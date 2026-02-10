@@ -65,7 +65,7 @@ export default function GizlilikPage() {
           <ul className="list-disc space-y-2 pl-6">
             <li><strong>Yapay zeka servisleri:</strong> Metin üretimi için kullanılan API sağlayıcıları (ör. OpenAI). Veriler yurt dışına aktarılabilir; ilgili şirketlerin gizlilik politikaları uygulanır.</li>
             <li><strong>Hosting ve altyapı:</strong> Sunucu, veritabanı ve CDN sağlayıcıları (Vercel, Supabase, AWS vb.).</li>
-            <li><strong>Ödeme işlemcisi:</strong> Ödeme altyapısı kullanıldığında (ör. PayTR, iyzico) ödeme bilgileri ilgili sağlayıcıya iletilir.</li>
+            <li><strong>Ödeme işlemcisi:</strong> Ödeme altyapısı kullanıldığında (Param) ödeme bilgileri ilgili sağlayıcıya iletilir.</li>
             <li><strong>Yasal zorunluluk:</strong> Mahkeme kararı, savcılık talebi veya kanunen zorunlu bildirimler kapsamında yetkili makamlara.</li>
           </ul>
           <p className="font-semibold text-slate-800">
