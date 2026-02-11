@@ -30,7 +30,7 @@ export default function AdminPage() {
         fetch("/api/admin/activity?limit=30"),
       ]);
       if (usersRes.status === 403 || statsRes.status === 403) {
-        throw new Error("Bu sayfayı görüntüleme yetkiniz yok. Logo'ya 5 kez tıklayıp şifre ile giriş yapın.");
+        throw new Error("Bu sayfayı görüntüleme yetkiniz yok. ADMIN_EMAILS içindeki e-posta ile giriş yapıp /admin adresine gidin.");
       }
       const [usersData, statsData, activityData] = await Promise.all([
         usersRes.json(),
@@ -51,11 +51,6 @@ export default function AdminPage() {
   useEffect(() => {
     loadData();
   }, [loadData]);
-
-  async function handleLogout() {
-    await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" });
-    window.location.href = "/";
-  }
 
   async function handleSetPro(userId?: string) {
     setSettingPro(userId ?? "self");
@@ -134,13 +129,6 @@ export default function AdminPage() {
           >
             ← Siteye dön
           </Link>
-          <button
-            type="button"
-            onClick={handleLogout}
-            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
-          >
-            Çıkış
-          </button>
         </div>
       </div>
 

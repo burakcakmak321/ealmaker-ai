@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
+import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { isAdminAuthenticated } from "@/lib/admin-auth";
+
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
 
 /** Türkiye bugün 00:00 ve yarın 00:00 UTC ISO */
 function todayBoundsTurkey(): { start: string; end: string } {
@@ -16,7 +21,9 @@ function todayBoundsTurkey(): { start: string; end: string } {
 
 export async function GET() {
   try {
-    if (!(await isAdminAuthenticated())) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user?.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
       return NextResponse.json({ error: "Yetkisiz." }, { status: 403 });
     }
     const admin = createAdminClient();

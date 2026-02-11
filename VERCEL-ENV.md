@@ -4,7 +4,7 @@
 |-----|--------|
 | **SUPABASE_URL** | `https://jsrxulopzbmfozwikayv.supabase.co` |
 | **SUPABASE_ANON_KEY** | Supabase anon key |
-| **ADMIN_PASSWORD** | Admin şifresi (logo 5 tıklama) |
+| **ADMIN_EMAILS** | Admin e-postaları (virgülle ayırın, örn: burakcakmak321@gmail.com) |
 
 **Ekleme yeri:** Projects → ealmaker-ai → Settings → Environment Variables  
-**Admin şifresi çalışmıyorsa:** [ADMIN-SETUP.md](./ADMIN-SETUP.md) dosyasına bak.
+**Admin:** Bu e-postalar ile giriş yapıp /admin adresine gidince panel açılır.

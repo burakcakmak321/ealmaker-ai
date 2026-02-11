@@ -4,15 +4,19 @@ export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { setPro } from "@/lib/supabase/usage";
-import { isAdminAuthenticated } from "@/lib/admin-auth";
+
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
+  .split(",")
+  .map((e) => e.trim().toLowerCase())
+  .filter(Boolean);
 
 export async function POST(req: NextRequest) {
   try {
-    if (!(await isAdminAuthenticated())) {
-      return NextResponse.json({ error: "Yetkisiz." }, { status: 403 });
-    }
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
+    if (!user?.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+      return NextResponse.json({ error: "Yetkisiz." }, { status: 403 });
+    }
     const body = await req.json().catch(() => ({}));
     let userId = (body.userId as string)?.trim();
     if (!userId && user?.id) userId = user.id;

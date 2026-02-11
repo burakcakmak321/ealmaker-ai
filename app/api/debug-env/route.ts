@@ -6,16 +6,16 @@ export const dynamic = "force-dynamic";
 export async function GET() {
   const hasUrl = !!getSupabaseUrl();
   const hasKey = !!getSupabaseAnonKey();
-  const hasAdminPassword = !!process.env.ADMIN_PASSWORD;
+  const hasAdminEmails = !!(process.env.ADMIN_EMAILS || "").trim();
   return NextResponse.json({
     hasUrl,
     hasKey,
-    hasAdminPassword,
+    hasAdminEmails,
     ok: hasUrl && hasKey,
     hint: !hasUrl || !hasKey
       ? "Vercel: SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin (proje Settings > Environment Variables)."
-      : !hasAdminPassword
-        ? "ADMIN_PASSWORD yok. GitHub'daki ADMIN-SETUP.md dosyasindaki adimlari takip edin: Proje > Settings > Environment Variables, ADMIN_PASSWORD ekleyin, Redeploy."
+      : !hasAdminEmails
+        ? "ADMIN_EMAILS yok. Proje > Settings > Environment Variables'a ADMIN_EMAILS=burakcakmak321@gmail.com ekleyin."
         : null,
   });
 }
