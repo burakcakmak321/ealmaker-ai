@@ -71,7 +71,7 @@ export default function FiyatlandirmaPage() {
         {/* Premium */}
         <div className="relative rounded-2xl border-2 border-brand-500 bg-white p-8 shadow-soft sm:p-10">
           <div className="absolute -top-3.5 left-6 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-1.5 text-xs font-bold text-white shadow-soft">
-            Önerilen
+            Yakında
           </div>
           <h2 className="text-xl font-bold text-slate-900">Premium</h2>
           <p className="mt-3 flex items-baseline gap-2">
