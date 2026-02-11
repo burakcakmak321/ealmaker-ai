@@ -3,7 +3,15 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
-type UserRow = { id: string; email: string | undefined; created_at: string; is_pro?: boolean };
+type UserRow = {
+  id: string;
+  email: string | undefined;
+  created_at: string;
+  is_pro?: boolean;
+  is_admin?: boolean;
+  pro_expires_at?: string | null;
+  premium_credits?: number;
+};
 type Stats = {
   totalRegistrations: number;
   todayActivities: number;
@@ -19,6 +27,10 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [settingPro, setSettingPro] = useState<string | null>(null);
+  const [revoking, setRevoking] = useState<string | null>(null);
+  const [premiumModal, setPremiumModal] = useState<{ userId: string; email: string } | null>(null);
+  const [premiumType, setPremiumType] = useState<"monthly" | "yearly" | "credits">("monthly");
+  const [premiumCredits, setPremiumCredits] = useState(10);
   const [migrating, setMigrating] = useState(false);
   const [migrateMsg, setMigrateMsg] = useState("");
 
@@ -52,25 +64,45 @@ export default function AdminPage() {
     loadData();
   }, [loadData]);
 
-  async function handleSetPro(userId?: string) {
-    setSettingPro(userId ?? "self");
+  async function handleSetPremium() {
+    if (!premiumModal) return;
+    setSettingPro(premiumModal.userId);
     try {
-      const res = await fetch("/api/admin/set-pro", {
+      const res = await fetch("/api/admin/set-premium", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(userId ? { userId } : {}),
+        body: JSON.stringify({
+          userId: premiumModal.userId,
+          type: premiumType,
+          credits: premiumType === "credits" ? premiumCredits : undefined,
+        }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Hata");
-      if (userId) {
-        setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, is_pro: true } : u)));
-      } else {
-        await loadData();
-      }
+      setPremiumModal(null);
+      await loadData();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Premium verilemedi.");
     } finally {
       setSettingPro(null);
+    }
+  }
+
+  async function handleRevokePremium(userId: string) {
+    setRevoking(userId);
+    try {
+      const res = await fetch("/api/admin/revoke-premium", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Hata");
+      await loadData();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Premium geri alınamadı.");
+    } finally {
+      setRevoking(null);
     }
   }
 
@@ -206,14 +238,6 @@ export default function AdminPage() {
           >
             {migrating ? "…" : "🔄 one_time_credits migration"}
           </button>
-          <button
-            type="button"
-            onClick={() => handleSetPro()}
-            disabled={!!settingPro}
-            className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
-          >
-            {settingPro === "self" ? "…" : "✨ Hesabımı Premium yap"}
-          </button>
         </div>
       {migrateMsg && (
         <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 whitespace-pre-line">
@@ -253,21 +277,35 @@ export default function AdminPage() {
                         : "—"}
                     </td>
                     <td className="px-4 py-3">
-                      {u.is_pro ? (
-                        <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">Premium</span>
+                      {u.is_admin ? (
+                        <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">Sınırsız (Admin)</span>
+                      ) : u.is_pro ? (
+                        <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">
+                          Premium{u.pro_expires_at ? ` (${new Date(u.pro_expires_at).toLocaleDateString("tr-TR")})` : u.premium_credits ? ` (${u.premium_credits} hak)` : ""}
+                        </span>
                       ) : (
                         <span className="text-slate-400">—</span>
                       )}
                     </td>
-                    <td className="px-4 py-3">
-                      {!u.is_pro && (
+                    <td className="px-4 py-3 flex gap-2">
+                      {!u.is_admin && !u.is_pro && (
                         <button
                           type="button"
-                          onClick={() => handleSetPro(u.id)}
+                          onClick={() => setPremiumModal({ userId: u.id, email: u.email || "" })}
                           disabled={!!settingPro}
                           className="rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
                         >
-                          {settingPro === u.id ? "…" : "Premium ver"}
+                          Premium ver
+                        </button>
+                      )}
+                      {!u.is_admin && u.is_pro && (
+                        <button
+                          type="button"
+                          onClick={() => handleRevokePremium(u.id)}
+                          disabled={!!revoking}
+                          className="rounded-lg border border-red-300 bg-white px-3 py-1.5 text-xs font-semibold text-red-600 transition hover:bg-red-50 disabled:opacity-50"
+                        >
+                          {revoking === u.id ? "…" : "Premium geri al"}
                         </button>
                       )}
                     </td>
@@ -279,6 +317,54 @@ export default function AdminPage() {
         </div>
       </div>
       </div>
+
+      {premiumModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60">
+          <div className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-xl">
+            <h3 className="text-lg font-bold text-slate-900">Premium ver</h3>
+            <p className="mt-1 text-sm text-slate-600">{premiumModal.email}</p>
+            <div className="mt-4 space-y-3">
+              <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 p-3">
+                <input type="radio" name="premiumType" checked={premiumType === "monthly"} onChange={() => setPremiumType("monthly")} className="text-brand-600" />
+                <span>1 aylık</span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 p-3">
+                <input type="radio" name="premiumType" checked={premiumType === "yearly"} onChange={() => setPremiumType("yearly")} className="text-brand-600" />
+                <span>1 yıllık</span>
+              </label>
+              <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 p-3">
+                <input type="radio" name="premiumType" checked={premiumType === "credits"} onChange={() => setPremiumType("credits")} className="text-brand-600" />
+                <span>Kullanım hakkı:</span>
+                <input
+                  type="number"
+                  min={1}
+                  max={9999}
+                  value={premiumCredits}
+                  onChange={(e) => setPremiumCredits(Math.max(1, parseInt(e.target.value, 10) || 1))}
+                  className="w-20 rounded border border-slate-300 px-2 py-1 text-sm"
+                />
+              </label>
+            </div>
+            <div className="mt-6 flex gap-2">
+              <button
+                type="button"
+                onClick={() => setPremiumModal(null)}
+                className="flex-1 rounded-lg border border-slate-300 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50"
+              >
+                İptal
+              </button>
+              <button
+                type="button"
+                onClick={handleSetPremium}
+                disabled={!!settingPro}
+                className="flex-1 rounded-lg bg-brand-600 py-2 text-sm font-semibold text-white hover:bg-brand-700 disabled:opacity-50"
+              >
+                {settingPro ? "…" : "Ver"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

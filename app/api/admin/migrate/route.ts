@@ -8,7 +8,11 @@ const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
   .map((e) => e.trim().toLowerCase())
   .filter(Boolean);
 
-const MIGRATION_SQL = `ALTER TABLE public.usage ADD COLUMN IF NOT EXISTS one_time_credits int NOT NULL DEFAULT 0;`;
+const MIGRATION_SQL = `
+ALTER TABLE public.usage ADD COLUMN IF NOT EXISTS one_time_credits int NOT NULL DEFAULT 0;
+ALTER TABLE public.usage ADD COLUMN IF NOT EXISTS pro_expires_at timestamptz;
+ALTER TABLE public.usage ADD COLUMN IF NOT EXISTS premium_credits int NOT NULL DEFAULT 0;
+`.trim();
 
 export async function POST() {
   try {
@@ -40,7 +44,7 @@ export async function POST() {
     await client.connect();
     try {
       await client.query(MIGRATION_SQL);
-      return NextResponse.json({ success: true, message: "one_time_credits sütunu eklendi." });
+      return NextResponse.json({ success: true, message: "Migration tamamlandı (one_time_credits, pro_expires_at, premium_credits)." });
     } finally {
       await client.end();
     }

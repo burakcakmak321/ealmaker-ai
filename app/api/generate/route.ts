@@ -4,7 +4,7 @@ export const dynamic = "force-dynamic";
 import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getIsPro } from "@/lib/supabase/usage";
+import { getIsPro, getPremiumCredits, decrementPremiumCredits } from "@/lib/supabase/usage";
 import { getTodayActivityCount, logActivity, FREE_DAILY_LIMIT } from "@/lib/supabase/activity";
 
 const openai = new OpenAI({
@@ -87,7 +87,7 @@ export async function POST(req: NextRequest) {
     }
 
     const admin = createAdminClient();
-    const isPro = await getIsPro(admin, user.id);
+    const isPro = await getIsPro(admin, user.id, user.email);
     if (!isPro) {
       const todayCount = await getTodayActivityCount(admin, user.id);
       if (todayCount >= FREE_DAILY_LIMIT) {
@@ -144,6 +144,9 @@ export async function POST(req: NextRequest) {
       "Metin oluşturulamadı. Lütfen tekrar dene.";
 
     await logActivity(admin, user.id, type);
+
+    const credits = await getPremiumCredits(admin, user.id);
+    if (credits > 0) await decrementPremiumCredits(admin, user.id);
 
     return NextResponse.json({ text });
   } catch (err) {

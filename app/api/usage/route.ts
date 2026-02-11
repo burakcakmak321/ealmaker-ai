@@ -21,7 +21,7 @@ export async function GET() {
       });
     }
     const admin = createAdminClient();
-    const isPro = await getIsPro(admin, user.id);
+    const isPro = await getIsPro(admin, user.id, user.email);
     const count = await getTodayActivityCount(admin, user.id);
     const remaining = isPro ? null : Math.max(0, FREE_DAILY_LIMIT - count);
     return NextResponse.json({

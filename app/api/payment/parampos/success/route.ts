@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getIsPro, setPro, addOneTimeCredits } from "@/lib/supabase/usage";
+import { getIsPro, setPremium, addOneTimeCredits } from "@/lib/supabase/usage";
 import { PRICES } from "@/lib/pricing";
 import { tpWmdPay, verifyCallbackHash, isParamPosConfigured } from "@/lib/parampos";
 
@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     const admin = createAdminClient();
     if (plan === "pro") {
       const alreadyPro = await getIsPro(admin, userId);
-      if (!alreadyPro) await setPro(admin, userId, true);
+      if (!alreadyPro) await setPremium(admin, userId, "monthly");
     } else if (plan === "onetime") {
       await addOneTimeCredits(admin, userId, PRICES.onetime.credits);
     }
