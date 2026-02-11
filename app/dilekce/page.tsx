@@ -85,14 +85,14 @@ export default function DilekcePage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <PageHeader
-        title="Resmi Yazı Taslağı"
-        description="Konuyu kısaca anlatın; kurumlara hitaben resmi yazı formatında metin taslağı hazırlayalım. Taslak niteliğindedir; yazdırıp imzalayıp göndermeden önce mutlaka kontrol edin."
+        title="AI Destekli Dilekçe Şablonu"
+        description="Konuyu kısaca anlatın; AI destekli resmi yazı taslağı hazırlayalım. Belediye, tüketici, kira vb. — taslak niteliğindedir, göndermeden önce kontrol edin."
         icon="📋"
       />
 
       <Disclaimer />
 
-      <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-6">
+      <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 shadow-[0_1px_3px_rgba(0,0,0,.04)]">
         <p className="mb-3 text-sm font-semibold text-slate-700">Hızlı şablon seçin</p>
         <div className="flex flex-wrap gap-2">
           {["Tüketici Hakem Heyeti", "Kira artışı itirazı", "Belediye şikayeti", "Yol onarım talebi", "Ürün iadesi", "Apartman gürültü"].map((t) => (
@@ -112,7 +112,7 @@ export default function DilekcePage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="mb-1.5 block text-sm font-medium text-slate-700">Yazı türü / başlık</label>

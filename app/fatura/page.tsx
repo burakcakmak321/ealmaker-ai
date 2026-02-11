@@ -72,14 +72,14 @@ export default function FaturaPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
       <PageHeader
-        title="Fatura & Abonelik İtirazı"
-        description="İnternet, banka veya operatör faturanız için indirim veya iade talebinizi kurumun dilinde, hukuki jargonla yazıyoruz."
+        title="AI Destekli Fatura İtirazı"
+        description="İnternet, banka veya operatör faturanız için AI destekli indirim veya iade talebi taslağı. Kurumun dilinde, profesyonel ifadelerle oluşturulur."
         icon="📄"
       />
 
       <Disclaimer />
 
-      <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/80 p-6">
+      <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 shadow-[0_1px_3px_rgba(0,0,0,.04)]">
         <p className="mb-3 text-sm font-semibold text-slate-700">Hızlı senaryo</p>
         <div className="flex flex-wrap gap-2">
           {[
@@ -103,7 +103,7 @@ export default function FaturaPage() {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="mb-1.5 block text-sm font-medium text-slate-700">Kurum adı</label>
@@ -140,7 +140,7 @@ export default function FaturaPage() {
           <button
             type="submit"
             disabled={yukleniyor || authLoading}
-            className="w-full rounded-xl bg-brand-600 py-4 font-semibold text-white shadow-soft transition hover:bg-brand-700 disabled:opacity-60"
+            className="w-full rounded-xl bg-brand-600 py-4 font-semibold text-white shadow-[0_4px_14px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700 disabled:opacity-60"
           >
             {yukleniyor ? "Metin yazılıyor…" : "Dilekçe / mesaj metnini oluştur"}
           </button>

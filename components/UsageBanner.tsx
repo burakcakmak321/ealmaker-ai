@@ -56,9 +56,9 @@ export default function UsageBanner() {
   if (authLoading) return null;
 
   if (!user) {
-    return (
-      <div
-        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-2.5 text-sm text-slate-600 shadow-card"
+return (
+    <div
+        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,.06)]"
         role="status"
       >
         <span>
@@ -79,7 +79,7 @@ export default function UsageBanner() {
   if (isPro) {
     return (
       <div
-        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-brand-200/80 bg-brand-50/50 px-4 py-2.5 text-sm text-slate-700 shadow-card"
+        className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-brand-200/80 bg-brand-50/80 px-4 py-3 text-sm text-slate-700 shadow-[0_1px_3px_rgba(5,150,105,.08)]"
         role="status"
       >
         <span>
@@ -92,7 +92,7 @@ export default function UsageBanner() {
 
   return (
     <div
-      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-2.5 text-sm text-slate-600 shadow-card"
+      className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,.06)]"
       role="status"
       aria-live="polite"
     >

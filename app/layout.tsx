@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Outfit } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import Logo from "@/components/Logo";
@@ -10,9 +10,9 @@ import CookieConsent from "@/components/CookieConsent";
 import { SITE_NAME, BUSINESS } from "@/lib/brand";
 import { ToastProvider } from "@/components/Toast";
 
-const plusJakarta = Plus_Jakarta_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-plus-jakarta",
+  variable: "--font-outfit",
   display: "swap",
 });
 
@@ -62,27 +62,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="tr" className={plusJakarta.variable}>
-      <body className="min-h-screen antialiased font-sans">
+    <html lang="tr" className={outfit.variable}>
+      <body className="min-h-screen antialiased font-sans bg-slate-50">
         <ToastProvider>
           <PromoBanner />
-          <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/98 shadow-sm backdrop-blur-xl">
-            <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
+          <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/95 shadow-[0_1px_0_0_rgba(0,0,0,.04)] backdrop-blur-xl">
+            <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3.5 sm:px-6 sm:py-4">
               <Link
                 href="/"
-                className="flex shrink-0 items-center gap-2.5 text-base font-bold tracking-tight text-slate-900 transition hover:text-brand-600 sm:text-lg"
+                className="group flex shrink-0 items-center gap-2.5 text-base font-bold tracking-tight text-slate-900 transition hover:text-brand-600 sm:text-lg"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-soft sm:h-9 sm:w-9">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 text-white shadow-[0_4px_12px_-2px_rgba(5,150,105,.35)] transition group-hover:shadow-[0_6px_16px_-2px_rgba(5,150,105,.4)] sm:h-10 sm:w-10">
                   <Logo className="h-5 w-5 sm:h-6 sm:w-6" />
                 </span>
                 <span>{SITE_NAME}</span>
               </Link>
-              <nav className="flex flex-wrap items-center justify-end gap-1 sm:gap-2" aria-label="Ana menü">
+              <nav className="flex flex-wrap items-center justify-end gap-0.5 sm:gap-1" aria-label="Ana menü">
                 {navLinks.map(({ href, label }) => (
                   <Link
                     key={href}
                     href={href}
-                    className="rounded-lg px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+                    className="rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-brand-50/80 hover:text-brand-700"
                   >
                     {label}
                   </Link>
@@ -100,18 +100,18 @@ export default function RootLayout({
 
           <CookieConsent />
 
-          <footer className="border-t border-slate-200 bg-slate-900 text-slate-300 shadow-[0_-4px_24px_-4px_rgba(0,0,0,.08)]">
-            <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
-              <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
+          <footer className="border-t border-slate-200 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 text-slate-300 shadow-[0_-4px_24px_-4px_rgba(0,0,0,.1)]">
+            <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+              <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-5">
                 <div className="sm:col-span-2 lg:col-span-2">
-                  <Link href="/" className="inline-flex items-center gap-2 text-white">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500">
+                  <Link href="/" className="inline-flex items-center gap-2.5 text-white">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-600 shadow-[0_4px_12px_-2px_rgba(5,150,105,.4)]">
                       <Logo className="h-5 w-5" />
                     </span>
-                    <span className="text-lg font-bold">{SITE_NAME}</span>
+                    <span className="text-lg font-bold tracking-tight">{SITE_NAME}</span>
                   </Link>
                   <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
-                    Metin taslağı üretim platformu. Fatura itirazı, pazarlık, resmi yazı taslağı ve CV — yapay zeka ile profesyonel taslaklar oluşturun.
+                    AI destekli metin üretim platformu. Fatura itirazı, dilekçe, pazarlık ve CV taslağı — bilgilendirme amaçlıdır, hukuki tavsiye değildir.
                   </p>
                   <p className="mt-4 flex items-center gap-2 text-xs text-slate-500">
                     <span>🔒 SSL güvenli</span>
@@ -119,7 +119,7 @@ export default function RootLayout({
                   </p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+                  <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Ürün
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -131,7 +131,7 @@ export default function RootLayout({
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+                  <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Destek
                   </h3>
                   <ul className="mt-4 space-y-3">
@@ -143,7 +143,7 @@ export default function RootLayout({
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+                  <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Yasal
                   </h3>
                   <ul className="mt-4 space-y-3">

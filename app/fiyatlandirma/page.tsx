@@ -14,7 +14,7 @@ export default function FiyatlandirmaPage() {
         description="Çalışmalar devam ediyor."
         icon="🚀"
       />
-      <div className="rounded-2xl border border-brand-200/80 bg-brand-50/50 px-6 py-10 text-slate-700">
+      <div className="rounded-2xl border border-brand-200/80 bg-gradient-to-br from-brand-50 to-emerald-50/80 px-6 py-12 text-slate-700 shadow-[0_4px_24px_-4px_rgba(5,150,105,.12)]">
         <p className="text-lg font-medium">
           Premium üyelik üzerinde çalışıyoruz. Yakında hizmetinizde olacak.
         </p>
@@ -23,7 +23,7 @@ export default function FiyatlandirmaPage() {
         </p>
         <Link
           href="/"
-          className="mt-8 inline-flex rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white transition hover:bg-brand-700"
+          className="mt-8 inline-flex rounded-xl bg-brand-600 px-8 py-4 font-semibold text-white shadow-[0_4px_14px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700"
         >
           Ana sayfaya dön
         </Link>

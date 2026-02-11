@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --foreground: #1e293b;
+  --foreground: #0f172a;
   --background: #f8fafc;
+  --brand: #059669;
+  --brand-light: #ecfdf5;
 }
 
 body {
@@ -18,9 +20,8 @@ body {
   }
 }
 
-/* Seçim rengi */
 ::selection {
-  background-color: rgba(79, 70, 229, 0.2);
+  background-color: rgba(5, 150, 105, 0.2);
 }
 
 /* Yazdır / PDF için */
@@ -52,17 +53,16 @@ select:focus {
   outline: none;
 }
 
-/* Arka plan deseni (hero vb.) - profesyonel indigo tonları */
 .bg-mesh {
-  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #eef2ff 100%);
+  background: linear-gradient(160deg, #f0fdf4 0%, #ecfdf5 30%, #f8fafc 70%, #f1f5f9 100%);
   background-image:
-    radial-gradient(at 40% 20%, rgba(79, 70, 229, 0.06) 0px, transparent 50%),
-    radial-gradient(at 80% 0%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
-    radial-gradient(at 0% 50%, rgba(79, 70, 229, 0.05) 0px, transparent 50%);
+    radial-gradient(at 30% 10%, rgba(5, 150, 105, 0.08) 0px, transparent 50%),
+    radial-gradient(at 90% 20%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 60%, rgba(5, 150, 105, 0.04) 0px, transparent 50%);
 }
 
 .bg-grid {
-  background-size: 32px 32px;
-  background-image: linear-gradient(to right, rgba(0,0,0,.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(5, 150, 105, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(5, 150, 105, 0.03) 1px, transparent 1px);
 }

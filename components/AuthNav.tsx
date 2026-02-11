@@ -37,7 +37,7 @@ export default function AuthNav() {
         <button
           type="button"
           onClick={handleSignOut}
-          className="rounded-lg px-3 py-1.5 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900"
+          className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-brand-50/80 hover:text-brand-700"
         >
           Çıkış
         </button>
@@ -48,7 +48,7 @@ export default function AuthNav() {
   return (
     <Link
       href="/giris"
-      className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-soft transition hover:bg-brand-700"
+      className="rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-[0_2px_8px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700"
     >
       Giriş / Kayıt
     </Link>

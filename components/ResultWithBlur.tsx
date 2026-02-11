@@ -29,7 +29,7 @@ export default function ResultWithBlur({
   const isBlurred = blurred || limitReached;
 
   return (
-    <div className="mt-10 animate-fade-in rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
+    <div className="mt-10 animate-fade-in rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-lg font-bold text-slate-900">{title}</h2>
         {!isBlurred && <CopyButton text={text} label={copyLabel} />}
@@ -53,7 +53,7 @@ export default function ResultWithBlur({
             </p>
             <Link
               href={limitReached ? "/premium-yakinda" : "/giris"}
-              className="mt-4 rounded-xl bg-brand-600 px-5 py-2.5 font-semibold text-white transition hover:bg-brand-700"
+              className="mt-4 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white shadow-[0_2px_8px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700"
             >
               {limitReached ? "Premium'a geç" : "Giriş yap / Kayıt ol"}
             </Link>

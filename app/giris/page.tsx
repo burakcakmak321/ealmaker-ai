@@ -62,7 +62,7 @@ function GirisForm() {
 
   return (
     <div className="mx-auto max-w-md px-4 py-16 sm:py-24">
-      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-card sm:p-8">
+      <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_8px_30px_-12px_rgba(0,0,0,.12)] sm:p-8">
         <div className="mb-8 text-center">
           <Link href="/" className="inline-flex items-center gap-2 text-lg font-bold text-slate-900">
             <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500 text-white">⚖️</span>
@@ -73,7 +73,7 @@ function GirisForm() {
           </h1>
           <p className="mt-2 text-sm text-slate-600">
             {isSignUp
-              ? "2 ücretsiz kullanım hakkınızı açmak için kayıt olun."
+              ? "Günlük 3 ücretsiz kullanım hakkınızı açmak için kayıt olun."
               : "Ücretsiz haklarınızı kullanmak için giriş yapın."}
           </p>
         </div>
