@@ -15,7 +15,7 @@ export async function GET() {
     hint: !hasUrl || !hasKey
       ? "Vercel: SUPABASE_URL ve SUPABASE_ANON_KEY ekleyin (proje Settings > Environment Variables)."
       : !hasAdminPassword
-        ? "ADMIN_PASSWORD tanimli degil. Vercel'de ealmaker-ai PROJESININ Settings > Environment Variables sayfasina gidin (Team degil, proje ayarlari), ADMIN_PASSWORD ekleyin, Redeploy yapin."
+        ? "ADMIN_PASSWORD yok. GitHub'daki ADMIN-SETUP.md dosyasindaki adimlari takip edin: Proje > Settings > Environment Variables, ADMIN_PASSWORD ekleyin, Redeploy."
         : null,
   });
 }
