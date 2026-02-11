@@ -9,7 +9,7 @@ type Plan = "pro" | "onetime";
 export default function FiyatlandirmaClient({ plan = "pro" }: { plan?: Plan }) {
   const { user, loading } = useAuth();
   const isPro = plan === "pro";
-  const label = isPro ? `Pro'ya geç — ${PRICES.pro.discounted} ₺/ay` : `Satın al — ${PRICES.onetime.discounted} ₺ (${PRICES.onetime.credits} kullanım)`;
+  const label = isPro ? `Premium'a geç — ${PRICES.pro.discounted} ₺/ay` : `Satın al — ${PRICES.onetime.discounted} ₺ (${PRICES.onetime.credits} kullanım)`;
 
   if (loading) {
     return (

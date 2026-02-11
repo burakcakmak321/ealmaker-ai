@@ -4,7 +4,7 @@ export const PRICES = {
   pro: {
     normal: 149,
     discounted: 99,
-    label: "Pro Aylık Abonelik",
+    label: "Premium Aylık Abonelik",
   },
   onetime: {
     normal: 49,

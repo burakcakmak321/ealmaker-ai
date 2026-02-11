@@ -130,7 +130,7 @@ function CheckoutContent() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12">
         <PageHeader
-          title={isPro ? "Pro Ödeme" : "Tek Seferlik Ödeme"}
+          title={isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
           description={`Güvenli 3D ödeme (Param) — ${desc}`}
           icon="💰"
         />
@@ -238,7 +238,7 @@ function CheckoutContent() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <PageHeader
-        title={isPro ? "Pro Ödeme" : "Tek Seferlik Ödeme"}
+        title={isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
         description={`Güvenli ödeme (Param) — ${desc}`}
         icon="💰"
       />

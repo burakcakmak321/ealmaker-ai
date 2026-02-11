@@ -27,7 +27,7 @@ export default function UsageBanner() {
         } else {
           setIsPro(false);
           setRemaining(data.remaining ?? 0);
-          setOver((data.count ?? 0) >= (data.limit ?? 2));
+          setOver((data.count ?? 0) >= (data.limit ?? 3));
         }
       })
       .catch(() => {
@@ -48,7 +48,7 @@ export default function UsageBanner() {
         } else {
           setIsPro(false);
           setRemaining(data.remaining ?? 0);
-          setOver((data.count ?? 0) >= (data.limit ?? 2));
+          setOver((data.count ?? 0) >= (data.limit ?? 3));
         }
       });
   };
@@ -62,7 +62,7 @@ export default function UsageBanner() {
         role="status"
       >
         <span>
-          <span className="font-medium text-slate-700">2 ücretsiz kullanım</span> için{" "}
+          <span className="font-medium text-slate-700">Günlük 3 ücretsiz kullanım</span> için{" "}
           <Link href="/giris" className="font-semibold text-brand-600 hover:underline">
             giriş yapın
           </Link>{" "}
@@ -83,7 +83,7 @@ export default function UsageBanner() {
         role="status"
       >
         <span>
-          <span className="font-semibold text-brand-700">Pro</span> — Sınırsız kullanım
+          <span className="font-semibold text-brand-700">Premium</span> — Sınırsız kullanım
         </span>
       </div>
     );
@@ -98,11 +98,11 @@ export default function UsageBanner() {
     >
       {over ? (
         <span>
-          Kullanım hakkınız doldu. Tek seferlik paket veya{" "}
-          <Link href="/fiyatlandirma" className="font-semibold text-brand-600 hover:underline">
-            Pro
+          Kullanım hakkınız doldu. Günlük 3 hakkınız her gün yenilenir.{" "}
+          <Link href="/premium-yakinda" className="font-semibold text-brand-600 hover:underline">
+            Premium
           </Link>
-          &apos;ya geçin.
+          &apos;a geçin (yakında).
         </span>
       ) : (
         <span>

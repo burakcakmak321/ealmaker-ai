@@ -8,7 +8,7 @@ export default function FiyatlandirmaPage() {
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-20">
       <PageHeader
         title="Fiyatlandırma"
-        description="İlk 2 kullanım ücretsiz. Tek seferlik paket veya Pro ile devam edin. Güvenli ödeme ile anında aktif."
+        description="Günlük 3 ücretsiz kullanım. Tek seferlik paket veya Premium ile devam edin. Güvenli ödeme ile anında aktif."
         icon="💰"
       />
 
@@ -23,7 +23,7 @@ export default function FiyatlandirmaPage() {
           <ul className="mt-8 space-y-4 text-slate-600">
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
-              2 metin taslağı ücretsiz
+              Günlük 3 metin taslağı ücretsiz
             </li>
             <li className="flex items-center gap-3">
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-600">✓</span>
@@ -68,12 +68,12 @@ export default function FiyatlandirmaPage() {
           <FiyatlandirmaClient plan="onetime" />
         </div>
 
-        {/* Pro */}
+        {/* Premium */}
         <div className="relative rounded-2xl border-2 border-brand-500 bg-white p-8 shadow-soft sm:p-10">
           <div className="absolute -top-3.5 left-6 rounded-full bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-1.5 text-xs font-bold text-white shadow-soft">
             Önerilen
           </div>
-          <h2 className="text-xl font-bold text-slate-900">Pro</h2>
+          <h2 className="text-xl font-bold text-slate-900">Premium</h2>
           <p className="mt-3 flex items-baseline gap-2">
             <span className="text-2xl text-slate-400 line-through">{PRICES.pro.normal} ₺</span>
             <span className="text-3xl font-extrabold tracking-tight text-slate-900">{PRICES.pro.discounted} ₺</span>

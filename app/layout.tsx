@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import HeaderLogo from "@/components/HeaderLogo";
 import Logo from "@/components/Logo";
 import UsageBanner from "@/components/UsageBanner";
 import PromoBanner from "@/components/PromoBanner";
@@ -68,15 +69,7 @@ export default function RootLayout({
           <PromoBanner />
           <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/98 shadow-sm backdrop-blur-xl">
             <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
-              <Link
-                href="/"
-                className="flex shrink-0 items-center gap-2.5 text-base font-bold tracking-tight text-slate-900 transition hover:text-brand-600 sm:text-lg"
-              >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-soft sm:h-9 sm:w-9">
-                  <Logo className="h-5 w-5 sm:h-6 sm:w-6" />
-                </span>
-                <span>{SITE_NAME}</span>
-              </Link>
+              <HeaderLogo siteName={SITE_NAME} />
               <nav className="flex flex-wrap items-center justify-end gap-1 sm:gap-2" aria-label="Ana menü">
                 {navLinks.map(({ href, label }) => (
                   <Link

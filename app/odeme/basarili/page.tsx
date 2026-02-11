@@ -14,7 +14,7 @@ export default function OdemeBasariliPage({
     <div className="mx-auto max-w-xl px-4 py-16 text-center">
       <PageHeader
         title="Ödeme Başarılı"
-        description={isPro ? "Pro üyeliğiniz aktif." : `${PRICES.onetime.credits} kullanım hakkınız eklendi.`}
+        description={isPro ? "Premium üyeliğiniz aktif." : `${PRICES.onetime.credits} kullanım hakkınız eklendi.`}
         icon="✅"
       />
       <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-8 text-green-800">

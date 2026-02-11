@@ -3,7 +3,8 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getUsageCount, getIsPro, getEffectiveLimit } from "@/lib/supabase/usage";
+import { getIsPro } from "@/lib/supabase/usage";
+import { getTodayActivityCount, FREE_DAILY_LIMIT } from "@/lib/supabase/activity";
 
 export async function GET() {
   try {
@@ -14,26 +15,26 @@ export async function GET() {
     if (!user) {
       return NextResponse.json({
         count: 0,
-        remaining: 0,
-        limit: 2,
+        remaining: 3,
+        limit: FREE_DAILY_LIMIT,
         signedIn: false,
       });
     }
     const admin = createAdminClient();
     const isPro = await getIsPro(admin, user.id);
-    const count = await getUsageCount(admin, user.id);
-    const limit = await getEffectiveLimit(admin, user.id);
+    const count = await getTodayActivityCount(admin, user.id);
+    const remaining = isPro ? null : Math.max(0, FREE_DAILY_LIMIT - count);
     return NextResponse.json({
       count,
-      remaining: isPro ? null : Math.max(0, limit - count),
-      limit,
+      remaining,
+      limit: FREE_DAILY_LIMIT,
       signedIn: true,
       isPro,
     });
   } catch (err) {
     console.error("Usage API error:", err);
     return NextResponse.json(
-      { count: 0, remaining: 0, limit: 2, signedIn: false },
+      { count: 0, remaining: 3, limit: FREE_DAILY_LIMIT, signedIn: false },
       { status: 200 }
     );
   }

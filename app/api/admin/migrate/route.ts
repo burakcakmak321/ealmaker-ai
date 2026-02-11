@@ -1,22 +1,13 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
 
 export const dynamic = "force-dynamic";
-
-const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
-  .split(",")
-  .map((e) => e.trim().toLowerCase())
-  .filter(Boolean);
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 const MIGRATION_SQL = `ALTER TABLE public.usage ADD COLUMN IF NOT EXISTS one_time_credits int NOT NULL DEFAULT 0;`;
 
 export async function POST() {
   try {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user?.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+    if (!(await isAdminAuthenticated())) {
       return NextResponse.json({ error: "Yetkisiz." }, { status: 403 });
     }
 

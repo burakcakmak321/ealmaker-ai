@@ -1,21 +1,12 @@
 import { NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
-import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-
-const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || "")
-  .split(",")
-  .map((e) => e.trim().toLowerCase())
-  .filter(Boolean);
+import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export async function GET() {
   try {
-    const supabase = await createClient();
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    if (!user?.email || !ADMIN_EMAILS.includes(user.email.toLowerCase())) {
+    if (!(await isAdminAuthenticated())) {
       return NextResponse.json({ error: "Yetkisiz." }, { status: 403 });
     }
     const admin = createAdminClient();

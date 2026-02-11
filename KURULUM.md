@@ -90,7 +90,7 @@ Metin üretimi OpenAI API ile yapılıyor. Bunun için bir API anahtarı gerekir
 
 ---
 
-## 4b. Supabase Kurulumu (Giriş / Kayıt, 2 Ücretsiz Hak, Admin)
+## 4b. Supabase Kurulumu (Giriş / Kayıt, Günlük 3 Ücretsiz Hak, Admin)
 
 Site artık giriş/kayıt ve 2 ücretsiz kullanım hakkı kullanıyor. Bunun için Supabase hesabı gerekir.
 

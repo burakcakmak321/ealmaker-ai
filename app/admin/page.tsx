@@ -1,31 +1,61 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 type UserRow = { id: string; email: string | undefined; created_at: string; is_pro?: boolean };
+type Stats = {
+  totalRegistrations: number;
+  todayActivities: number;
+  todayUniqueUsers: number;
+  totalActivities: number;
+};
+type ActivityRow = { id: string; userId: string; email: string; module: string; createdAt: string };
 
 export default function AdminPage() {
   const [users, setUsers] = useState<UserRow[]>([]);
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [activities, setActivities] = useState<ActivityRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [settingPro, setSettingPro] = useState<string | null>(null);
   const [migrating, setMigrating] = useState(false);
   const [migrateMsg, setMigrateMsg] = useState("");
 
-  useEffect(() => {
-    fetch("/api/admin/users")
-      .then((res) => {
-        if (res.status === 403) throw new Error("Bu sayfayı görüntüleme yetkiniz yok.");
-        return res.json();
-      })
-      .then((data) => {
-        if (data.error) throw new Error(data.error);
-        setUsers(data.users ?? []);
-      })
-      .catch((err) => setError(err instanceof Error ? err.message : "Bir hata oluştu."))
-      .finally(() => setLoading(false));
+  const loadData = useCallback(async () => {
+    try {
+      const [usersRes, statsRes, activityRes] = await Promise.all([
+        fetch("/api/admin/users"),
+        fetch("/api/admin/stats"),
+        fetch("/api/admin/activity?limit=30"),
+      ]);
+      if (usersRes.status === 403 || statsRes.status === 403) {
+        throw new Error("Bu sayfayı görüntüleme yetkiniz yok. Logo'ya 5 kez tıklayıp şifre ile giriş yapın.");
+      }
+      const [usersData, statsData, activityData] = await Promise.all([
+        usersRes.json(),
+        statsRes.json(),
+        activityRes.json(),
+      ]);
+      if (usersData.error) throw new Error(usersData.error);
+      setUsers(usersData.users ?? []);
+      setStats(statsData.totalRegistrations !== undefined ? statsData : null);
+      setActivities(activityData.activities ?? []);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Bir hata oluştu.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  async function handleLogout() {
+    await fetch("/api/admin/logout", { method: "POST", credentials: "same-origin" });
+    window.location.href = "/";
+  }
 
   async function handleSetPro(userId?: string) {
     setSettingPro(userId ?? "self");
@@ -40,11 +70,10 @@ export default function AdminPage() {
       if (userId) {
         setUsers((prev) => prev.map((u) => (u.id === userId ? { ...u, is_pro: true } : u)));
       } else {
-        const list = await fetch("/api/admin/users").then((r) => r.json());
-        if (list.users) setUsers(list.users);
+        await loadData();
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Pro verilemedi.");
+      setError(err instanceof Error ? err.message : "Premium verilemedi.");
     } finally {
       setSettingPro(null);
     }
@@ -95,21 +124,92 @@ export default function AdminPage() {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-      <div className="mb-8 flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Admin — Kayıtlı kullanıcılar</h1>
-        <Link
-          href="/"
-          className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
-        >
-          ← Siteye dön
-        </Link>
+    <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
+        <h1 className="text-2xl font-bold text-slate-900">Admin Paneli</h1>
+        <div className="flex gap-2">
+          <Link
+            href="/"
+            className="rounded-lg px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100"
+          >
+            ← Siteye dön
+          </Link>
+          <button
+            type="button"
+            onClick={handleLogout}
+            className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-50"
+          >
+            Çıkış
+          </button>
+        </div>
       </div>
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
-        <p className="text-sm text-slate-600">
-          Telefondan veya bilgisayardan kayıt olan tüm kullanıcılar burada listelenir.
+
+      {stats && (
+        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+            <p className="text-sm font-medium text-slate-500">Toplam kayıt</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalRegistrations}</p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+            <p className="text-sm font-medium text-slate-500">Bugünkü aktivite</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayActivities}</p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+            <p className="text-sm font-medium text-slate-500">Bugün aktif kullanıcı</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayUniqueUsers}</p>
+          </div>
+          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+            <p className="text-sm font-medium text-slate-500">Toplam aktivite</p>
+            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalActivities}</p>
+          </div>
+        </div>
+      )}
+
+      <div className="mb-10">
+        <h2 className="mb-4 text-lg font-bold text-slate-900">Son aktiviteler</h2>
+        <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-card">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[400px] text-left text-sm">
+              <thead>
+                <tr className="border-b border-slate-200 bg-slate-50">
+                  <th className="px-4 py-3 font-semibold text-slate-700">E-posta</th>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Modül</th>
+                  <th className="px-4 py-3 font-semibold text-slate-700">Tarih</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activities.length === 0 ? (
+                  <tr>
+                    <td colSpan={3} className="px-4 py-6 text-center text-slate-500">
+                      Henüz aktivite yok.
+                    </td>
+                  </tr>
+                ) : (
+                  activities.map((a) => (
+                    <tr key={a.id} className="border-b border-slate-100">
+                      <td className="px-4 py-3 font-medium text-slate-900">{a.email}</td>
+                      <td className="px-4 py-3 text-slate-600">{a.module}</td>
+                      <td className="px-4 py-3 text-slate-600">
+                        {new Date(a.createdAt).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })}
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <h2 className="mb-4 text-lg font-bold text-slate-900">Kayıtlı kullanıcılar</h2>
+      <p className="mb-4 text-sm text-slate-600">
+        Telefondan veya bilgisayardan kayıt olan tüm kullanıcılar burada listelenir.
         </p>
-        <div className="flex flex-wrap gap-2">
+        <div className="mb-6 flex flex-wrap gap-2">
           <button
             type="button"
             onClick={handleMigrate}
@@ -124,10 +224,9 @@ export default function AdminPage() {
             disabled={!!settingPro}
             className="rounded-xl bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
           >
-            {settingPro === "self" ? "…" : "✨ Hesabımı Pro yap"}
+            {settingPro === "self" ? "…" : "✨ Hesabımı Premium yap"}
           </button>
         </div>
-      </div>
       {migrateMsg && (
         <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-700 whitespace-pre-line">
           {migrateMsg}
@@ -141,7 +240,7 @@ export default function AdminPage() {
                 <th className="px-4 py-3 font-semibold text-slate-700">#</th>
                 <th className="px-4 py-3 font-semibold text-slate-700">E-posta</th>
                 <th className="px-4 py-3 font-semibold text-slate-700">Kayıt tarihi</th>
-                <th className="px-4 py-3 font-semibold text-slate-700">Pro</th>
+                <th className="px-4 py-3 font-semibold text-slate-700">Premium</th>
                 <th className="px-4 py-3 font-semibold text-slate-700">İşlem</th>
               </tr>
             </thead>
@@ -167,7 +266,7 @@ export default function AdminPage() {
                     </td>
                     <td className="px-4 py-3">
                       {u.is_pro ? (
-                        <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">Pro</span>
+                        <span className="rounded-full bg-brand-100 px-2 py-0.5 text-xs font-semibold text-brand-700">Premium</span>
                       ) : (
                         <span className="text-slate-400">—</span>
                       )}
@@ -180,7 +279,7 @@ export default function AdminPage() {
                           disabled={!!settingPro}
                           className="rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-brand-700 disabled:opacity-50"
                         >
-                          {settingPro === u.id ? "…" : "Pro ver"}
+                          {settingPro === u.id ? "…" : "Premium ver"}
                         </button>
                       )}
                     </td>
@@ -190,6 +289,7 @@ export default function AdminPage() {
             </tbody>
           </table>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ export const dynamic = "force-dynamic";
 import OpenAI from "openai";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getUsageCount, getIsPro, getEffectiveLimit, incrementUsage } from "@/lib/supabase/usage";
+import { getIsPro } from "@/lib/supabase/usage";
+import { getTodayActivityCount, logActivity, FREE_DAILY_LIMIT } from "@/lib/supabase/activity";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -88,11 +89,10 @@ export async function POST(req: NextRequest) {
     const admin = createAdminClient();
     const isPro = await getIsPro(admin, user.id);
     if (!isPro) {
-      const count = await getUsageCount(admin, user.id);
-      const limit = await getEffectiveLimit(admin, user.id);
-      if (count >= limit) {
+      const todayCount = await getTodayActivityCount(admin, user.id);
+      if (todayCount >= FREE_DAILY_LIMIT) {
         return NextResponse.json(
-          { error: "Kullanım hakkınız doldu. Tek seferlik paket veya Pro'ya geçin.", limitReached: true },
+          { error: "Günlük kullanım hakkınız doldu. Yarın tekrar deneyebilir veya Premium'a geçebilirsiniz.", limitReached: true },
           { status: 402 }
         );
       }
@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
       completion.choices[0]?.message?.content?.trim() ||
       "Metin oluşturulamadı. Lütfen tekrar dene.";
 
-    await incrementUsage(admin, user.id);
+    await logActivity(admin, user.id, type);
 
     return NextResponse.json({ text });
   } catch (err) {

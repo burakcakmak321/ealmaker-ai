@@ -48,14 +48,14 @@ export default function ResultWithBlur({
           <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-xl bg-slate-900/60 backdrop-blur-md">
             <p className="px-4 text-center text-base font-semibold text-white">
               {limitReached
-                ? "Ücretsiz kullanım hakkınız doldu. Sınırsız kullanım için Pro'ya geçin."
+                ? "Ücretsiz kullanım hakkınız doldu. Sınırsız kullanım için Premium'a geçin."
                 : "Ücretsiz hakkınızı kullanmak için oturum açmalısınız."}
             </p>
             <Link
-              href={limitReached ? "/fiyatlandirma" : "/giris"}
+              href={limitReached ? "/premium-yakinda" : "/giris"}
               className="mt-4 rounded-xl bg-brand-600 px-5 py-2.5 font-semibold text-white transition hover:bg-brand-700"
             >
-              {limitReached ? "Pro'ya geç" : "Giriş yap / Kayıt ol"}
+              {limitReached ? "Premium'a geç" : "Giriş yap / Kayıt ol"}
             </Link>
           </div>
         )}
