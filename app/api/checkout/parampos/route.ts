@@ -38,8 +38,12 @@ export async function POST(req: NextRequest) {
       kkSahibiGsm?: string;
     };
 
-    const plan = body.plan === "onetime" ? "onetime" : "pro";
-    const amount = plan === "onetime" ? PRICES.onetime.discounted : PRICES.pro.discounted;
+    const plan = body.plan === "onetime" ? "onetime" : body.plan === "yearly" ? "yearly" : "pro";
+    const amount = plan === "yearly"
+      ? PRICES.yearly.discounted
+      : plan === "onetime"
+        ? PRICES.onetime.discounted
+        : PRICES.pro.discounted;
     const islemTutar = formatAmount(amount);
     const toplamTutar = islemTutar; // Komisyon 0 kabul
 
@@ -63,7 +67,7 @@ export async function POST(req: NextRequest) {
     const hataUrl = `${origin}/api/payment/parampos/fail`;
     const refUrl = `${origin}/odeme/checkout?plan=${plan}`;
     const userIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || req.headers.get("x-real-ip") || "127.0.0.1";
-    const siparisAciklama = plan === "pro" ? PRICES.pro.label : PRICES.onetime.label;
+    const siparisAciklama = plan === "yearly" ? PRICES.yearly.label : plan === "pro" ? PRICES.pro.label : PRICES.onetime.label;
 
     const result = await tpWmdUcd({
       plan,

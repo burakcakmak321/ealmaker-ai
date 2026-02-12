@@ -52,7 +52,7 @@ export default function ResultWithBlur({
                 : "Ücretsiz hakkınızı kullanmak için oturum açmalısınız."}
             </p>
             <Link
-              href={limitReached ? "/premium-yakinda" : "/giris"}
+              href={limitReached ? "/fiyatlandirma" : "/giris"}
               className="mt-4 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white shadow-[0_2px_8px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700"
             >
               {limitReached ? "Premium'a geç" : "Giriş yap / Kayıt ol"}

@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     s: "Ücretsiz kullanım nasıl?",
-    c: "İlk 2 kullanım (tüm modüller dahil, toplam 2) ücretsizdir. Sonrasında Pro üyelik ile sınırsız kullanım sunulur.",
+    c: "Günlük 3 ücretsiz kullanım hakkınız vardır. Her gün Türkiye saatiyle gece yarısı yenilenir.",
   },
   {
     s: "Verilerim saklanıyor mu? KVKK uyumlu mu?",
@@ -31,8 +31,8 @@ const faqs = [
     c: "Şu an Türkçe odaklı çalışıyoruz. Resmi yazı taslakları ve CV taslakları Türkiye standartlarına uygun üretilir.",
   },
   {
-    s: "Pro abonelik nasıl iptal edilir?",
-    c: "Pro abonelik iptali ve cayma hakkı 6502 sayılı Tüketici Kanunu ve Mesafeli Sözleşmeler Yönetmeliği kapsamındadır. İletişim sayfası üzerinden talebinizi iletebilirsiniz.",
+    s: "Premium abonelik nasıl iptal edilir?",
+    c: "Aylık veya yıllık Premium abonelikler otomatik yenilenir. İptal için İletişim sayfasından talep oluşturabilirsiniz. İptal bir sonraki yenileme dönemine kadar geçerli olur.",
   },
 ];
 

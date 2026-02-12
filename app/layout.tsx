@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   title: `${SITE_NAME} | Metin Üretme Aracı (Bilgilendirme Amaçlı)`,
   description:
-    "Fatura itirazı, pazarlık, resmi yazı taslağı ve CV metni üretme aracı. ⚠️ Hukuki tavsiye değildir. KVKK uyumlu. Profesyonel destek önerilir.",
+    "Fatura itirazı, pazarlık, resmi yazı taslağı ve CV metni üretme aracı. Hukuki tavsiye değildir. KVKK uyumlu. Profesyonel destek önerilir.",
   openGraph: {
     title: `${SITE_NAME} — Metin Üretme Aracı`,
     description: "Bilgilendirme amaçlı metin üretim platformu. Hukuki tavsiye değildir.",
@@ -35,6 +35,7 @@ const navLinks = [
   { href: "/dilekce", label: "Resmi Yazı" },
   { href: "/cv", label: "CV Oluşturucu" },
   { href: "/fiyatlandirma", label: "Fiyatlandırma" },
+  { href: "/hakkimizda", label: "Hakkımızda" },
 ];
 
 const footerProduct = [
@@ -47,6 +48,7 @@ const footerProduct = [
 const footerSupport = [
   { href: "/sss", label: "SSS" },
   { href: "/iletisim", label: "İletişim" },
+  { href: "/hakkimizda", label: "Hakkımızda" },
 ];
 const footerLegal = [
   { href: "/gizlilik", label: "Gizlilik Politikası" },
@@ -54,6 +56,14 @@ const footerLegal = [
   { href: "/mesafeli-satis", label: "Mesafeli Satış" },
   { href: "/on-bilgilendirme", label: "Ön Bilgilendirme" },
   { href: "/cerezler", label: "Çerez Politikası" },
+  { href: "/iade-iptal", label: "İade ve İptal" },
+  { href: "/abonelik-otomatik-yenileme", label: "Abonelik ve Yenileme" },
+  { href: "/odeme-ve-faturalandirma", label: "Ödeme ve Faturalandırma" },
+  { href: "/odeme-guvenligi", label: "Ödeme Güvenliği" },
+  { href: "/dijital-teslimat", label: "Dijital Teslimat" },
+  { href: "/guvenlik", label: "Güvenlik Politikası" },
+  { href: "/destek-sikayet", label: "Destek ve Şikayet" },
+  { href: "/uyusmazlik", label: "Uyuşmazlık Çözümü" },
 ];
 
 export default function RootLayout({
@@ -117,6 +127,12 @@ export default function RootLayout({
                     <span>🔒 SSL güvenli</span>
                     <span>🇹🇷 Türkiye&apos;de</span>
                   </p>
+                  <div className="mt-4 text-xs text-slate-500">
+                    <p className="font-semibold text-slate-300">{BUSINESS.unvan}</p>
+                    <p>Vergi Dairesi: {BUSINESS.vergiDairesi} · VKN: {BUSINESS.vkn}</p>
+                    <p>{BUSINESS.adres}</p>
+                    <p>Tel: {BUSINESS.telefon} · {BUSINESS.email}</p>
+                  </div>
                 </div>
                 <div>
                   <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-400">
@@ -155,7 +171,7 @@ export default function RootLayout({
                   </ul>
                 </div>
               </div>
-              <div className="mt-12 space-y-6 border-t border-slate-800 pt-8">
+                <div className="mt-12 space-y-6 border-t border-slate-800 pt-8">
                 <div className="rounded-lg bg-slate-800/50 px-4 py-4 text-xs text-slate-400">
                   <p className="font-semibold text-slate-300">{BUSINESS.unvan}</p>
                   <p className="mt-1">Vergi Dairesi: {BUSINESS.vergiDairesi}{BUSINESS.vkn ? ` · VKN: ${BUSINESS.vkn}` : ""}</p>

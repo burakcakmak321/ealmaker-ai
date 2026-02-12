@@ -7,14 +7,21 @@ export default function OdemeBasariliPage({
 }: {
   searchParams?: { plan?: string };
 }) {
-  const plan = searchParams?.plan === "onetime" ? "onetime" : "pro";
-  const isPro = plan === "pro";
+  const planParam = searchParams?.plan;
+  const plan = planParam === "onetime" ? "onetime" : planParam === "yearly" ? "yearly" : "pro";
+  const isPro = plan === "pro" || plan === "yearly";
 
   return (
     <div className="mx-auto max-w-xl px-4 py-16 text-center">
       <PageHeader
         title="Ödeme Başarılı"
-        description={isPro ? "Premium üyeliğiniz aktif." : `${PRICES.onetime.credits} kullanım hakkınız eklendi.`}
+        description={
+          isPro
+            ? plan === "yearly"
+              ? "Premium yıllık üyeliğiniz aktif."
+              : "Premium üyeliğiniz aktif."
+            : `${PRICES.onetime.credits} kullanım hakkınız eklendi.`
+        }
         icon="✅"
       />
       <div className="mt-8 rounded-2xl border border-green-200 bg-green-50 p-8 text-green-800">

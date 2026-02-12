@@ -54,14 +54,17 @@ export async function POST(req: NextRequest) {
     const userId = parts[1];
 
     const admin = createAdminClient();
-    if (plan === "pro") {
+    if (plan === "yearly") {
+      const alreadyPro = await getIsPro(admin, userId);
+      if (!alreadyPro) await setPremium(admin, userId, "yearly");
+    } else if (plan === "pro") {
       const alreadyPro = await getIsPro(admin, userId);
       if (!alreadyPro) await setPremium(admin, userId, "monthly");
     } else if (plan === "onetime") {
       await addOneTimeCredits(admin, userId, PRICES.onetime.credits);
     }
 
-    const planParam = plan === "onetime" ? "onetime" : "pro";
+    const planParam = plan === "onetime" ? "onetime" : plan === "yearly" ? "yearly" : "pro";
     return NextResponse.redirect(`${basariliUrl}?plan=${planParam}`);
   } catch (err) {
     console.error("ParamPOS success callback error:", err);

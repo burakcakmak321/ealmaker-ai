@@ -19,45 +19,60 @@ export default function MesafeliSatisPage() {
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">1. Taraflar</h2>
           <p>
-            <strong>SATICI:</strong> YazıAsistan platformunu işleten gerçek veya tüzel kişi (bundan sonra &quot;Satıcı&quot;).
+            <strong>SATICI:</strong> YazıAsistan platformunu işleten <strong>Burak Çakmak</strong> (bundan sonra “Satıcı”).
           </p>
-          <p>
-            <strong>ALICI:</strong> Sözleşmeyi elektronik ortamda kabul eden ve ödeme yapan müşteri (bundan sonra &quot;Alıcı&quot;).
+          <div className="mt-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm">
+            <p><strong>Vergi Dairesi:</strong> Çorlu Vergi Dairesi Müdürlüğü</p>
+            <p><strong>VKN:</strong> 2230877647</p>
+            <p><strong>Adres:</strong> Şeyhsinan Mahallesi, Karasüleyman Sokak No: 2/5, Çorlu / Tekirdağ</p>
+            <p><strong>Telefon:</strong> 0551 633 38 94</p>
+            <p><strong>E‑posta:</strong> yaziasistani@gmail.com</p>
+          </div>
+          <p className="mt-3">
+            <strong>ALICI:</strong> Sözleşmeyi elektronik ortamda kabul eden ve ödeme yapan müşteri (bundan sonra “Alıcı”).
           </p>
         </section>
 
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">2. Sözleşmenin Konusu</h2>
           <p>
-            Bu sözleşme, Alıcının Satıcıya ait YazıAsistan platformu üzerinden Pro abonelik hizmeti satın almasına ilişkin tarafların hak ve yükümlülüklerini düzenler.
+            Bu sözleşme, Alıcının Satıcıya ait YazıAsistan platformu üzerinden dijital hizmet/abonelik satın almasına ilişkin tarafların hak ve yükümlülüklerini düzenler.
           </p>
         </section>
 
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">3. Hizmetin Tanımı</h2>
           <p>
-            Pro abonelik; metin taslağı üretimi (fatura itirazı, pazarlık, resmi yazı taslağı, CV taslağı) modüllerinde sınırsız kullanım hakkı sağlar. Hizmet dijital içerik niteliğindedir.
+            YazıAsistan; yapay zeka destekli metin taslağı üretimi (fatura itirazı, pazarlık mesajı, resmi yazı/dilekçe taslağı, CV taslağı) hizmeti sunar. Hizmet, dijital içerik niteliğindedir.
           </p>
+          <ul className="list-disc space-y-2 pl-6">
+            <li><strong>Premium Aylık:</strong> 99 ₺/ay</li>
+            <li><strong>Premium Yıllık:</strong> 999 ₺/yıl</li>
+            <li><strong>Tek Seferlik:</strong> 29 ₺ (2 kullanım)</li>
+          </ul>
         </section>
 
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">4. Fiyat ve Ödeme</h2>
           <p>
-            Hizmet bedeli site üzerinde belirtilen fiyat üzerindendir. Ödeme kredi kartı veya havale/EFT ile alınır. KDV uygulanabilir.
+            Hizmet bedeli site üzerinde belirtilen güncel fiyatlardır. Ödeme kredi kartı ile alınır. Vergisel yükümlülükler ve faturalama mevzuata uygun şekilde yapılır.
           </p>
         </section>
 
         <section>
           <h2 className="mb-3 text-xl font-bold text-slate-800">5. Cayma Hakkı</h2>
           <p>
-            Mesafeli Sözleşmeler Yönetmeliği&apos;nin 15. maddesi uyarınca, dijital içerik niteliğindeki hizmetlerde cayma hakkı, Alıcı onayı ile hizmetin ifasına başlanmasından sonra kullanılamaz. Pro aboneliğiniz ödeme onayıyla derhal aktifleşir. Alıcı, ödeme öncesinde Ön Bilgilendirme Formu&apos;nu okuyup onaylayarak bu durumu kabul etmiş sayılır. Hizmetin dijital olduğundan bahisle 14 günlük cayma hakkı sınırlanabilir.
+            Mesafeli Sözleşmeler Yönetmeliği’nin 15. maddesi uyarınca, dijital içerik niteliğindeki hizmetlerde, Alıcı’nın onayı ile hizmet ifasına başlanması halinde cayma hakkı kullanılamaz. Hizmet, ödeme onayıyla derhal başlatılır. Alıcı, ödeme öncesinde Ön Bilgilendirme Formu’nu okuyup onaylayarak bu durumu kabul eder.
           </p>
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-slate-800">6. İade ve Abonelik Yenileme</h2>
+          <h2 className="mb-3 text-xl font-bold text-slate-800">6. İade, İptal ve Abonelik Yenileme</h2>
           <p>
-            Cayma hakkı kullanılamayan hallerde, Alıcının talep etmesi ve yasal zorunluluk bulunması halinde iade yapılır. İade talepleri ödeme tarihi itibarıyla 5 iş günü içinde değerlendirilir. Abonelik aylık olarak otomatik yenilenir; iptal için <Link href="/iletisim" className="text-brand-600 hover:underline">İletişim</Link> sayfasından talepte bulunulmalıdır. İade koşulları 6502 sayılı Kanun ve ilgili mevzuata tabidir.
+            Abonelikler aylık veya yıllık olarak <strong>otomatik yenilenir</strong>. Alıcı, yenileme tarihinden önce iptal talebinde bulunabilir. İptal talepleri <Link href="/iletisim" className="text-brand-600 hover:underline">İletişim</Link> sayfasından alınır.
+          </p>
+          <p>
+            Dijital hizmetlerde cayma hakkı kural olarak sınırlıdır. Yasal zorunluluk bulunan durumlarda iade yapılır; değerlendirme süreci ödeme tarihinden itibaren <strong>5 iş günü</strong> içinde sonuçlandırılır.
           </p>
         </section>
 

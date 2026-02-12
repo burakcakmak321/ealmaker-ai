@@ -56,8 +56,8 @@ export default function UsageBanner() {
   if (authLoading) return null;
 
   if (!user) {
-return (
-    <div
+    return (
+      <div
         className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200/80 bg-white px-4 py-3 text-sm text-slate-600 shadow-[0_1px_3px_rgba(0,0,0,.06)]"
         role="status"
       >
@@ -99,10 +99,10 @@ return (
       {over ? (
         <span>
           Kullanım hakkınız doldu. Günlük 3 hakkınız her gün yenilenir.{" "}
-          <Link href="/premium-yakinda" className="font-semibold text-brand-600 hover:underline">
+          <Link href="/fiyatlandirma" className="font-semibold text-brand-600 hover:underline">
             Premium
           </Link>
-          &apos;a geçin (yakında).
+          &apos;a geçin.
         </span>
       ) : (
         <span>

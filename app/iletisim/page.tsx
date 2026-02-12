@@ -15,7 +15,7 @@ export default function IletisimPage() {
     const konu = (form.elements.namedItem("konu") as HTMLSelectElement)?.value || "";
     const mesaj = (form.elements.namedItem("mesaj") as HTMLTextAreaElement)?.value || "";
 
-    const konuLabel = { genel: "Genel soru", pro: "Pro / Fiyatlandırma", kurumsal: "Kurumsal teklif", teknik: "Teknik destek", kvkk: "KVKK başvurusu / Veri talebi" }[konu] || konu;
+  const konuLabel = { genel: "Genel soru", pro: "Premium / Fiyatlandırma", kurumsal: "Kurumsal teklif", teknik: "Teknik destek", kvkk: "KVKK başvurusu / Veri talebi", iade: "İade / İptal", odeme: "Ödeme / Faturalandırma" }[konu] || konu;
     const subject = `[YazıAsistan İletişim] ${konuLabel}`;
     const body = `Ad Soyad: ${ad}\nE-posta: ${email}\nKonu: ${konuLabel}\n\nMesaj:\n${mesaj}`;
 
@@ -39,6 +39,7 @@ export default function IletisimPage() {
         <p className="font-medium text-slate-800">{BUSINESS.unvan}</p>
         <p className="mt-1 text-sm text-slate-600">{BUSINESS.adres}</p>
         <p className="mt-1 text-sm text-slate-600">Vergi Dairesi: {BUSINESS.vergiDairesi}</p>
+        <p className="mt-1 text-sm text-slate-600">VKN: {BUSINESS.vkn}</p>
         <p className="mt-2 flex items-center gap-2 text-sm">
           <span>📞</span> <a href={`tel:${BUSINESS.telefon.replace(/\s/g, "")}`} className="text-brand-600 hover:underline">{BUSINESS.telefon}</a>
         </p>
@@ -46,6 +47,7 @@ export default function IletisimPage() {
           <span>✉️</span> <a href={`mailto:${BUSINESS.email}`} className="text-brand-600 hover:underline">{BUSINESS.email}</a>
         </p>
         <p className="mt-3 text-xs text-slate-500">Destek: Hafta içi 09:00–18:00 · KVKK başvuruları 30 gün içinde yanıtlanır</p>
+        <p className="mt-2 text-xs text-slate-500">İade/iptal talepleri: 5 iş günü içinde değerlendirilir.</p>
       </div>
 
       {gonderildi ? (
@@ -96,10 +98,12 @@ export default function IletisimPage() {
               className="w-full rounded-lg border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
             >
               <option value="genel">Genel soru</option>
-              <option value="pro">Pro / Fiyatlandırma</option>
+              <option value="pro">Premium / Fiyatlandırma</option>
               <option value="kurumsal">Kurumsal teklif</option>
               <option value="teknik">Teknik destek</option>
               <option value="kvkk">KVKK başvurusu / Veri talebi</option>
+              <option value="iade">İade / İptal</option>
+              <option value="odeme">Ödeme / Faturalandırma</option>
             </select>
           </div>
           <div>

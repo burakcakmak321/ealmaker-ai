@@ -100,9 +100,15 @@ export default function KullanimPage() {
         </section>
 
         <section>
-          <h2 className="mb-3 text-xl font-bold text-slate-800">8. Abonelik ve Ödeme</h2>
+          <h2 className="mb-3 text-xl font-bold text-slate-800">8. Abonelik, Otomatik Yenileme ve Ödeme</h2>
           <p>
-            Pro abonelik ve ödeme işlemleri 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği kapsamında yürütülür. Cayma hakkı ve iade koşulları ilgili mevzuata tabidir.
+            Premium Aylık (99 ₺/ay) ve Premium Yıllık (999 ₺/yıl) abonelikler otomatik yenilenir. Tek Seferlik paket 29 ₺’dir ve 2 kullanım hakkı sağlar.
+          </p>
+          <p>
+            Abonelik iptali için <Link href="/iletisim" className="text-brand-600 hover:underline">İletişim</Link> sayfasından talep oluşturulmalıdır. İptal, bir sonraki yenileme dönemine kadar geçerli olacak şekilde uygulanır.
+          </p>
+          <p>
+            Ödeme işlemleri 6502 sayılı Tüketicinin Korunması Hakkında Kanun ve Mesafeli Sözleşmeler Yönetmeliği kapsamında yürütülür. Cayma hakkı ve iade koşulları ilgili mevzuata tabidir.
           </p>
         </section>
 

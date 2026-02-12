@@ -52,7 +52,7 @@ export function formatAmount(tl: number): string {
 }
 
 export type TP_WMD_UCDParams = {
-  plan: "pro" | "onetime";
+  plan: "pro" | "onetime" | "yearly";
   siparisId: string;
   islemTutar: string;   // virgüllü "99,00"
   toplamTutar: string;  // virgüllü, komisyon dahil (komisyon 0 ise = islemTutar)

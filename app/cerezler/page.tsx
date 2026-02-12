@@ -36,7 +36,7 @@ export default function CerezlerPage() {
               </thead>
               <tbody>
                 <tr><td className="border-b border-slate-100 px-4 py-3">Oturum çerezleri</td><td className="border-b border-slate-100 px-4 py-3">Giriş yapmış kullanıcıyı tanıma</td><td className="border-b border-slate-100 px-4 py-3">Zorunlu</td></tr>
-                <tr><td className="border-b border-slate-100 px-4 py-3">Güvenlik çerezleri</td><td className="border-b border-slate-100 px-4 py-3">CSRF koruması, kimlik doğrulama</td><td className="border-b border-slate-100 px-4 py-3">Zorunlu</td></tr>
+                <tr><td className="border-b border-slate-100 px-4 py-3">Güvenlik çerezleri</td><td className="border-b border-slate-100 px-4 py-3">Kimlik doğrulama ve güvenli erişim</td><td className="border-b border-slate-100 px-4 py-3">Zorunlu</td></tr>
                 <tr><td className="border-b border-slate-100 px-4 py-3">Tercih çerezleri</td><td className="border-b border-slate-100 px-4 py-3">Dil, tema, çerez onayı</td><td className="border-b border-slate-100 px-4 py-3">İsteğe bağlı</td></tr>
                 <tr><td className="border-b border-slate-100 px-4 py-3">Analitik çerezler</td><td className="border-b border-slate-100 px-4 py-3">Anonim ziyaret istatistikleri</td><td className="border-b border-slate-100 px-4 py-3">İsteğe bağlı</td></tr>
               </tbody>

@@ -17,13 +17,14 @@ export default function OnBilgilendirmePage() {
 
       <div className="prose prose-slate max-w-none space-y-6 text-slate-600">
         <p>
-          Aşağıdaki bilgiler, Premium abonelik satın almadan önce tarafınıza sunulmaktadır.
+          Aşağıdaki bilgiler, dijital hizmet/abonelik satın almadan önce tarafınıza sunulmaktadır.
         </p>
         <ul className="list-disc space-y-2 pl-6">
-          <li><strong>Satıcı:</strong> YazıAsistan</li>
-          <li><strong>Hizmet:</strong> Premium abonelik (sınırsız) veya Tek seferlik (2 kullanım)</li>
-          <li><strong>Tutar:</strong> Premium 99 ₺/ay, Tek seferlik 29 ₺ — site üzerinde belirtilir (KDV dahil)</li>
+          <li><strong>Satıcı:</strong> Burak Çakmak</li>
+          <li><strong>Hizmet:</strong> Premium Aylık / Premium Yıllık abonelik veya Tek Seferlik (2 kullanım)</li>
+          <li><strong>Tutar:</strong> Premium Aylık 99 ₺/ay, Premium Yıllık 999 ₺/yıl, Tek Seferlik 29 ₺ (KDV dahil)</li>
           <li><strong>Ödeme:</strong> Kredi kartı ile güvenli ödeme (Param altyapısı)</li>
+          <li><strong>Otomatik yenileme:</strong> Aylık ve yıllık abonelikler otomatik yenilenir. İptal için İletişim sayfasından talep oluşturulur.</li>
           <li><strong>Cayma hakkı:</strong> Dijital içerik niteliğindeki hizmetlerde, hizmet ifasına başlanmasından sonra cayma hakkı kullanılamaz.</li>
           <li><strong>Şikayet:</strong> Tüketici şikayetleri için <Link href="/iletisim" className="text-brand-600 hover:underline">İletişim</Link> sayfası kullanılır.</li>
         </ul>

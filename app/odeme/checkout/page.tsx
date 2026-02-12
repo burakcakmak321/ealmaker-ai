@@ -10,22 +10,32 @@ import { PRICES } from "@/lib/pricing";
 function CheckoutContent() {
   const { user, loading: authLoading } = useAuth();
   const searchParams = useSearchParams();
-  const plan = (searchParams.get("plan") === "onetime" ? "onetime" : "pro") as "pro" | "onetime";
-  const isPro = plan === "pro";
-  const amount = isPro ? PRICES.pro.discounted : PRICES.onetime.discounted;
-  const desc = isPro ? `${amount} ₺/ay (YENI2026)` : `${amount} ₺ — ${PRICES.onetime.credits} kullanım (YENI2026)`;
+  const planParam = searchParams.get("plan");
+  const plan = (planParam === "onetime"
+    ? "onetime"
+    : planParam === "yearly"
+      ? "yearly"
+      : "pro") as "pro" | "onetime" | "yearly";
+  const isPro = plan === "pro" || plan === "yearly";
+  const amount = plan === "yearly" ? PRICES.yearly.discounted : isPro ? PRICES.pro.discounted : PRICES.onetime.discounted;
+  const desc = plan === "yearly"
+    ? `${amount} ₺/yıl`
+    : isPro
+      ? `${amount} ₺/ay`
+      : `${amount} ₺ — ${PRICES.onetime.credits} kullanım`;
 
   const [ucdHtml, setUcdHtml] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [accepted, setAccepted] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
+  const [checked3, setChecked3] = useState(false);
   const [cardForm, setCardForm] = useState(false);
   const [card, setCard] = useState({ kkSahibi: "", kkNo: "", kkSkAy: "", kkSkYil: "", kkCvc: "", kkSahibiGsm: "" });
   const [submitting, setSubmitting] = useState(false);
   const iframe3DRef = useRef<HTMLIFrameElement>(null);
 
-  const canProceed = checked1 && checked2;
+  const canProceed = checked1 && checked2 && (plan === "onetime" ? true : checked3);
 
   function handleProceed() {
     if (!canProceed || !user) return;
@@ -102,7 +112,7 @@ function CheckoutContent() {
   if (error) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-16">
-        <PageHeader title="Ödeme" description="" icon="💰" />
+        <PageHeader title="Ödeme" description="" icon="💳" />
         <div className="mt-8 rounded-xl border border-amber-200 bg-amber-50 p-6 text-amber-800">
           <p className="font-medium">{error}</p>
           <Link href="/fiyatlandirma" className="mt-4 inline-block text-brand-600 hover:underline">
@@ -130,9 +140,9 @@ function CheckoutContent() {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12">
         <PageHeader
-          title={isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
+          title={plan === "yearly" ? "Premium Yıllık Ödeme" : isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
           description={`Güvenli 3D ödeme (Param) — ${desc}`}
-          icon="💰"
+          icon="💳"
         />
         <form onSubmit={handleParamPosSubmit} className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-card">
           <p className="mb-4 text-sm font-medium text-slate-700">Kart bilgilerinizi girin (3D Secure ile güvende)</p>
@@ -238,9 +248,9 @@ function CheckoutContent() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
       <PageHeader
-        title={isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
+        title={plan === "yearly" ? "Premium Yıllık Ödeme" : isPro ? "Premium Ödeme" : "Tek Seferlik Ödeme"}
         description={`Güvenli ödeme (Param) — ${desc}`}
-        icon="💰"
+        icon="💳"
       />
       <div className="mt-8 rounded-xl border border-slate-200 bg-white p-6 shadow-card">
         <p className="mb-4 text-sm font-medium text-slate-700">Ödemeye devam etmeden önce lütfen aşağıdakileri okuyup onaylayın:</p>
@@ -258,6 +268,14 @@ function CheckoutContent() {
               Oluşturduğum metindeki verilerin metin üretimi amacıyla üçüncü taraf yapay zeka servislerine iletilmesine izin veriyorum. Üretilen çıktının hukuki tavsiye niteliğinde olmadığını, resmi mercilere sunmadan önce uzman kontrolü yapacağımı kabul ediyorum.
             </span>
           </label>
+          {plan !== "onetime" && (
+            <label className="flex cursor-pointer items-start gap-3">
+              <input type="checkbox" checked={checked3} onChange={(e) => setChecked3(e.target.checked)} className="mt-1 rounded border-slate-300 text-brand-600 focus:ring-brand-500" />
+              <span className="text-sm text-slate-600">
+                Aylık veya yıllık aboneliğin dönem sonunda otomatik yenileneceğini ve iptal talebinin bir sonraki dönem için geçerli olacağını kabul ediyorum.
+              </span>
+            </label>
+          )}
         </div>
         <p className="mt-4 text-xs text-slate-500">Ödeme sonrası 1 iş günü içinde fatura e-posta ile gönderilir.</p>
         <button

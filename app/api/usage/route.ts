@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { getIsPro } from "@/lib/supabase/usage";
+import { getIsPro, getPremiumCredits } from "@/lib/supabase/usage";
 import { getTodayActivityCount, FREE_DAILY_LIMIT } from "@/lib/supabase/activity";
 
 export async function GET() {
@@ -22,14 +22,15 @@ export async function GET() {
     }
     const admin = createAdminClient();
     const isPro = await getIsPro(admin, user.id, user.email);
+    const premiumCredits = await getPremiumCredits(admin, user.id);
     const count = await getTodayActivityCount(admin, user.id);
-    const remaining = isPro ? null : Math.max(0, FREE_DAILY_LIMIT - count);
+    const remaining = isPro || premiumCredits > 0 ? null : Math.max(0, FREE_DAILY_LIMIT - count);
     return NextResponse.json({
       count,
       remaining,
       limit: FREE_DAILY_LIMIT,
       signedIn: true,
-      isPro,
+      isPro: isPro || premiumCredits > 0,
     });
   } catch (err) {
     console.error("Usage API error:", err);

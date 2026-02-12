@@ -27,6 +27,13 @@ export default function GizlilikPage() {
           <p>
             <strong>6698 sayılı KVKK&apos;nın 10. maddesi</strong> uyarınca, kişisel verilerinizin işlenmesine ilişkin veri sorumlusu sıfatıyla YazıAsistan platform sahibi yetkilidir.
           </p>
+          <div className="mt-4 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3 text-sm">
+            <p><strong>Veri Sorumlusu:</strong> Burak Çakmak</p>
+            <p><strong>Vergi Dairesi:</strong> Çorlu Vergi Dairesi Müdürlüğü</p>
+            <p><strong>VKN:</strong> 2230877647</p>
+            <p><strong>Adres:</strong> Şeyhsinan Mahallesi, Karasüleyman Sokak No: 2/5, Çorlu / Tekirdağ</p>
+            <p><strong>E‑posta:</strong> yaziasistani@gmail.com</p>
+          </div>
           <p>
             Veri sorumlusu, kişisel verilerin işlenme amaçlarını ve vasıtalarını belirleyen, veri kayıt sisteminin kurulmasından ve yönetilmesinden sorumlu gerçek veya tüzel kişidir.
           </p>
@@ -55,7 +62,7 @@ export default function GizlilikPage() {
             </table>
           </div>
           <p className="mt-4 font-semibold text-amber-700">
-            ⚠️ Metin oluşturmak için girdiğiniz bilgiler (dilekçe, fatura itirazı, CV vb.) yapay zeka API&apos;lerine (örn. OpenAI) işlenmek üzere iletilir. Bu servislerin kendi gizlilik politikaları geçerlidir; verileriniz 3. taraf sunucularında işlenebilir.
+            Metin oluşturmak için girdiğiniz bilgiler (dilekçe, fatura itirazı, CV vb.) yapay zeka API&apos;lerine (örn. OpenAI) işlenmek üzere iletilir. Bu servislerin kendi gizlilik politikaları geçerlidir; verileriniz 3. taraf sunucularında işlenebilir.
           </p>
         </section>
 
@@ -82,6 +89,9 @@ export default function GizlilikPage() {
             <li><strong>İletişim kayıtları:</strong> Talep sonuçlanana kadar; yasal saklama yükümlülüğü varsa bu süreye tabidir.</li>
             <li><strong>Ödeme kayıtları:</strong> Vergi ve ticaret mevzuatı gereği zorunlu saklama süreleri uygulanır.</li>
           </ul>
+          <p className="mt-3 text-sm text-slate-500">
+            Not: Yasal saklama süreleri değişebilir; gerekli görülen durumlarda süreler mevzuata uygun şekilde güncellenebilir.
+          </p>
         </section>
 
         <section>

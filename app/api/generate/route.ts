@@ -88,7 +88,8 @@ export async function POST(req: NextRequest) {
 
     const admin = createAdminClient();
     const isPro = await getIsPro(admin, user.id, user.email);
-    if (!isPro) {
+    const premiumCredits = await getPremiumCredits(admin, user.id);
+    if (!isPro && premiumCredits <= 0) {
       const todayCount = await getTodayActivityCount(admin, user.id);
       if (todayCount >= FREE_DAILY_LIMIT) {
         return NextResponse.json(
@@ -145,8 +146,7 @@ export async function POST(req: NextRequest) {
 
     await logActivity(admin, user.id, type);
 
-    const credits = await getPremiumCredits(admin, user.id);
-    if (credits > 0) await decrementPremiumCredits(admin, user.id);
+    if (premiumCredits > 0) await decrementPremiumCredits(admin, user.id);
 
     return NextResponse.json({ text });
   } catch (err) {

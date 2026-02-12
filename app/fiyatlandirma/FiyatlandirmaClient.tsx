@@ -8,29 +8,10 @@ type Plan = "pro" | "onetime";
 
 export default function FiyatlandirmaClient({ plan = "pro" }: { plan?: Plan }) {
   const { user, loading } = useAuth();
-  const isPro = plan === "pro";
 
-  // Premium şu an yakında — kullanıcıları bekletiyoruz
-  if (isPro) {
-    return (
-      <div className="mt-10 space-y-3">
-        <div className="rounded-xl border-2 border-dashed border-brand-300 bg-brand-50/50 px-4 py-4 text-center">
-          <p className="text-sm font-semibold text-brand-700">🚀 Çok yakında</p>
-          <p className="mt-1 text-xs text-slate-600">
-            Premium abonelik üzerinde çalışıyoruz. Haberdar olmak için takipte kalın.
-          </p>
-        </div>
-        <Link
-          href="/premium-yakinda"
-          className="block w-full rounded-xl border-2 border-brand-400 bg-white py-3.5 text-center text-sm font-semibold text-brand-700 transition hover:bg-brand-50"
-        >
-          Detayları gör
-        </Link>
-      </div>
-    );
-  }
-
-  const label = `Satın al — ${PRICES.onetime.discounted} ₺ (${PRICES.onetime.credits} kullanım)`;
+  const label = plan === "pro"
+    ? `Satın al — ${PRICES.pro.discounted} ₺/ay`
+    : `Satın al — ${PRICES.onetime.discounted} ₺ (${PRICES.onetime.credits} kullanım)`;
 
   if (loading) {
     return (

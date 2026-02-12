@@ -1,16 +1,16 @@
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 
-export default function OdemeIptalPage() {
+export default function OdemePendingPage() {
   return (
     <div className="mx-auto max-w-xl px-4 py-16 text-center">
       <PageHeader
-        title="Ödeme İptal"
-        description="Ödeme işlemi iptal edildi."
-        icon="❌"
+        title="Ödeme İşleniyor"
+        description="3D Secure doğrulaması tamamlandı. İşleminiz kısa süre içinde sonuçlanacaktır."
+        icon="⏳"
       />
       <div className="mt-8 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-slate-700">
-        <p>İstediğiniz zaman tekrar deneyebilirsiniz.</p>
+        <p>Durum güncellenene kadar bu sayfayı açık bırakabilirsiniz.</p>
       </div>
       <Link
         href="/fiyatlandirma"

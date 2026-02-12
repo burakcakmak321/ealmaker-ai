@@ -39,7 +39,7 @@ export default function AdminLoginModal({ onClose }: Props) {
         setLoading(false);
       }
     },
-    [onClose, router]
+    [onClose, router, password]
   );
 
   return (
