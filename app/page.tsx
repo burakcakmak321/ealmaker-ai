@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import DocumentMockup from "@/components/DocumentMockup";
 import {
@@ -9,6 +10,12 @@ import {
   TESTIMONIALS,
   FAQ_HOME,
 } from "@/lib/data";
+
+export const metadata: Metadata = {
+  title: "AI Destekli Dilekçe, Fatura İtirazı ve CV Taslakları",
+  description:
+    "Türkiye genelinde fatura itirazı, pazarlık, resmi yazı/dilekçe ve CV metni taslakları. KVKK uyumlu, hızlı ve profesyonel.",
+};
 
 export default function Home() {
   return (

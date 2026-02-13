@@ -16,14 +16,36 @@ const outfit = Outfit({
   display: "swap",
 });
 
+const SITE_URL = "https://yazıasistani.com";
+
 export const metadata: Metadata = {
   applicationName: SITE_NAME,
-  title: `${SITE_NAME} | Metin Üretme Aracı (Bilgilendirme Amaçlı)`,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | AI Destekli Dilekçe, Fatura İtirazı ve CV`,
+    template: `%s | ${SITE_NAME}`,
+  },
   description:
-    "Fatura itirazı, pazarlık, resmi yazı taslağı ve CV metni üretme aracı. Hukuki tavsiye değildir. KVKK uyumlu. Profesyonel destek önerilir.",
+    "Türkiye genelinde AI destekli fatura itirazı, pazarlık, resmi yazı/dilekçe ve CV metni taslakları. Hızlı, güvenli, KVKK uyumlu.",
   openGraph: {
-    title: `${SITE_NAME} — Metin Üretme Aracı`,
-    description: "Bilgilendirme amaçlı metin üretim platformu. Hukuki tavsiye değildir.",
+    type: "website",
+    url: SITE_URL,
+    title: `${SITE_NAME} | AI Destekli Dilekçe, Fatura İtirazı ve CV`,
+    siteName: SITE_NAME,
+    locale: "tr_TR",
+    description:
+      "Fatura itirazı, pazarlık, resmi yazı/dilekçe ve CV taslaklarını saniyeler içinde oluşturun. Türkiye geneli, KVKK uyumlu.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -73,6 +95,44 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr" className={outfit.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: SITE_NAME,
+              url: SITE_URL,
+              email: BUSINESS.email,
+              telephone: BUSINESS.telefon,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: BUSINESS.adres,
+                addressLocality: "Çorlu",
+                addressRegion: "Tekirdağ",
+                addressCountry: "TR",
+              },
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              url: SITE_URL,
+              name: SITE_NAME,
+              potentialAction: {
+                "@type": "SearchAction",
+                target: `${SITE_URL}/?q={search_term_string}`,
+                "query-input": "required name=search_term_string",
+              },
+            }),
+          }}
+        />
+      </head>
       <body className="min-h-screen antialiased font-sans bg-slate-50">
         <ToastProvider>
           <PromoBanner />

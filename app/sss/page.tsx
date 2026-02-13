@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
+
+export const metadata: Metadata = {
+  title: "Sıkça Sorulan Sorular",
+  description:
+    "YazıAsistan hakkında sıkça sorulan sorular. Ücret, kullanım limitleri, KVKK ve hizmet kapsamı.",
+};
 
 const faqs = [
   {
