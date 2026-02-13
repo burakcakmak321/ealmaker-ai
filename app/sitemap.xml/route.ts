@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const SITE_URL = "https://yazıasistani.com";
+const SITE_URL = "https://xn--yaziasistani-izb.com";
 
 const ROUTES = [
   "/",

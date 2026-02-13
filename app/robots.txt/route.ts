@@ -4,7 +4,7 @@ export async function GET() {
   const body = `User-agent: *
 Allow: /
 
-Sitemap: https://yazıasistani.com/sitemap.xml
+Sitemap: https://xn--yaziasistani-izb.com/sitemap.xml
 `;
   return new NextResponse(body, {
     headers: {
