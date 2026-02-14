@@ -14,7 +14,7 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
 });
 
-type ModuleType = "fatura" | "pazarlik" | "dilekce" | "cv" | "eticaret" | "sosyalmedya";
+type ModuleType = "fatura" | "pazarlik" | "dilekce" | "cv" | "eticaret" | "sosyalmedya" | "blogseo";
 
 function buildSystemPrompt(type: ModuleType, payload: Record<string, unknown>): string {
   switch (type) {
@@ -103,6 +103,8 @@ Görevin: Profesyonel, ATS dostu ve okunabilir bir CV metni taslağı oluştur. 
 
       return `Sen e-ticaret ve pazar yeri optimizasyonunda uzman bir içerik yazarısın. ${platform.name} için ürün başlığı ve açıklaması yazacaksın.
 
+⚠️ KRİTİK KURAL: Tüm içerik YALNIZCA aşağıdaki ürün bilgilerine dayalı olmalı. Ürün hakkında verilmeyen bilgiyi UYDURMA, sadece verilenleri kullan.
+
 PLATFORM BİLGİLERİ:
 - Platform: ${platform.name}
 - Başlık Formatı: ${platform.titleFormat}
@@ -117,11 +119,11 @@ ${tone.promptHint}
 
 GÖREVİN:
 1. SEO uyumlu, platform algoritmasına özel bir BAŞLIK yaz (max ${platform.maxTitleLength} karakter)
-2. Detaylı, ikna edici bir AÇIKLAMA yaz
+2. Detaylı, ikna edici bir AÇIKLAMA yaz - SADECE verilen bilgilere dayalı
 3. Anahtar kelimeleri doğal şekilde yerleştir
 4. Madde işaretleri ile özellikleri listele
 ${includeSSS ? `
-5. MÜŞTERİ SSS BÖLÜMÜ: Potansiyel alıcıların sorabileceği 5 soru ve yanıtlarını yaz. Her soru "❓" ile başlasın, cevap "✅" ile başlasın.` : ""}
+5. MÜŞTERİ SSS BÖLÜMÜ: Bu ürüne ÖZEL potansiyel alıcı soruları ve yanıtları yaz. Her soru "❓" ile başlasın, cevap "✅" ile başlasın.` : ""}
 
 FORMAT:
 📌 BAŞLIK:
@@ -222,6 +224,100 @@ ${includeTactics ? `6. Her önerinin altına [💡 Taktik: ...] formatında kıs
 - Numaralandırılmış listeler kullan
 - Net, kopyala-yapıştır hazır içerikler üret`;
     }
+    case "blogseo": {
+      const toolType = (payload.tool as string) || "outline";
+      const toneKey = (payload.tone as string) || "neutral";
+      const tone = TONE_PRESETS[toneKey as keyof typeof TONE_PRESETS] || TONE_PRESETS.neutral;
+      const anahtarKelime = (payload.anahtarKelime as string) || "";
+      const konu = (payload.konu as string) || "";
+      const kategori = (payload.kategori as string) || "";
+      const hedefKitle = (payload.hedefKitle as string) || "";
+      const kelimeSayisi = (payload.kelimeSayisi as string) || "1500";
+
+      if (toolType === "outline") {
+        return `Sen SEO uzmanı ve profesyonel blog yazarısın.
+
+⚠️ KRİTİK: Tüm içerik SADECE "${anahtarKelime}" anahtar kelimesi etrafında olmalı.
+
+📌 ANAHTAR KELİME: "${anahtarKelime}"
+${konu ? `📎 KONU DETAYI: ${konu}` : ""}
+${kategori ? `📂 KATEGORİ: ${kategori}` : ""}
+${hedefKitle ? `👥 HEDEF KİTLE: ${hedefKitle}` : ""}
+📏 HEDEF: ~${kelimeSayisi} kelime
+
+🎨 DİL TONU: ${tone.promptHint}
+
+GÖREVİN: "${anahtarKelime}" için detaylı blog ana hatları (outline) oluştur:
+
+1. BAŞLIK ÖNERİLERİ (3 adet SEO uyumlu, anahtar kelime içeren)
+2. META AÇIKLAMA (155 karakter, anahtar kelime geçmeli)
+3. GİRİŞ BÖLÜMÜ taslağı
+4. ANA BAŞLIKLAR (H2) ve alt başlıklar (H3) - en az 5 ana bölüm
+5. Her bölüm için 2-3 cümlelik içerik özeti
+6. SONUÇ bölümü
+7. DAHİLİ LİNK ÖNERİLERİ (ilişkili konular)
+8. CTA (harekete geçirici kapanış)
+
+⚠️ ÖNEMLİ:
+- Anahtar kelimeyi doğal şekilde başlıklara ve alt başlıklara yerleştir
+- LSI (ilişkili) anahtar kelimeleri kullan
+- Her bölüm konuyla doğrudan ilgili olmalı
+- Kullanıcının verdiği bilgilerden SAPMA`;
+      }
+
+      if (toolType === "meta") {
+        return `Sen SEO uzmanısın. "${anahtarKelime}" için meta açıklama yaz.
+
+⚠️ SADECE "${anahtarKelime}" hakkında yaz.
+${konu ? `Ek bilgi: ${konu}` : ""}
+
+GÖREVİN:
+1. 5 farklı META DESCRIPTION yaz (her biri 150-160 karakter)
+2. Her birinde "${anahtarKelime}" anahtar kelimesi geçmeli
+3. Tıklama oranını artıracak ikna edici dil kullan
+4. Rakamlar, soru veya güçlü fiiller kullan
+5. Her önerinin altına karakter sayısını yaz
+
+FORMAT:
+1. [Meta açıklama] (X karakter)
+2. [Meta açıklama] (X karakter)
+...`;
+      }
+
+      if (toolType === "title") {
+        return `Sen SEO uzmanı ve başlık yazarısın. "${anahtarKelime}" için blog başlıkları öner.
+
+⚠️ SADECE "${anahtarKelime}" hakkında başlıklar yaz.
+${konu ? `Ek bilgi: ${konu}` : ""}
+
+GÖREVİN:
+10 farklı blog başlığı öner. Her başlık:
+- "${anahtarKelime}" anahtar kelimesini içermeli
+- Tıklanma oranı yüksek olmalı
+- Farklı formatlarda: liste, soru, nasıl yapılır, rehber, karşılaştırma
+- Her başlığın altına [Neden etkili] açıklaması yaz
+
+FORMAT:
+1. [Başlık]
+   → [Neden etkili: ...]
+...`;
+      }
+
+      return `Sen SEO ve anahtar kelime uzmanısın. "${anahtarKelime}" için anahtar kelime analizi yap.
+
+⚠️ SADECE "${anahtarKelime}" ile ilgili kelimeler öner.
+${konu ? `Ek bilgi: ${konu}` : ""}
+
+GÖREVİN:
+1. ANA ANAHTAR KELİME analizi
+2. UZUN KUYRUK (long-tail) anahtar kelimeler (10 adet)
+3. LSI (ilişkili) anahtar kelimeler (10 adet)
+4. SORU FORMATINDA anahtar kelimeler (5 adet - "People Also Ask" tarzı)
+5. İÇERİK BOŞLUKLARI (rakiplerin kaçırdığı konular)
+6. ÖNERİLEN İÇERİK STRATEJİSİ
+
+Her önerinin yanına tahmini arama hacmi (düşük/orta/yüksek) ve rekabet düzeyini belirt.`;
+    }
     default:
       return "Genel metin üret.";
   }
@@ -241,6 +337,8 @@ function getUserMessage(type: ModuleType): string {
       return "E-ticaret ürün başlığı ve açıklamasını oluştur.";
     case "sosyalmedya":
       return "Sosyal medya içeriğini oluştur.";
+    case "blogseo":
+      return "Blog/SEO içeriğini oluştur.";
     default:
       return "Metni oluştur.";
   }
@@ -273,7 +371,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { type, ...payload } = body as { type: ModuleType; [k: string]: unknown };
 
-    const validTypes = ["fatura", "pazarlik", "dilekce", "cv", "eticaret", "sosyalmedya"];
+    const validTypes = ["fatura", "pazarlik", "dilekce", "cv", "eticaret", "sosyalmedya", "blogseo"];
     if (!type || !validTypes.includes(type)) {
       return NextResponse.json(
         { error: `Geçersiz modül. type: ${validTypes.join(" | ")}` },
@@ -299,7 +397,7 @@ export async function POST(req: NextRequest) {
         { role: "system", content: systemPrompt },
         { role: "user", content: getUserMessage(type) },
       ],
-      max_tokens: type === "eticaret" || type === "sosyalmedya" ? 2500 : 1500,
+      max_tokens: type === "eticaret" || type === "sosyalmedya" || type === "blogseo" ? 2500 : 1500,
     });
 
     const text =

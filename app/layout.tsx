@@ -22,19 +22,19 @@ export const metadata: Metadata = {
   applicationName: SITE_NAME,
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | AI Destekli Dilekçe, Fatura İtirazı ve CV`,
+    default: `${SITE_NAME} | AI Destekli Metin Platformu`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "Türkiye genelinde AI destekli fatura itirazı, pazarlık, resmi yazı/dilekçe ve CV metni taslakları. Hızlı, güvenli, KVKK uyumlu.",
+    "E-ticaret urun aciklamasi, sosyal medya icerigi, blog SEO, dilekce, fatura itirazi ve CV. Turkiye geneli AI destekli metin platformu.",
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: `${SITE_NAME} | AI Destekli Dilekçe, Fatura İtirazı ve CV`,
+    title: `${SITE_NAME} | AI Destekli Metin Platformu`,
     siteName: SITE_NAME,
     locale: "tr_TR",
     description:
-      "Fatura itirazı, pazarlık, resmi yazı/dilekçe ve CV taslaklarını saniyeler içinde oluşturun. Türkiye geneli, KVKK uyumlu.",
+      "E-ticaret, sosyal medya, blog SEO, resmi yazi ve metin donusturme araclari. Konunuza ozel, profesyonel icerikler.",
   },
   robots: {
     index: true,
@@ -54,22 +54,23 @@ export const viewport = { width: "device-width", initialScale: 1 };
 const navLinks = [
   { href: "/e-ticaret", label: "E-Ticaret" },
   { href: "/sosyal-medya", label: "Sosyal Medya" },
-  { href: "/metin-donusturucu", label: "Metin Dönüştür" },
+  { href: "/blog-seo", label: "Blog & SEO" },
+  { href: "/metin-donusturucu", label: "Metin Donustur" },
   { href: "/fatura", label: "Fatura" },
-  { href: "/dilekce", label: "Dilekçe" },
-  { href: "/cv", label: "CV" },
+  { href: "/dilekce", label: "Dilekce" },
   { href: "/fiyatlandirma", label: "Fiyat" },
 ];
 
 const footerProduct = [
-  { href: "/e-ticaret", label: "E-Ticaret Açıklaması" },
-  { href: "/sosyal-medya", label: "Sosyal Medya İçeriği" },
-  { href: "/metin-donusturucu", label: "Metin Dönüştürücü" },
-  { href: "/fatura", label: "Fatura İtirazı" },
-  { href: "/pazarlik", label: "Pazarlık Mesajı" },
-  { href: "/dilekce", label: "Resmi Yazı/Dilekçe" },
-  { href: "/cv", label: "CV Oluşturucu" },
-  { href: "/fiyatlandirma", label: "Fiyatlandırma" },
+  { href: "/e-ticaret", label: "E-Ticaret Aciklamasi" },
+  { href: "/sosyal-medya", label: "Sosyal Medya Icerigi" },
+  { href: "/blog-seo", label: "Blog & SEO Araclari" },
+  { href: "/metin-donusturucu", label: "Metin Donusturucu" },
+  { href: "/fatura", label: "Fatura Itirazi" },
+  { href: "/pazarlik", label: "Pazarlik Mesaji" },
+  { href: "/dilekce", label: "Resmi Yazi/Dilekce" },
+  { href: "/cv", label: "CV Olusturucu" },
+  { href: "/fiyatlandirma", label: "Fiyatlandirma" },
 ];
 const footerSupport = [
   { href: "/sss", label: "SSS" },
