@@ -52,18 +52,22 @@ export const metadata: Metadata = {
 export const viewport = { width: "device-width", initialScale: 1 };
 
 const navLinks = [
-  { href: "/fatura", label: "Fatura İtirazı" },
-  { href: "/pazarlik", label: "Pazarlık" },
-  { href: "/dilekce", label: "Resmi Yazı" },
-  { href: "/cv", label: "CV Oluşturucu" },
-  { href: "/fiyatlandirma", label: "Fiyatlandırma" },
-  { href: "/hakkimizda", label: "Hakkımızda" },
+  { href: "/e-ticaret", label: "E-Ticaret" },
+  { href: "/sosyal-medya", label: "Sosyal Medya" },
+  { href: "/metin-donusturucu", label: "Metin Dönüştür" },
+  { href: "/fatura", label: "Fatura" },
+  { href: "/dilekce", label: "Dilekçe" },
+  { href: "/cv", label: "CV" },
+  { href: "/fiyatlandirma", label: "Fiyat" },
 ];
 
 const footerProduct = [
+  { href: "/e-ticaret", label: "E-Ticaret Açıklaması" },
+  { href: "/sosyal-medya", label: "Sosyal Medya İçeriği" },
+  { href: "/metin-donusturucu", label: "Metin Dönüştürücü" },
   { href: "/fatura", label: "Fatura İtirazı" },
-  { href: "/pazarlik", label: "Pazarlık" },
-  { href: "/dilekce", label: "Resmi Yazı Taslağı" },
+  { href: "/pazarlik", label: "Pazarlık Mesajı" },
+  { href: "/dilekce", label: "Resmi Yazı/Dilekçe" },
   { href: "/cv", label: "CV Oluşturucu" },
   { href: "/fiyatlandirma", label: "Fiyatlandırma" },
 ];

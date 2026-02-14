@@ -1,7 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export const FREE_DAILY_LIMIT = 3;
-export type ActivityModule = "fatura" | "pazarlik" | "dilekce" | "cv";
+export type ActivityModule = "fatura" | "pazarlik" | "dilekce" | "cv" | "eticaret" | "sosyalmedya" | string;
 
 /** Türkiye bugün 00:00 ve yarın 00:00 UTC ISO */
 function todayBoundsTurkey(): { start: string; end: string } {

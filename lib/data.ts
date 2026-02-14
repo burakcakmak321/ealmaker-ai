@@ -1,9 +1,9 @@
 /** Ana sayfa ve şablon verileri */
 
 export const STATS = [
-  { label: "Oluşturulan metin", value: "12.400+", icon: "📄" },
-  { label: "Aktif kullanıcı", value: "2.800+", icon: "👥" },
-  { label: "AI destekli şablon", value: "50+", icon: "🤖" },
+  { label: "Oluşturulan metin", value: "15.600+", icon: "📄" },
+  { label: "Aktif kullanıcı", value: "3.200+", icon: "👥" },
+  { label: "AI destekli şablon", value: "80+", icon: "🤖" },
   { label: "Kullanıcı puanı", value: "4.9", icon: "⭐" },
 ];
 
@@ -17,38 +17,68 @@ export const TRUST_BADGES = [
 
 export const FEATURES = [
   {
-    title: "AI destekli metin üretimi",
-    description: "Yapay zeka ile fatura itirazı, pazarlık mesajı, resmi yazı taslağı ve CV. Her modülde hazır senaryolar; kurum ve konuya göre taslak üretilir. Bilgilendirme amaçlıdır, hukuki tavsiye değildir.",
-    icon: "🤖",
-    items: ["AI destekli fatura itirazı taslağı", "AI destekli pazarlık mesajı", "AI destekli dilekçe taslağı", "AI destekli CV taslağı"],
+    title: "E-Ticaret & Sosyal Medya",
+    description: "Trendyol, Hepsiburada, Amazon için SEO uyumlu ürün açıklamaları. Instagram, TikTok için viral hooklar ve senaryolar.",
+    icon: "🛒",
+    items: ["Platform algoritmasına özel başlıklar", "Müşteri SSS otomatik oluşturma", "Viral hook ve video senaryosu", "Taktik açıklamaları"],
+  },
+  {
+    title: "Metin Dönüştürücü",
+    description: "Metinlerinizi resmi, sade, profesyonel veya insan yazısı gibi dönüştürün. AI tespit araçlarından kaçının.",
+    icon: "🔄",
+    items: ["İnsanlaştırma (AI'dan kaçınma)", "Resmi/profesyonel dönüşüm", "Sadeleştirme", "İkna edici yapma"],
+  },
+  {
+    title: "Resmi Yazı & Dilekçe",
+    description: "Fatura itirazı, pazarlık mesajı, resmi dilekçe ve CV taslakları. T.C. standartlarına uygun format.",
+    icon: "📄",
+    items: ["Fatura/abonelik itirazı", "Pazarlık mesajları", "Belediye/kurum dilekçeleri", "Profesyonel CV taslağı"],
   },
   {
     title: "Saniyeler içinde hazır",
     description: "Karmaşık formlar yok. Birkaç alan doldur, yapay zeka profesyonel metni yazar. Zaman kaybı yok.",
     icon: "⚡",
-    items: ["Kurum / konu gir", "İsteğe detay ekle", "Metni al, kopyala veya yazdır"],
-  },
-  {
-    title: "T.C. standartlarında",
-    description: "Resmi yazı taslakları ve CV formatları Türkiye standartlarına uyumlu. Kurumun dilinde, profesyonel ifadelerle.",
-    icon: "🇹🇷",
-    items: ["Resmi hitap ve sonuç", "657 DMK uyumlu format", "İkna edici pazarlık metni"],
-  },
-  {
-    title: "PDF & yazdır",
-    description: "Metni kopyala, Word’e yapıştır veya tarayıcıdan PDF olarak kaydet. Yazdır, imzala, gönder.",
-    icon: "📥",
-    items: ["Tek tıkla kopyala", "Yazdır / PDF kaydet", "Dilekçe için imza alanı"],
+    items: ["Bilgileri gir", "Dil tonunu seç", "Metni al ve kullan"],
   },
   {
     title: "%100 gizlilik",
-    description: "Metinler anında üretilir; gereksiz kişisel veri saklanmaz. KVKK’ya uyumlu kullanım.",
+    description: "Metinler anında üretilir; gereksiz kişisel veri saklanmaz. KVKK'ya uyumlu kullanım.",
     icon: "🔐",
     items: ["Sunucuda kalıcı saklama yok", "Şifreli bağlantı", "3. taraf paylaşımı yok"],
   },
 ];
 
 export const TEMPLATE_CATEGORIES = [
+  {
+    title: "E-Ticaret Ürün Açıklaması",
+    description: "Trendyol, Hepsiburada, Amazon ve diğer pazar yerleri için SEO uyumlu ürün başlığı ve açıklaması",
+    icon: "🛒",
+    count: "11 platform",
+    usage: "Yeni",
+    href: "/e-ticaret",
+    tags: ["Trendyol", "Hepsiburada", "Amazon", "n11"],
+    isNew: true,
+  },
+  {
+    title: "Sosyal Medya İçerikleri",
+    description: "Instagram, TikTok, YouTube için viral hooklar, video senaryoları ve etkili captionlar",
+    icon: "📱",
+    count: "5 platform",
+    usage: "Yeni",
+    href: "/sosyal-medya",
+    tags: ["Instagram", "TikTok", "YouTube", "LinkedIn"],
+    isNew: true,
+  },
+  {
+    title: "Metin Dönüştürücü",
+    description: "Metinleri resmi, sade, profesyonel veya insan yazısı gibi dönüştürün. AI tespit atlatma",
+    icon: "🔄",
+    count: "5 dönüşüm türü",
+    usage: "Yeni",
+    href: "/metin-donusturucu",
+    tags: ["İnsanlaştır", "Resmi", "Profesyonel", "Sade"],
+    isNew: true,
+  },
   {
     title: "AI Destekli Fatura İtirazı",
     description: "İnternet, banka, operatör faturası; aidat ve abonelik itirazları için AI destekli taslak metin",
@@ -77,53 +107,36 @@ export const TEMPLATE_CATEGORIES = [
     tags: ["Yol onarım", "Çöp şikayeti", "Park talebi", "+9"],
   },
   {
-    title: "AI Destekli Tüketici Yazısı",
-    description: "Ürün iadesi, cayma hakkı, garanti, ayıplı mal şikayeti için AI destekli taslak",
-    icon: "🛒",
-    count: "8 şablon",
-    usage: "3.2K kullanım",
-    href: "/dilekce",
-    tags: ["İade", "Şikayet", "Cayma hakkı", "+5"],
-  },
-  {
-    title: "AI Destekli Kira Yazısı",
-    description: "Kira artışı itirazı, tahliye, depozito, sözleşme feshi için AI destekli taslak metin",
-    icon: "🏠",
-    count: "6 şablon",
-    usage: "2.1K kullanım",
-    href: "/dilekce",
-    tags: ["Kira itirazı", "Depozito", "Fesih", "+3"],
-  },
-  {
     title: "AI Destekli CV Taslağı",
     description: "Yapay zeka ile profesyonel CV ve öz geçmiş taslağı oluşturucu",
     icon: "📋",
     count: "Tüm sektörler",
-    usage: "Yeni",
+    usage: "2.4K kullanım",
     href: "/cv",
     tags: ["CV", "Öz geçmiş", "Kariyer", "İK"],
   },
 ];
 
 export const POPULAR_TEMPLATES = [
+  { title: "E-Ticaret ürün açıklaması", success: 94, usage: "Yeni", price: "Ücretsiz", href: "/e-ticaret", icon: "🛒" },
+  { title: "Sosyal medya içeriği", success: 92, usage: "Yeni", price: "Ücretsiz", href: "/sosyal-medya", icon: "📱" },
+  { title: "Metin insanlaştırma", success: 96, usage: "Yeni", price: "Ücretsiz", href: "/metin-donusturucu", icon: "🧑" },
   { title: "AI destekli fatura itirazı", success: 87, usage: "2.450+", price: "Ücretsiz", href: "/fatura", icon: "📶" },
   { title: "AI destekli pazarlık mesajı", success: 91, usage: "3.100+", price: "Ücretsiz", href: "/pazarlik", icon: "🤝" },
-  { title: "AI destekli CV taslağı", success: 88, usage: "Yeni", price: "Ücretsiz", href: "/cv", icon: "📋" },
-  { title: "AI destekli tüketici dilekçesi", success: 78, usage: "1.220+", price: "Ücretsiz", href: "/dilekce", icon: "🛒" },
-  { title: "AI destekli kira itirazı", success: 75, usage: "980+", price: "Ücretsiz", href: "/dilekce", icon: "🏠" },
-  { title: "AI destekli belediye şikayeti", success: 85, usage: "1.540+", price: "Ücretsiz", href: "/dilekce", icon: "🏛️" },
+  { title: "AI destekli CV taslağı", success: 88, usage: "2.400+", price: "Ücretsiz", href: "/cv", icon: "📋" },
 ];
 
 export const TESTIMONIALS = [
-  { name: "Ahmet K.", city: "İstanbul", type: "Fatura itirazı", text: "İnternet faturası yüksek gelmişti. AI destekli itiraz taslağını operatöre gönderdim, indirim yaptılar. Çok memnunum.", rating: 5, initials: "AK" },
-  { name: "Fatma Y.", city: "Ankara", type: "Resmi yazı", text: "Belediyeye yol şikayeti yazmam gerekiyordu. AI destekli taslak 2 dakikada hazır, düzenleyip gönderdim.", rating: 5, initials: "FY" },
-  { name: "Mehmet E.", city: "İzmir", type: "Pazarlık", text: "Sahibinden’de laptop alacaktım. AI destekli pazarlık mesajlarıyla satıcıyla anlaştık, istediğim fiyata indi. Harika.", rating: 5, initials: "ME" },
+  { name: "Elif T.", city: "Antalya", type: "E-Ticaret", text: "Trendyol mağazam için ürün açıklamalarını bu site ile yazıyorum. SEO uyumlu başlıklar satışlarımı artırdı.", rating: 5, initials: "ET" },
+  { name: "Can D.", city: "İstanbul", type: "Sosyal Medya", text: "TikTok videoları için hook ve senaryo önerileri muhteşem. Taktik açıklamaları sayesinde içerik stratejimi geliştirdim.", rating: 5, initials: "CD" },
+  { name: "Ahmet K.", city: "İstanbul", type: "Fatura itirazı", text: "İnternet faturası yüksek gelmişti. AI destekli itiraz taslağını operatöre gönderdim, indirim yaptılar.", rating: 5, initials: "AK" },
   { name: "Sevgi Ö.", city: "Bursa", type: "CV taslağı", text: "CV'mi güncellemem gerekiyordu. AI destekli taslak çok iyi çıktı, Word'e yapıştırıp detayları ekledim.", rating: 5, initials: "SÖ" },
 ];
 
 export const FAQ_HOME = [
-  { q: "Metinler yasal olarak geçerli mi?", a: "Üretilen metinler BİLGİLENDİRME AMAÇLIDIR ve taslak niteliğindedir. Hukuki, mali veya profesyonel tavsiye DEĞİLDİR. Metinler T.C. yazışma kurallarına uyumlu olacak şekilde üretilir ancak her vaka özgün olduğundan, önemli işlemlerde mutlaka yetkili bir uzmana (avukat, hukuk bürosu vb.) danışmanız gerekir. Platform sahibi, metinlerin sonuçlarından sorumlu tutulamaz." },
-  { q: "Kişisel bilgilerim güvende mi?", a: "Evet. Verileriniz şifreli bağlantı ile iletilir. Metin üretmek için girdiğiniz bilgiler kalıcı hesap olmadığı sürece sunucuda saklanmaz. KVKK’ya uyumluyuz." },
-  { q: "Ücretsiz plan yeterli mi?", a: "Günlük 3 kullanım ücretsiz. Denemek için yeterli. Sınırsız kullanım için Premium planı yakında." },
-  { q: "Metnimi düzenleyebilir miyim?", a: "Evet. Oluşan metni kopyalayıp Word veya başka bir editörde düzenleyebilir, yazdırıp imzalayabilirsiniz. Dilekçe sayfasında yazdır / PDF kaydet de var." },
+  { q: "E-ticaret açıklamaları hangi platformları destekliyor?", a: "Trendyol, Hepsiburada, Amazon TR, n11, GittiGidiyor, Çiçeksepeti, Etsy, eBay, Sahibinden ve Letgo dahil 11 platform. Her platformun algoritmasına özel SEO uyumlu başlık ve açıklama üretiyoruz." },
+  { q: "İnsanlaştırma özelliği ne işe yarar?", a: "AI tespit araçları (GPTZero, Originality.ai vb.) metninizi 'yapay zeka yazımı' olarak işaretliyorsa, insanlaştırma özelliği metni daha doğal ve insan yazısı gibi dönüştürür." },
+  { q: "Sosyal medya içeriklerinde taktik açıklamaları nedir?", a: "Her hook, CTA ve senaryo önerisinin yanında neden işe yaradığını açıklayan kısa bilgiler sunuyoruz. Bu sayede sadece içerik değil, strateji de öğrenirsiniz." },
+  { q: "Metinler yasal olarak geçerli mi?", a: "Üretilen metinler BİLGİLENDİRME AMAÇLIDIR. Hukuki tavsiye değildir. Önemli işlemlerde yetkili uzmana danışın." },
+  { q: "Ücretsiz plan yeterli mi?", a: "Günlük 3 kullanım ücretsiz. Denemek için yeterli. Sınırsız kullanım için Premium paketlerimizi inceleyin." },
 ];
