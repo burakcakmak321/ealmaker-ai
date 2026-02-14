@@ -8,7 +8,7 @@ import { getIsPro, getPremiumCredits, decrementPremiumCredits } from "@/lib/supa
 import { getTodayActivityCount, logActivity, FREE_DAILY_LIMIT } from "@/lib/supabase/activity";
 import { ETICARET_PLATFORMS } from "@/lib/eticaret-platforms";
 import { TONE_PRESETS } from "@/lib/tone-presets";
-import { SOCIAL_PLATFORMS, CONTENT_TYPES, HOOK_TEMPLATES, CTA_TEMPLATES } from "@/lib/social-media-config";
+import { SOCIAL_PLATFORMS, CONTENT_TYPES } from "@/lib/social-media-config";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY || "",
@@ -145,73 +145,82 @@ Sadece içeriği yaz, ek açıklama ekleme.`;
       const konu = (payload.konu as string) || "";
       const hedefKitle = (payload.hedefKitle as string) || "";
       const amac = (payload.amac as string) || "";
-
-      const hookExamples = HOOK_TEMPLATES.slice(0, 4).map((h) => `- "${h.template}" (${h.category})`).join("\n");
-      const ctaExamples = CTA_TEMPLATES.slice(0, 4).map((c) => `- "${c.text}" (${c.context})`).join("\n");
+      const icerikTuru = (payload.icerikTuru as string) || "";
+      const hashtags = (payload.hashtags as boolean) !== false;
 
       let contentInstructions = "";
       if (contentType === "all" || contentType === "hook") {
         contentInstructions += `
-🪝 VİRAL HOOK'LAR (İlk 3 saniye):
-- 10 farklı hook cümlesi yaz
-- Her biri izleyiciyi durduracak güçte olsun
-- Merak, şok, soru, liste, hikaye teknikleri kullan
-${includeTactics ? "- Her hook'un yanına [💡 Taktik: ...] açıklaması ekle" : ""}
+🪝 VİRAL HOOK'LAR (İlk 3 saniye için):
+- "${konu}" konusuyla DOĞRUDAN İLGİLİ 10 farklı hook cümlesi yaz
+- Her hook bu konuya özel olmalı, genel kalıp kullanma
+- Teknikler: Merak uyandırma, şaşırtıcı bilgi, soru sorma, liste vaat etme, hikaye başlatma
+- Her hook izleyiciyi durduracak güçte olmalı
+${includeTactics ? "- Her hook'un altına [💡 Taktik: Bu neden işe yarar?] açıklaması ekle" : ""}
 `;
       }
       if (contentType === "all" || contentType === "scenario") {
         contentInstructions += `
-🎬 VİDEO SENARYOSU (Reels/TikTok/Shorts):
-- 0-3sn: Hook (dikkat çekici açılış)
-- 3-10sn: Problem/Merak
-- 10-25sn: Çözüm/Değer
-- 25-30sn: CTA (harekete geçirici)
-${includeTactics ? "- Her bölümün yanına [💡 Taktik: ...] açıklaması ekle" : ""}
+🎬 VİDEO SENARYOSU (Reels/TikTok/Shorts - 30sn):
+"${konu}" konusu için detaylı senaryo yaz:
+- 0-3sn (HOOK): Dikkat çekici açılış - konuyla direkt ilgili şaşırtıcı bir bilgi veya soru
+- 3-10sn (PROBLEM/MERAK): İzleyicinin ilgisini çekecek detay veya sorun
+- 10-25sn (DEĞER): Ana içerik, bilgi veya hikaye
+- 25-30sn (CTA): Harekete geçirici kapanış
+${includeTactics ? "- Her bölümün altına [💡 Taktik] açıklaması ekle" : ""}
 `;
       }
       if (contentType === "all" || contentType === "caption") {
         contentInstructions += `
 ✍️ CAPTION / ALTYAZI:
-- Platform uyumlu, max ${platform.maxCaptionLength} karakter
-- Otomatik emoji yerleştir
-- İlk satır dikkat çekici olsun
-- Hashtag önerileri (max ${platform.hashtagLimit})
-${includeTactics ? "- [💡 Taktik: ...] açıklaması ekle" : ""}
+"${konu}" için ${platform.name} caption'ı yaz:
+- Max ${platform.maxCaptionLength} karakter
+- İlk satır çok dikkat çekici olsun (hook görevi görsün)
+- Konuyla ilgili emojiler yerleştir
+- Paragraflar halinde oku naklı formatla
+${hashtags ? `- ${platform.hashtagLimit} adet konuyla alakalı hashtag öner` : ""}
+${includeTactics ? "- [💡 Taktik] açıklaması ekle" : ""}
 `;
       }
       if (contentType === "all" || contentType === "cta") {
         contentInstructions += `
-🎯 CTA ÖNERİLERİ:
-- 5 farklı harekete geçirici kapanış cümlesi
-- Amaca uygun (takipçi, satış, etkileşim)
-${includeTactics ? "- Her CTA'nın yanına [💡 Taktik: ...] açıklaması ekle" : ""}
+🎯 CTA (Harekete Geçirici Mesajlar):
+"${konu}" için 5 farklı CTA yaz:
+- Takip ettirici CTA
+- Kaydet dedirtici CTA
+- Yorum yaptırıcı CTA
+- Paylaştırıcı CTA
+- Amaca özel CTA ${amac ? `(${amac})` : ""}
+${includeTactics ? "- Her CTA'nın altına [💡 Taktik] açıklaması ekle" : ""}
 `;
       }
 
-      return `Sen sosyal medya içerik stratejisti ve viral içerik uzmanısın. ${platform.name} için içerik oluşturacaksın.
+      return `Sen ${platform.name} için içerik üreten profesyonel bir sosyal medya stratejistisin.
 
-PLATFORM: ${platform.name}
-KONU: ${konu}
-${hedefKitle ? `HEDEF KİTLE: ${hedefKitle}` : ""}
-${amac ? `AMAÇ: ${amac}` : ""}
+⚠️ KRİTİK KURAL: Tüm içerikler YALNIZCA ve SADECE aşağıdaki konu hakkında olmalı. Başka konuya ASLA geçme!
 
-DİL TONU:
-${tone.promptHint}
+📌 KONU: "${konu}"
+${icerikTuru ? `📎 İÇERİK TÜRÜ: ${icerikTuru}` : ""}
+${hedefKitle ? `👥 HEDEF KİTLE: ${hedefKitle}` : ""}
+${amac ? `🎯 AMAÇ: ${amac}` : ""}
 
-HOOK İLHAM KAYNAKLARI:
-${hookExamples}
+🎨 DİL TONU: ${tone.promptHint}
 
-CTA İLHAM KAYNAKLARI:
-${ctaExamples}
-
-GÖREVİN:
+📋 GÖREVİN:
 ${contentInstructions}
 
-${includeTactics ? `
-ÖNEMLİ: Her önerinin yanına [💡 Taktik: ...] formatında kısa bir açıklama ekle. Bu açıklama, önerinin neden işe yaradığını, hangi psikolojik prensibi kullandığını açıklasın. Bu bizi diğer AI araçlarından farklı kılıyor.` : ""}
+⚠️ ÖNEMLİ UYARILAR:
+1. SADECE "${konu}" hakkında yaz - başka konuya geçme, alakasız örnek verme
+2. Genel kalıp cümleler kullanma (örn: "Bunu bilmiyorsan X TL kaybediyorsun" gibi)
+3. Her öneri bu konuya ÖZEL ve ORİJİNAL olmalı
+4. Konu tarih/eğitim ise bilgilendirici, konu ürün ise satış odaklı, konu eğlence ise viral odaklı yaz
+5. İzleyicinin "${konu}" hakkında merak edeceği şeylere odaklan
+${includeTactics ? `6. Her önerinin altına [💡 Taktik: ...] formatında kısa açıklama ekle - bu önerinin neden işe yaradığını, hangi psikolojik/pazarlama prensibini kullandığını açıkla` : ""}
 
-FORMAT:
-Her bölümü emoji başlığıyla ayır. Net ve kullanıma hazır içerikler üret.`;
+📝 FORMAT:
+- Her bölümü emoji başlığıyla ayır
+- Numaralandırılmış listeler kullan
+- Net, kopyala-yapıştır hazır içerikler üret`;
     }
     default:
       return "Genel metin üret.";

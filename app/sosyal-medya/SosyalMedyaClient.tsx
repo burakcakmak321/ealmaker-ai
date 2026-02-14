@@ -7,10 +7,28 @@ import PageHeader from "@/components/PageHeader";
 import Disclaimer from "@/components/Disclaimer";
 import ToneSelector from "@/components/ToneSelector";
 import HumanizeButton from "@/components/HumanizeButton";
-import { SOCIAL_PLATFORMS, CONTENT_TYPES, HOOK_TEMPLATES, CTA_TEMPLATES } from "@/lib/social-media-config";
+import { SOCIAL_PLATFORMS, CONTENT_TYPES } from "@/lib/social-media-config";
 import type { TonePreset } from "@/lib/tone-presets";
 
 type ContentType = "hook" | "scenario" | "caption" | "cta" | "all";
+
+const ICERIK_TURLERI = [
+  { id: "egitim", label: "Eğitim / Bilgi", icon: "📚", desc: "Bilgilendirici, öğretici içerik" },
+  { id: "eglence", label: "Eğlence / Viral", icon: "🎉", desc: "Eğlenceli, paylaşılabilir içerik" },
+  { id: "urun", label: "Ürün / Satış", icon: "🛍️", desc: "Ürün tanıtımı, satış odaklı" },
+  { id: "hikaye", label: "Hikaye / Deneyim", icon: "📖", desc: "Kişisel deneyim, hikaye anlatımı" },
+  { id: "haber", label: "Haber / Gündem", icon: "📰", desc: "Güncel olaylar, haberler" },
+  { id: "motivasyon", label: "Motivasyon", icon: "💪", desc: "İlham verici, motive edici" },
+];
+
+const AMACLAR = [
+  { id: "takipci", label: "Takipçi Kazanmak", icon: "👥" },
+  { id: "etkilesim", label: "Etkileşim Artırmak", icon: "💬" },
+  { id: "satis", label: "Satış Yapmak", icon: "💰" },
+  { id: "bilinirlik", label: "Marka Bilinirliği", icon: "🏷️" },
+  { id: "trafik", label: "Web Trafiği", icon: "🔗" },
+  { id: "topluluk", label: "Topluluk Oluşturmak", icon: "🤝" },
+];
 
 export default function SosyalMedyaClient() {
   const { user, loading: authLoading } = useAuth();
@@ -18,10 +36,13 @@ export default function SosyalMedyaClient() {
   const [contentType, setContentType] = useState<ContentType>("all");
   const [tone, setTone] = useState<TonePreset>("friendly");
   const [includeTactics, setIncludeTactics] = useState(true);
+  const [includeHashtags, setIncludeHashtags] = useState(true);
 
   const [konu, setKonu] = useState("");
+  const [icerikTuru, setIcerikTuru] = useState("");
   const [hedefKitle, setHedefKitle] = useState("");
   const [amac, setAmac] = useState("");
+  const [ekBilgi, setEkBilgi] = useState("");
 
   const [sonuc, setSonuc] = useState("");
   const [alternativeSonuc, setAlternativeSonuc] = useState("");
@@ -49,15 +70,19 @@ export default function SosyalMedyaClient() {
         return;
       }
 
+      const fullKonu = ekBilgi ? `${konu}. Ek bilgi: ${ekBilgi}` : konu;
+
       const payload = {
         type: "sosyalmedya",
         platform,
         contentType,
         tone,
         includeTactics,
-        konu,
+        hashtags: includeHashtags,
+        konu: fullKonu,
+        icerikTuru: ICERIK_TURLERI.find((t) => t.id === icerikTuru)?.label || "",
         hedefKitle,
-        amac,
+        amac: AMACLAR.find((a) => a.id === amac)?.label || "",
       };
 
       const res = await fetch("/api/generate", {
@@ -101,19 +126,19 @@ export default function SosyalMedyaClient() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
       <PageHeader
         title="Sosyal Medya İçerik Asistanı"
-        description="Viral hooklar, video senaryoları, dikkat çekici captionlar ve etkili CTA'lar. Her içeriğin yanında neden işe yaradığını öğrenin."
+        description="Viral hooklar, video senaryoları, dikkat çekici captionlar ve etkili CTA'lar. Konunuza özel, profesyonel içerikler."
         icon="📱"
       />
 
       <Disclaimer />
 
-      <div className="mb-8 rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 to-orange-50 p-6">
-        <h3 className="flex items-center gap-2 font-bold text-amber-800">
-          <span>💡</span> Neden Farklıyız?
+      <div className="mb-8 rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 p-6">
+        <h3 className="flex items-center gap-2 font-bold text-emerald-800">
+          <span>✨</span> Farkımız
         </h3>
-        <p className="mt-2 text-sm text-amber-700">
-          Sadece içerik üretmiyoruz — her önerinin arkasındaki <strong>stratejiyi</strong> de açıklıyoruz.
-          Hook&apos;un neden işe yaradığını, CTA&apos;nın hangi psikolojik prensibi kullandığını öğrenin.
+        <p className="mt-2 text-sm text-emerald-700">
+          Genel kalıp cümleler değil, <strong>konunuza özel</strong> içerikler üretiyoruz.
+          Her öneriyle birlikte <strong>neden işe yaradığını</strong> açıklıyoruz - böylece sadece içerik değil, strateji de öğrenirsiniz.
         </p>
       </div>
 
@@ -143,13 +168,71 @@ export default function SosyalMedyaClient() {
                   );
                 })}
               </div>
-              <p className="text-xs text-slate-500">
-                Max {selectedPlatform.maxCaptionLength} karakter · {selectedPlatform.hashtagLimit} hashtag
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                Konu / İçerik <span className="text-red-500">*</span>
+              </label>
+              <textarea
+                value={konu}
+                onChange={(e) => setKonu(e.target.value)}
+                placeholder="Örn: Osmanlı'nın İstanbul'u fethi, Yeni açtığım kahve dükkanı, iPhone 15 Pro inceleme, Kilo verme yolculuğum..."
+                rows={3}
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+                required
+              />
+              <p className="mt-1 text-xs text-slate-500">
+                Ne hakkında içerik oluşturmak istiyorsunuz? Detaylı yazarsanız daha iyi sonuç alırsınız.
               </p>
+            </div>
+
+            <div>
+              <label className="mb-1.5 block text-sm font-medium text-slate-700">
+                Ek Bilgi / Detay <span className="text-slate-400">(isteğe bağlı)</span>
+              </label>
+              <textarea
+                value={ekBilgi}
+                onChange={(e) => setEkBilgi(e.target.value)}
+                placeholder="Örn: Videonun sonunda ürün satışı yapacağım, Tarihsel doğruluğa dikkat edilsin, Genç kitleye hitap etsin..."
+                rows={2}
+                className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
+              />
             </div>
 
             <div className="space-y-3">
               <label className="block text-sm font-medium text-slate-700">İçerik Türü</label>
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {ICERIK_TURLERI.map((tur) => {
+                  const isSelected = icerikTuru === tur.id;
+                  return (
+                    <button
+                      key={tur.id}
+                      type="button"
+                      onClick={() => setIcerikTuru(isSelected ? "" : tur.id)}
+                      className={`flex flex-col items-start gap-1 rounded-xl border p-3 text-left transition ${
+                        isSelected
+                          ? "border-brand-500 bg-brand-50"
+                          : "border-slate-200 bg-white hover:border-brand-200"
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <span>{tur.icon}</span>
+                        <span className={`text-sm font-medium ${isSelected ? "text-brand-700" : "text-slate-700"}`}>
+                          {tur.label}
+                        </span>
+                      </div>
+                      <p className={`text-xs ${isSelected ? "text-brand-600" : "text-slate-500"}`}>
+                        {tur.desc}
+                      </p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <label className="block text-sm font-medium text-slate-700">Ne Oluşturulsun?</label>
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
                 <button
                   type="button"
@@ -184,19 +267,6 @@ export default function SosyalMedyaClient() {
               </div>
             </div>
 
-            <div>
-              <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                Konu / Ürün / Hizmet
-              </label>
-              <textarea
-                value={konu}
-                onChange={(e) => setKonu(e.target.value)}
-                placeholder="Örn: Yeni açtığım kahve dükkanı, online kurs satışı, kişisel gelişim içerikleri..."
-                rows={3}
-                className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-              />
-            </div>
-
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className="mb-1.5 block text-sm font-medium text-slate-700">
@@ -206,38 +276,51 @@ export default function SosyalMedyaClient() {
                   type="text"
                   value={hedefKitle}
                   onChange={(e) => setHedefKitle(e.target.value)}
-                  placeholder="Örn: 25-35 yaş kadınlar, girişimciler, öğrenciler"
+                  placeholder="Örn: 18-25 yaş gençler, anneler, girişimciler"
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
               <div>
-                <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                  Amaç <span className="text-slate-400">(isteğe bağlı)</span>
-                </label>
-                <input
-                  type="text"
+                <label className="mb-1.5 block text-sm font-medium text-slate-700">Amaç</label>
+                <select
                   value={amac}
                   onChange={(e) => setAmac(e.target.value)}
-                  placeholder="Örn: Takipçi artırmak, satış yapmak, marka bilinirliği"
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
-                />
+                >
+                  <option value="">Seçin (isteğe bağlı)</option>
+                  {AMACLAR.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.icon} {a.label}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
             <ToneSelector value={tone} onChange={setTone} />
 
-            <div className="flex items-center gap-3">
-              <input
-                type="checkbox"
-                id="includeTactics"
-                checked={includeTactics}
-                onChange={(e) => setIncludeTactics(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
-              />
-              <label htmlFor="includeTactics" className="text-sm text-slate-700">
-                <span className="font-medium">Taktik açıklamalarını ekle</span>
-                <span className="ml-1 text-slate-500">
-                  (Her öneri için neden işe yaradığını açıkla)
+            <div className="flex flex-wrap gap-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={includeTactics}
+                  onChange={(e) => setIncludeTactics(e.target.checked)}
+                  className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                />
+                <span className="text-sm text-slate-700">
+                  <span className="font-medium">Taktik açıklamaları</span>
+                  <span className="ml-1 text-slate-500">(neden işe yarar?)</span>
+                </span>
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={includeHashtags}
+                  onChange={(e) => setIncludeHashtags(e.target.checked)}
+                  className="h-4 w-4 rounded border-slate-300 text-brand-600 focus:ring-brand-500"
+                />
+                <span className="text-sm text-slate-700">
+                  <span className="font-medium">Hashtag önerileri</span>
                 </span>
               </label>
             </div>
@@ -247,38 +330,9 @@ export default function SosyalMedyaClient() {
               disabled={yukleniyor || authLoading || !konu.trim()}
               className="w-full rounded-xl bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 py-4 font-semibold text-white shadow-lg transition hover:opacity-90 disabled:opacity-60"
             >
-              {yukleniyor ? "Oluşturuluyor…" : "İçerik Oluştur"}
+              {yukleniyor ? "İçerik Oluşturuluyor…" : "İçerik Oluştur"}
             </button>
           </form>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-            <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-800">
-              <span>🪝</span> Hook İlham Kaynakları
-            </h4>
-            <div className="space-y-2">
-              {HOOK_TEMPLATES.slice(0, 4).map((h, i) => (
-                <div key={i} className="rounded-lg bg-white p-2 text-xs">
-                  <p className="font-medium text-slate-700">&quot;{h.template}&quot;</p>
-                  <p className="mt-1 text-slate-500">💡 {h.tactic}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-            <h4 className="mb-3 flex items-center gap-2 text-sm font-bold text-slate-800">
-              <span>🎯</span> CTA Örnekleri
-            </h4>
-            <div className="space-y-2">
-              {CTA_TEMPLATES.slice(0, 4).map((c, i) => (
-                <div key={i} className="rounded-lg bg-white p-2 text-xs">
-                  <p className="font-medium text-slate-700">&quot;{c.text}&quot;</p>
-                  <p className="mt-1 text-slate-500">📌 {c.context}</p>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {hata && (
