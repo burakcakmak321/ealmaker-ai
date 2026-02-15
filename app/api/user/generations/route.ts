@@ -34,7 +34,10 @@ export async function GET(req: NextRequest) {
       .limit(limit);
 
     if (error) {
-      return NextResponse.json({ error: error.message }, { status: 500 });
+      const msg = /does not exist|schema cache|user_generations/i.test(error.message)
+        ? "Veritabanı tablosu henüz oluşturulmamış. Supabase'de supabase-admin-extended.sql dosyasını çalıştırın."
+        : error.message;
+      return NextResponse.json({ error: msg, code: "TABLE_NOT_FOUND" }, { status: 500 });
     }
 
     const items = (data ?? []).map((r) => ({

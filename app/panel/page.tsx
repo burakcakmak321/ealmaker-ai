@@ -100,8 +100,13 @@ export default function PanelPage() {
       </div>
 
       {error && (
-        <div className="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-          {error}
+        <div className="mb-6 rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800">
+          <p className="font-medium">{error}</p>
+          {error.includes("supabase-admin-extended") && (
+            <p className="mt-2 text-xs">
+              Supabase Dashboard → SQL Editor → <code className="rounded bg-amber-100 px-1">supabase-admin-extended.sql</code> dosyasının içeriğini yapıştırıp çalıştırın.
+            </p>
+          )}
         </div>
       )}
 
