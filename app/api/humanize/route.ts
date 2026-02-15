@@ -66,30 +66,26 @@ export async function POST(req: NextRequest) {
     let systemPrompt = "";
     switch (transformationType) {
       case "humanize":
-        systemPrompt = `Sen bir insan yazarısın. Verilen metni, sanki kendin düşünüp yazmışsın gibi yeniden yazacaksın. Hedef: AI tespit araçları (GPTZero, Copyleaks, YouTube içerik analizi vb.) metni insan yazısı olarak tanısın.
+        systemPrompt = `Görevin: Verilen metni, arkadaşına mesaj atar gibi veya not defterine yazıyormuş gibi yeniden yaz. Sanki ChatGPT hiç görmemiş bir insan yazıyor.
 
-YASAKLAR (bunları ASLA yapma):
-- Mükemmel, robotik cümle yapıları
-- Her cümlede aynı uzunluk
-- "Önemli", "kapsamlı", "dahili", "kritik" gibi AI sözcükleri
-- Aşırı düzenli paragraf yapısı
-- Her cümleye virgülle başlama
-- Tekrarlayan kalıplar ("Ayrıca", "Bununla birlikte" vb.)
-- Robot gibi mükemmel noktalama (doğal varyasyon kullan)
+PROFESYONEL OLMA. Sıkıcı, düzgün, kurumsal dil YASAK.
+Yazarken kendini bir blog yazarı veya YouTuber gibi düşün - kamera önünde konuşuyormuş gibi, spontane, düşünmeden yazıyormuş gibi.
 
-ZORUNLU TEKNİKLER:
-1. Cümle uzunluklarını KARIŞTIR: Bazen tek kelime. Bazen uzun. Hiçbir zaman hepsi aynı.
-2. Kişisel ses ekle: "Bence", "sanırım", "aslında", "yani", "şöyle düşünüyorum"
-3. Günlük Türkçe kullan: "falan", "mesela", "tamam", "yani", "bir bakıma", "hani"
-4. Cümleleri "Ve", "Ama", "Yani", "Aslında" ile başlat (insanlar böyle yazar)
-5. Küçük düzensizlikler: Gereksiz virgül, eksik virgül, konuşma diline yakın ifade
-6. Kelime çeşitliliği: Aynı kelimeyi tekrar etme, eş anlamlı kullan
-7. Biraz gereksiz söz: İnsanlar her zaman öz yazmaz, ara sıra dolgu ekle
-8. Hafif tekrar: İnsanlar bazen aynı fikri farklı kelimelerle iki kez söyler
-9. Paragraf yapısını boz: Bazen tek cümle paragraf, bazen uzun
-10. Konuya göre ton: Resmi metinse hafif resmi kal ama robot gibi değil; günlükse rahat yaz
+ŞUNLARI MUTLAKA YAP:
+- Konuşma dili: "yani", "işte", "falan", "filan", "mesela", "hani", "böyle", "şöyle", "galiba", "herhalde"
+- Cümleleri "Ve" "Ama" "Yani" "Aslında" "Hani" ile başlat - insanlar böyle yazar
+- Kısa cümleler karışık uzun cümlelerle. Bazen sadece 2-3 kelime.
+- Kişisel yorum ekle: "bence", "bana göre", "diyelim ki", "öyle düşünüyorum"
+- Gereksiz kelimeler kullan - insanlar her zaman öz yazmaz, "işte o zaman", "falan filan" gibi
+- Aynı şeyi hafifçe tekrar et - insanlar böyle yapar
+- Virgülleri doğal koy - bazen fazla bazen az
+- Paragrafları karışık yap - bazen tek cümle, bazen 4-5 cümle
+- "..." veya "!" gibi noktalama kullan (doğal olduğunda)
+- Samimi, rahat, editlenmemiş hissi ver
 
-ÇIKTI: Sadece dönüştürülmüş metni yaz. Hiçbir açıklama ekleme. Orijinal anlamı ve bilgiyi koru.`;
+YASAK: "Önemli", "kapsamlı", "dahili", "kritik", "Ayrıca", "Bununla birlikte", "Dolayısıyla", mükemmel gramer, her cümle aynı uzunlukta.
+
+Orijinal anlamı koru. Hedef: Okur "ChatGPT yazmış" demesin, "biri not almış" desin. Sadece metni yaz.`;
         break;
       case "formal":
         systemPrompt = `Sen profesyonel bir editörsün. Görevin, verilen metni daha resmi ve kurumsal bir dile çevirmek.
@@ -156,11 +152,11 @@ Sadece dönüştürülmüş metni yaz, ek açıklama ekleme.`;
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: transformationType === "humanize"
-          ? `Aşağıdaki metni sanki sen kendi aklından yazmışsın gibi yeniden yaz. Sadece yeni metni ver:\n\n${text}`
+          ? `Bunu arkadaşına anlatırmış gibi, rahatça, düşünmeden yaz. Profesyonel değil samimi olsun. Sadece yeni metni yaz:\n\n${text}`
           : `Bu metni ${transformation.label.toLowerCase()}:\n\n${text}` },
       ],
       max_tokens: 2000,
-      ...(transformationType === "humanize" && { temperature: 0.9 }),
+      ...(transformationType === "humanize" && { temperature: 0.95 }),
     });
 
     const result =
