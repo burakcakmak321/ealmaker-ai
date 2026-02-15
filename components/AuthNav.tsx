@@ -31,9 +31,13 @@ export default function AuthNav() {
   if (user) {
     return (
       <div className="flex items-center gap-2">
-        <span className="max-w-[140px] truncate text-sm text-slate-600 sm:max-w-[200px]" title={user.email}>
+        <Link
+          href="/panel"
+          className="max-w-[140px] truncate text-sm text-slate-600 transition hover:text-brand-600 sm:max-w-[200px]"
+          title="Projelerim"
+        >
           {user.name || user.email}
-        </span>
+        </Link>
         <button
           type="button"
           onClick={handleSignOut}

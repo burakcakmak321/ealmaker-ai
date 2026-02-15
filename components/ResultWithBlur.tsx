@@ -46,7 +46,7 @@ export default function ResultWithBlur({
                   : "bg-slate-100 text-slate-600 hover:bg-slate-200"
               }`}
             >
-              {editMode ? "Basit Gorunum" : "Duzenle"}
+              {editMode ? "Basit Görünüm" : "Düzenle"}
             </button>
           )}
           {!isBlurred && !editMode && <CopyButton text={text} label={copyLabel} />}
@@ -70,14 +70,14 @@ export default function ResultWithBlur({
             <div className="absolute inset-0 z-10 flex flex-col items-center justify-center rounded-xl bg-slate-900/60 backdrop-blur-md">
               <p className="px-4 text-center text-base font-semibold text-white">
                 {limitReached
-                  ? "Ucretsiz kullanim hakkiniz doldu. Sinirsiz kullanim icin Premium'a gecin."
-                  : "Ucretsiz hakkinizi kullanmak icin oturum acmalisiniz."}
+                  ? "Ücretsiz kullanım hakkınız doldu. Sınırsız kullanım için Premium'a geçin."
+                  : "Ücretsiz hakkınızı kullanmak için oturum açmalısınız."}
               </p>
               <Link
                 href={limitReached ? "/fiyatlandirma" : "/giris"}
                 className="mt-4 rounded-xl bg-brand-600 px-6 py-3 font-semibold text-white shadow-[0_2px_8px_-2px_rgba(5,150,105,.4)] transition hover:bg-brand-700"
               >
-                {limitReached ? "Premium'a gec" : "Giris yap / Kayit ol"}
+                {limitReached ? "Premium'a geç" : "Giriş yap / Kayıt ol"}
               </Link>
             </div>
           )}

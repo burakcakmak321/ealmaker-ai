@@ -12,13 +12,31 @@ type UserRow = {
   pro_expires_at?: string | null;
   premium_credits?: number;
 };
+type ModuleBreakdown = { module: string; label: string; count: number };
 type Stats = {
   totalRegistrations: number;
   todayActivities: number;
   todayUniqueUsers: number;
   totalActivities: number;
+  todayVisits?: number;
+  moduleBreakdown?: ModuleBreakdown[];
 };
 type ActivityRow = { id: string; userId: string; email: string; module: string; createdAt: string };
+
+const MODULE_LABELS: Record<string, string> = {
+  fatura: "Fatura İtirazı",
+  pazarlik: "Pazarlık Mesajı",
+  dilekce: "Dilekçe",
+  cv: "CV",
+  eticaret: "E-Ticaret",
+  sosyalmedya: "Sosyal Medya",
+  blogseo: "Blog & SEO",
+  transform_humanize: "Metin Dönüştürücü",
+  transform_formal: "Metin Dönüştürücü",
+  transform_simple: "Metin Dönüştürücü",
+  transform_professional: "Metin Dönüştürücü",
+  transform_persuasive: "Metin Dönüştürücü",
+};
 
 export default function AdminPage() {
   const [users, setUsers] = useState<UserRow[]>([]);
@@ -39,7 +57,7 @@ export default function AdminPage() {
       const [usersRes, statsRes, activityRes] = await Promise.all([
         fetch("/api/admin/users"),
         fetch("/api/admin/stats"),
-        fetch("/api/admin/activity?limit=30"),
+        fetch("/api/admin/activity?limit=100"),
       ]);
       if (usersRes.status === 403 || statsRes.status === 403) {
         throw new Error("Bu sayfayı görüntüleme yetkiniz yok. ADMIN_EMAILS içindeki e-posta ile giriş yapıp /admin adresine gidin.");
@@ -165,24 +183,50 @@ export default function AdminPage() {
       </div>
 
       {stats && (
-        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
-            <p className="text-sm font-medium text-slate-500">Toplam kayıt</p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalRegistrations}</p>
+        <>
+          <div className="mb-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="rounded-xl border border-emerald-200 bg-gradient-to-br from-emerald-50 to-white p-4 shadow-card">
+              <p className="text-sm font-medium text-emerald-700">Bugün ziyaret</p>
+              <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayVisits ?? "—"}</p>
+              <p className="mt-1 text-xs text-slate-500">Sayfa görüntüleme</p>
+            </div>
+            <div className="rounded-xl border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-4 shadow-card">
+              <p className="text-sm font-medium text-brand-700">Bugün işlem</p>
+              <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayActivities}</p>
+              <p className="mt-1 text-xs text-slate-500">AI üretim sayısı</p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+              <p className="text-sm font-medium text-slate-500">Bugün aktif kullanıcı</p>
+              <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayUniqueUsers}</p>
+              <p className="mt-1 text-xs text-slate-500">İşlem yapan</p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+              <p className="text-sm font-medium text-slate-500">Toplam kayıt</p>
+              <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalRegistrations}</p>
+            </div>
+            <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+              <p className="text-sm font-medium text-slate-500">Toplam işlem</p>
+              <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalActivities}</p>
+            </div>
           </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
-            <p className="text-sm font-medium text-slate-500">Bugünkü aktivite</p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayActivities}</p>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
-            <p className="text-sm font-medium text-slate-500">Bugün aktif kullanıcı</p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.todayUniqueUsers}</p>
-          </div>
-          <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-card">
-            <p className="text-sm font-medium text-slate-500">Toplam aktivite</p>
-            <p className="mt-1 text-2xl font-bold text-slate-900">{stats.totalActivities}</p>
-          </div>
-        </div>
+
+          {stats.moduleBreakdown && stats.moduleBreakdown.length > 0 && (
+            <div className="mb-8 rounded-xl border border-slate-200 bg-white p-4 shadow-card">
+              <h3 className="mb-3 text-sm font-bold text-slate-700">Bugün modüle göre dağılım</h3>
+              <div className="flex flex-wrap gap-3">
+                {stats.moduleBreakdown.map((m) => (
+                  <span
+                    key={m.module}
+                    className="inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-700"
+                  >
+                    <span className="rounded bg-brand-100 px-2 py-0.5 text-xs font-bold text-brand-700">{m.count}</span>
+                    {m.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       <div className="mb-10">
@@ -208,7 +252,11 @@ export default function AdminPage() {
                   activities.map((a) => (
                     <tr key={a.id} className="border-b border-slate-100">
                       <td className="px-4 py-3 font-medium text-slate-900">{a.email}</td>
-                      <td className="px-4 py-3 text-slate-600">{a.module}</td>
+                      <td className="px-4 py-3">
+                        <span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-700">
+                          {MODULE_LABELS[a.module] || a.module}
+                        </span>
+                      </td>
                       <td className="px-4 py-3 text-slate-600">
                         {new Date(a.createdAt).toLocaleString("tr-TR", {
                           dateStyle: "short",

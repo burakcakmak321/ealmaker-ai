@@ -78,6 +78,24 @@ export default function PazarlikClient() {
         icon="💬"
       />
 
+      <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 shadow-[0_1px_3px_rgba(0,0,0,.04)]">
+        <p className="mb-3 text-sm font-semibold text-slate-700">Hızlı platform</p>
+        <div className="flex flex-wrap gap-2">
+          {["Sahibinden", "Trendyol", "Letgo", "Hepsiburada", "n11", "GittiGidiyor"].map((p) => (
+            <button
+              key={p}
+              type="button"
+              onClick={() => setPlatform(p)}
+              className={`rounded-xl border px-4 py-2 text-sm font-medium transition ${
+                platform === p ? "border-brand-500 bg-brand-50 text-brand-700" : "border-slate-200 bg-white text-slate-600 hover:border-brand-200 hover:bg-brand-50/50"
+              }`}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>

@@ -11,10 +11,10 @@ import type { TonePreset } from "@/lib/tone-presets";
 type ToolType = "outline" | "meta" | "title" | "keywords";
 
 const TOOLS = [
-  { id: "outline" as ToolType, label: "Blog Yazisi Plani", icon: "📑", desc: "Yazinin basliklar, alt basliklar ve icerik taslagi" },
-  { id: "meta" as ToolType, label: "Google Aciklamasi", icon: "🔍", desc: "Google arama sonuclarinda gorunecek kisa tanitim" },
-  { id: "title" as ToolType, label: "Baslik Onerileri", icon: "✏️", desc: "Dikkat cekici, tiklanma orani yuksek basliklar" },
-  { id: "keywords" as ToolType, label: "Anahtar Kelime Bul", icon: "🔑", desc: "Insanlarin aradigi iliskili kelimeler" },
+  { id: "outline" as ToolType, label: "Blog Yazısı Planı", icon: "📑", desc: "Yazının başlıklar, alt başlıklar ve içerik taslağı" },
+  { id: "meta" as ToolType, label: "Google Açıklaması", icon: "🔍", desc: "Google arama sonuçlarında görünecek kısa tanıtım" },
+  { id: "title" as ToolType, label: "Başlık Önerileri", icon: "✏️", desc: "Dikkat çekici, tıklanma oranı yüksek başlıklar" },
+  { id: "keywords" as ToolType, label: "Anahtar Kelime Bul", icon: "🔑", desc: "İnsanların aradığı ilişkili kelimeler" },
 ];
 
 const BLOG_CATEGORIES = [
@@ -82,10 +82,10 @@ export default function BlogSeoClient() {
 
       if (res.status === 401) { setShowBlurred(true); setYukleniyor(false); return; }
       if (res.status === 402) { setLimitReached(true); setShowBlurred(true); setYukleniyor(false); return; }
-      if (!res.ok) throw new Error(data.error || "Bir hata olustu.");
+      if (!res.ok) throw new Error(data.error || "Bir hata oluştu.");
       setSonuc(data.text);
     } catch (err) {
-      setHata(err instanceof Error ? err.message : "Bir hata olustu.");
+      setHata(err instanceof Error ? err.message : "Bir hata oluştu.");
     } finally {
       setYukleniyor(false);
     }
@@ -109,24 +109,24 @@ export default function BlogSeoClient() {
 
       <div className="mb-8 rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
         <h3 className="flex items-center gap-2 font-bold text-blue-800">
-          <span>💡</span> Bu sayfa ne ise yarar?
+          <span>💡</span> Bu sayfa ne işe yarar?
         </h3>
         <ul className="mt-3 space-y-2 text-sm text-blue-700">
           <li className="flex items-start gap-2">
             <span>📑</span>
-            <span><strong>Blog Yazisi Plani:</strong> Yazmak istediginiz konunun basliklar, alt basliklar ve icerik taslagini cikarir.</span>
+            <span><strong>Blog Yazısı Planı:</strong> Yazmak istediğiniz konunun başlıklar, alt başlıklar ve içerik taslağını çıkarır.</span>
           </li>
           <li className="flex items-start gap-2">
             <span>🔍</span>
-            <span><strong>Google Aciklamasi:</strong> Siteniz Google&apos;da ciktiginda altinda gorunen kisa tanitim yazilarini olusturur.</span>
+            <span><strong>Google Açıklaması:</strong> Siteniz Google&apos;da çıktığında altında görünen kısa tanıtım yazılarını oluşturur.</span>
           </li>
           <li className="flex items-start gap-2">
             <span>✏️</span>
-            <span><strong>Baslik Onerileri:</strong> Insanlarin tiklamak isteyecegi dikkat cekici basliklar olusturur.</span>
+            <span><strong>Başlık Önerileri:</strong> İnsanların tıklamak isteyeceği dikkat çekici başlıklar oluşturur.</span>
           </li>
           <li className="flex items-start gap-2">
             <span>🔑</span>
-            <span><strong>Anahtar Kelime Bul:</strong> Insanlarin Google&apos;da ne arattigini bulur, iceriginizi ona gore yazarsiniz.</span>
+            <span><strong>Anahtar Kelime Bul:</strong> İnsanların Google&apos;da ne aradığını bulur, içeriğinizi ona göre yazarsınız.</span>
           </li>
         </ul>
       </div>
@@ -173,7 +173,7 @@ export default function BlogSeoClient() {
                 type="text"
                 value={anahtarKelime}
                 onChange={(e) => setAnahtarKelime(e.target.value)}
-                placeholder="Orn: dijital pazarlama, saglikli beslenme, ev dekorasyonu, kilo verme"
+                placeholder="Örn: dijital pazarlama, sağlıklı beslenme, ev dekorasyonu, kilo verme"
                 className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 required
               />
@@ -186,7 +186,7 @@ export default function BlogSeoClient() {
               <textarea
                 value={konu}
                 onChange={(e) => setKonu(e.target.value)}
-                placeholder="Blog yazisinin odaklanmasini istediginiz spesifik konuyu yazin..."
+                placeholder="Blog yazısının odaklanmasını istediğiniz spesifik konuyu yazın..."
                 rows={3}
                 className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
               />
@@ -200,7 +200,7 @@ export default function BlogSeoClient() {
                   onChange={(e) => setKategori(e.target.value)}
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 >
-                  <option value="">Secin</option>
+                  <option value="">Seçin</option>
                   {BLOG_CATEGORIES.map((c) => (
                     <option key={c.id} value={c.id}>{c.label}</option>
                   ))}
@@ -212,7 +212,7 @@ export default function BlogSeoClient() {
                   type="text"
                   value={hedefKitle}
                   onChange={(e) => setHedefKitle(e.target.value)}
-                  placeholder="Orn: baslangic, uzman"
+                  placeholder="Örn: başlangıç, uzman"
                   className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 />
               </div>
@@ -224,10 +224,10 @@ export default function BlogSeoClient() {
                     onChange={(e) => setKelimeSayisi(e.target.value)}
                     className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                   >
-                    <option value="800">Kisa (~800 kelime)</option>
+                    <option value="800">Kısa (~800 kelime)</option>
                     <option value="1500">Orta (~1500 kelime)</option>
                     <option value="2500">Uzun (~2500 kelime)</option>
-                    <option value="4000">Cok Uzun (~4000 kelime)</option>
+                    <option value="4000">Çok Uzun (~4000 kelime)</option>
                   </select>
                 </div>
               )}
@@ -240,7 +240,7 @@ export default function BlogSeoClient() {
               disabled={yukleniyor || authLoading || !anahtarKelime.trim()}
               className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 py-4 font-semibold text-white shadow-lg transition hover:opacity-90 disabled:opacity-60"
             >
-              {yukleniyor ? "Olusturuluyor..." : `${selectedTool?.label} Olustur`}
+              {yukleniyor ? "Oluşturuluyor..." : `${selectedTool?.label} Oluştur`}
             </button>
           </form>
         </div>

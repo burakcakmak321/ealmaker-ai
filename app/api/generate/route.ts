@@ -22,36 +22,63 @@ function buildSystemPrompt(type: ModuleType, payload: Record<string, unknown>): 
       const kurum = (payload.kurum as string) || "kurum";
       const konu = (payload.konu as string) || "fatura itirazı";
       const detay = (payload.detay as string) || "";
-      return `Sen Türkiye'de hukuki ve resmi yazışmalarda uzman bir asistansın. Kullanıcı bir fatura veya abonelik itirazı yazmak istiyor.
-Kurum: ${kurum}
-Konu: ${konu}
-Ek detay: ${detay}
+      return `Sen Türkiye'de hukuki ve resmi yazışmalarda uzman bir asistansın. Kullanıcı fatura veya abonelik itirazı yazacak.
 
-Görevin: Bu kuruma hitaben, kibarca ama net ve ikna edici bir dilekçe/mesaj metni yaz. Hukuki jargonu yerinde kullan, Tüketici Kanunu ve ilgili mevzuata atıf yapabilirsin. Talebi (indirim, iade, iptal vb.) açıkça belirt. Metni doğrudan kullanıcının kopyalayıp gönderebileceği şekilde, hitap ile başlayıp saygıyla bitir. Sadece metni yaz, ek açıklama ekleme.`;
+KURUM: ${kurum}
+KONU: ${konu}
+DETAY: ${detay || "Belirtilmedi"}
+
+KURALLAR:
+1. 6502 sayılı Tüketicinin Korunması Hakkında Kanun'a uygun yaz
+2. İtirazı net, saygılı ve ikna edici ifade et
+3. Müşteri numarası, fatura tutarı gibi bilgiler varsa kullan
+4. Talep (indirim, iade, iptal vb.) açıkça belirtilsin
+5. Hitap ile başla, saygıyla bitir
+6. E-posta veya dilekçe formatında, kopyala-yapıştır hazır olsun
+
+Sadece metni yaz, ek açıklama ekleme.`;
     }
     case "pazarlik": {
       const platform = (payload.platform as string) || "ikinci el platform";
       const urun = (payload.urun as string) || "ürün";
       const fiyat = (payload.fiyat as string) || "belirtilmemiş";
       const hedefFiyat = (payload.hedefFiyat as string) || "";
-      return `Sen ikinci el / e-ticaret pazarlığında usta bir asistansın. Kullanıcı satıcıya mesaj atacak.
-Platform: ${platform}
-Ürün: ${urun}
-İlan fiyatı: ${fiyat}
-Hedef fiyat (varsa): ${hedefFiyat}
+      return `Sen ikinci el ve e-ticaret pazarlığında uzman bir asistansın. Kullanıcı satıcıya mesaj atacak.
 
-Görevin: Satıcıyı kırmadan, saygılı ama kararlı 3 kısa mesaj hazırla. İlk mesaj selam + ilgi, ikinci mesaj fiyat teklifi veya soru, üçüncü mesaj (gerekirse) son teklif veya teşekkür. Türkçe, samimi ama pazarlık niyetini belli eden bir dil kullan. Mesajları "1." "2." "3." diye numaralandır. Sadece mesajları yaz.`;
+PLATFORM: ${platform}
+ÜRÜN: ${urun}
+İLAN FİYATI: ${fiyat}
+HEDEF FİYAT: ${hedefFiyat || "Belirtilmedi"}
+
+KURALLAR:
+1. 3 kısa mesaj hazırla, her biri 1-2 cümle
+2. Mesaj 1: Selam + ürüne ilgi göster
+3. Mesaj 2: Nazikçe fiyat teklifi veya soru sor
+4. Mesaj 3: Son teklif veya teşekkür
+5. Samimi, saygılı, pazarlık niyetini belli eden dil
+6. Emoji kullanma, profesyonel ama sıcak kal
+
+"1." "2." "3." ile numaralandır. Sadece mesajları yaz.`;
     }
     case "dilekce": {
-      const baslik = (payload.baslik as string) || "Dilekçe";
+      const baslik = (payload.baslik as string) || (payload.kurum as string) || "Dilekçe";
       const konu = (payload.konu as string) || "";
       const detay = (payload.detay as string) || "";
-      return `Sen Türkiye'de resmi dilekçe yazımında uzman bir asistansın. Kullanıcı bir dilekçe metni istiyor.
-Dilekçe türü/başlık: ${baslik}
-Konu: ${konu}
-Kullanıcının anlattığı detay: ${detay}
+      return `Sen Türkiye'de resmi dilekçe yazımında uzman bir asistansın. 657 sayılı DMK ve dilekçe usulüne hakimsin.
 
-Görevin: Resmi dilekçe formatında (Sayı, Tarih, İlgi, Metin, Talep, Saygıyla) tam bir dilekçe metni yaz. 657 sayılı DMK ve dilekçe usulüne uygun olsun. İmza ve tarih için boşluk bırak. Sadece dilekçe metnini yaz.`;
+KURUM/BAŞLIK: ${baslik}
+KONU: ${konu}
+DETAY: ${detay || "Belirtilmedi"}
+
+FORMAT (sırayla):
+1. Hitap (Sayın ...)
+2. İlgi (Konu: ...)
+3. Giriş paragrafı
+4. Talebin açıklandığı metin
+5. "Saygılarımla arz ederim." ile bitir
+6. İmza ve tarih için boşluk bırak
+
+KURALLAR: Resmi dil, net ifade, gereksiz tekrar yok. Sadece dilekçe metnini yaz.`;
     }
     case "cv": {
       const adSoyad = (payload.adSoyad as string) || "Kullanıcı";
@@ -61,17 +88,27 @@ Görevin: Resmi dilekçe formatında (Sayı, Tarih, İlgi, Metin, Talep, Saygıy
       const egitim = (payload.egitim as string) || "";
       const beceriler = (payload.beceriler as string) || "";
       const dil = (payload.dil as string) || "";
-      return `Sen insan kaynakları ve kariyer danışmanlığında deneyimli bir asistansın. Kullanıcı CV (öz geçmiş) taslağı istiyor.
+      return `Sen ATS (başvuru takip sistemi) uyumlu CV yazımında uzman bir kariyer danışmanısın.
 
-Ad Soyad: ${adSoyad}
-Hedef pozisyon: ${hedefPozisyon}
-Profesyonel özet: ${ozet}
-İş deneyimi: ${deneyim}
-Eğitim: ${egitim}
-Beceriler: ${beceriler}
-Diller: ${dil}
+AD SOYAD: ${adSoyad}
+HEDEF POZİSYON: ${hedefPozisyon}
+PROFESYONEL ÖZET: ${ozet}
+İŞ DENEYİMİ: ${deneyim}
+EĞİTİM: ${egitim}
+BECERİLER: ${beceriler}
+DİLLER: ${dil}
 
-Görevin: Profesyonel, ATS dostu ve okunabilir bir CV metni taslağı oluştur. Başlık (Ad Soyad), Profesyonel Özet, İş Deneyimi, Eğitim, Beceriler ve Diller bölümlerini içeren düz metin formatında yaz. Madde işaretleri kullan, net ve öz ifadeler tercih et. Sadece CV içeriğini yaz, ek açıklama ekleme.`;
+KURALLAR:
+1. Başlık (Ad Soyad) ile başla
+2. 3-4 cümlelik güçlü özet (hedef pozisyona uygun)
+3. Deneyim: Firma, tarih, başarı odaklı maddeler (fiil + sonuç)
+4. Eğitim: Kurum, bölüm, yıl
+5. Beceriler: Virgülle ayır, ilgili alanları vurgula
+6. Diller: Seviye belirt
+7. Düz metin, madde işaretleri (- veya •), ATS dostu
+8. Türkçe, profesyonel ton
+
+Sadece CV içeriğini yaz.`;
     }
     case "eticaret": {
       const platformId = (payload.platform as string) || "genel";
@@ -101,41 +138,40 @@ Görevin: Profesyonel, ATS dostu ve okunabilir bir CV metni taslağı oluştur. 
         ].filter(Boolean).join("\n");
       }
 
-      return `Sen e-ticaret ve pazar yeri optimizasyonunda uzman bir içerik yazarısın. ${platform.name} için ürün başlığı ve açıklaması yazacaksın.
+      return `Sen ${platform.name} ve e-ticaret ürün listeleme uzmanısın. Satış dönüşümü yüksek içerik üretiyorsun.
 
-⚠️ KRİTİK KURAL: Tüm içerik YALNIZCA aşağıdaki ürün bilgilerine dayalı olmalı. Ürün hakkında verilmeyen bilgiyi UYDURMA, sadece verilenleri kullan.
+⚠️ KRİTİK: SADECE verilen ürün bilgilerini kullan. UYDURMA yapma.
 
-PLATFORM BİLGİLERİ:
-- Platform: ${platform.name}
-- Başlık Formatı: ${platform.titleFormat}
-- Max Başlık: ${platform.maxTitleLength} karakter
-- Max Açıklama: ${platform.descMaxLength} karakter
+PLATFORM: ${platform.name}
+- Başlık: Max ${platform.maxTitleLength} karakter, format: ${platform.titleFormat}
+- Açıklama: Max ${platform.descMaxLength} karakter
 
 ÜRÜN BİLGİLERİ:
-${urunBilgisi}
+${urunBilgisi || "Belirtilmedi"}
 
-DİL TONU:
-${tone.promptHint}
+TON: ${tone.promptHint}
 
-GÖREVİN:
-1. SEO uyumlu, platform algoritmasına özel bir BAŞLIK yaz (max ${platform.maxTitleLength} karakter)
-2. Detaylı, ikna edici bir AÇIKLAMA yaz - SADECE verilen bilgilere dayalı
-3. Anahtar kelimeleri doğal şekilde yerleştir
-4. Madde işaretleri ile özellikleri listele
+GÖREV:
+1. BAŞLIK: Anahtar kelimeleri içeren, SEO uyumlu, karakter sınırına uygun
+2. AÇIKLAMA: 
+   - Üstün özelliklerle başla
+   - Madde işaretleri (•) ile liste
+   - Teknik özellikler, malzeme, kullanım alanı
+   - Güven verici, ikna edici dil
 ${includeSSS ? `
-5. MÜŞTERİ SSS BÖLÜMÜ: Bu ürüne ÖZEL potansiyel alıcı soruları ve yanıtları yaz. Her soru "❓" ile başlasın, cevap "✅" ile başlasın.` : ""}
+3. SIK SORULAN SORULAR: Bu ürüne özel 4-5 alıcı sorusu + cevap. Her soru "❓" ile, cevap "✅" ile başlasın.` : ""}
 
 FORMAT:
 📌 BAŞLIK:
-[başlık buraya]
+[başlık]
 
 📝 AÇIKLAMA:
-[açıklama buraya]
+[açıklama]
 ${includeSSS ? `
 ❓ SIK SORULAN SORULAR:
-[sorular ve cevaplar buraya]` : ""}
+[sorular]` : ""}
 
-Sadece içeriği yaz, ek açıklama ekleme.`;
+Sadece içeriği yaz.`;
     }
     case "sosyalmedya": {
       const platformKey = (payload.platform as string) || "instagram";
@@ -197,32 +233,26 @@ ${includeTactics ? "- Her CTA'nın altına [💡 Taktik] açıklaması ekle" : "
 `;
       }
 
-      return `Sen ${platform.name} için içerik üreten profesyonel bir sosyal medya stratejistisin.
-
-⚠️ KRİTİK KURAL: Tüm içerikler YALNIZCA ve SADECE aşağıdaki konu hakkında olmalı. Başka konuya ASLA geçme!
+      return `Sen ${platform.name} için viral içerik üreten profesyonel sosyal medya stratejistisin.
 
 📌 KONU: "${konu}"
-${icerikTuru ? `📎 İÇERİK TÜRÜ: ${icerikTuru}` : ""}
-${hedefKitle ? `👥 HEDEF KİTLE: ${hedefKitle}` : ""}
-${amac ? `🎯 AMAÇ: ${amac}` : ""}
+${icerikTuru ? `İÇERİK TÜRÜ: ${icerikTuru}` : ""}
+${hedefKitle ? `HEDEF: ${hedefKitle}` : ""}
+${amac ? `AMAÇ: ${amac}` : ""}
 
-🎨 DİL TONU: ${tone.promptHint}
+TON: ${tone.promptHint}
 
-📋 GÖREVİN:
+KURALLAR:
+1. SADECE "${konu}" hakkında yaz - başka konuya geçme
+2. Genel kalıplar YASAK (örn: "Bunu bilmiyorsan kaybediyorsun")
+3. Her öneri konuya ÖZEL, orijinal olsun
+4. Konu türüne göre ton: Eğitim→bilgilendirici, Ürün→satış odaklı, Eğlence→viral
+${includeTactics ? `5. Her önerinin altına [💡 Taktik: neden işe yarar] ekle` : ""}
+
+GÖREV:
 ${contentInstructions}
 
-⚠️ ÖNEMLİ UYARILAR:
-1. SADECE "${konu}" hakkında yaz - başka konuya geçme, alakasız örnek verme
-2. Genel kalıp cümleler kullanma (örn: "Bunu bilmiyorsan X TL kaybediyorsun" gibi)
-3. Her öneri bu konuya ÖZEL ve ORİJİNAL olmalı
-4. Konu tarih/eğitim ise bilgilendirici, konu ürün ise satış odaklı, konu eğlence ise viral odaklı yaz
-5. İzleyicinin "${konu}" hakkında merak edeceği şeylere odaklan
-${includeTactics ? `6. Her önerinin altına [💡 Taktik: ...] formatında kısa açıklama ekle - bu önerinin neden işe yaradığını, hangi psikolojik/pazarlama prensibini kullandığını açıkla` : ""}
-
-📝 FORMAT:
-- Her bölümü emoji başlığıyla ayır
-- Numaralandırılmış listeler kullan
-- Net, kopyala-yapıştır hazır içerikler üret`;
+FORMAT: Emoji başlıklar, numaralı listeler, kopyala-yapıştır hazır içerik.`;
     }
     case "blogseo": {
       const toolType = (payload.tool as string) || "outline";
@@ -323,6 +353,31 @@ Her önerinin yanına tahmini arama hacmi (düşük/orta/yüksek) ve rekabet dü
   }
 }
 
+function buildGenerationTitle(type: ModuleType, payload: Record<string, unknown>): string {
+  switch (type) {
+    case "fatura": return (payload.konu as string) || "Fatura itirazı";
+    case "pazarlik": return (payload.urun as string) || "Pazarlık mesajı";
+    case "dilekce": return (payload.konu as string) || (payload.kurum as string) || "Dilekçe";
+    case "cv": return (payload.hedefPozisyon as string) || "CV taslağı";
+    case "eticaret": return (payload.urunBilgisi as string) || (payload.marka as string) || "Ürün açıklaması";
+    case "sosyalmedya": return (payload.konu as string) || "Sosyal medya içeriği";
+    case "blogseo": return (payload.anahtarKelime as string) || "Blog/SEO";
+    default: return type;
+  }
+}
+
+function buildInputPreview(type: ModuleType, payload: Record<string, unknown>): string {
+  const parts: string[] = [];
+  if (type === "fatura") parts.push(String(payload.kurum || ""), String(payload.konu || ""), String(payload.detay || "").slice(0, 100));
+  if (type === "pazarlik") parts.push(String(payload.urun || ""), String(payload.fiyat || ""), String(payload.hedefFiyat || ""));
+  if (type === "dilekce") parts.push(String(payload.kurum || payload.baslik || ""), String(payload.konu || ""), String(payload.detay || "").slice(0, 100));
+  if (type === "cv") parts.push(String(payload.adSoyad || ""), String(payload.hedefPozisyon || ""), String(payload.ozet || "").slice(0, 80));
+  if (type === "eticaret") parts.push(String(payload.urunBilgisi || payload.marka || ""), String(payload.platform || ""));
+  if (type === "sosyalmedya") parts.push(String(payload.konu || "").slice(0, 100));
+  if (type === "blogseo") parts.push(String(payload.anahtarKelime || ""), String(payload.tool || ""));
+  return parts.filter(Boolean).join(" · ").slice(0, 200);
+}
+
 function getUserMessage(type: ModuleType): string {
   switch (type) {
     case "fatura":
@@ -407,6 +462,22 @@ export async function POST(req: NextRequest) {
     await logActivity(admin, user.id, type);
 
     if (premiumCredits > 0) await decrementPremiumCredits(admin, user.id);
+
+    // Kullanıcı geçmişine kaydet (user_generations tablosu varsa)
+    try {
+      const title = buildGenerationTitle(type, payload);
+      const inputPreview = buildInputPreview(type, payload);
+      await admin.from("user_generations").insert({
+        user_id: user.id,
+        module: type,
+        title,
+        input_preview: inputPreview,
+        output_text: text,
+        payload: body,
+      });
+    } catch {
+      // Tablo yoksa veya hata olursa sessizce geç
+    }
 
     return NextResponse.json({ text });
   } catch (err) {

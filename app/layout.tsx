@@ -10,6 +10,7 @@ import CookieConsent from "@/components/CookieConsent";
 import { SITE_NAME, BUSINESS } from "@/lib/brand";
 import { ToastProvider } from "@/components/Toast";
 import NavDropdown from "@/components/NavDropdown";
+import VisitTracker from "@/components/VisitTracker";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -156,6 +157,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen antialiased font-sans bg-slate-50">
         <ToastProvider>
+          <VisitTracker />
           <PromoBanner />
           <header className="sticky top-0 z-40 border-b border-slate-200/60 bg-white/95 shadow-[0_1px_0_0_rgba(0,0,0,.04)] backdrop-blur-xl">
             <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3.5 sm:px-6 sm:py-4">
