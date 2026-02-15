@@ -66,21 +66,30 @@ export async function POST(req: NextRequest) {
     let systemPrompt = "";
     switch (transformationType) {
       case "humanize":
-        systemPrompt = `Sen bir içerik editörüsün. Görevin, verilen metni yapay zeka tarafından yazılmış izlenimi vermeyecek şekilde yeniden yazmak.
+        systemPrompt = `Sen bir insan yazarısın. Verilen metni, sanki kendin düşünüp yazmışsın gibi yeniden yazacaksın. Hedef: AI tespit araçları (GPTZero, Copyleaks, YouTube içerik analizi vb.) metni insan yazısı olarak tanısın.
 
-KURALLAR:
-- Daha öznel ve kişisel ifadeler kullan
-- Doğal, mükemmel olmayan cümle yapıları tercih et
-- Küçük düzensizlikler ekle (ama anlaşılır kalsın)
-- Tekrar eden kalıplardan kaçın
-- İnsan deneyimi ve his içeren ifadeler ekle
-- Samimi ama profesyonel bir dil kullan
-- Aşırı mükemmel, robotik ifadelerden kaçın
-- Bazen cümleleri "ve", "ama", "yani" gibi bağlaçlarla başlat
-- Ara sıra kısaltmalar veya günlük dil kullan
+YASAKLAR (bunları ASLA yapma):
+- Mükemmel, robotik cümle yapıları
+- Her cümlede aynı uzunluk
+- "Önemli", "kapsamlı", "dahili", "kritik" gibi AI sözcükleri
+- Aşırı düzenli paragraf yapısı
+- Her cümleye virgülle başlama
+- Tekrarlayan kalıplar ("Ayrıca", "Bununla birlikte" vb.)
+- Robot gibi mükemmel noktalama (doğal varyasyon kullan)
 
-Orijinal anlamı ve bilgiyi koru, sadece tonu ve ifade şeklini değiştir.
-Sadece dönüştürülmüş metni yaz, ek açıklama ekleme.`;
+ZORUNLU TEKNİKLER:
+1. Cümle uzunluklarını KARIŞTIR: Bazen tek kelime. Bazen uzun. Hiçbir zaman hepsi aynı.
+2. Kişisel ses ekle: "Bence", "sanırım", "aslında", "yani", "şöyle düşünüyorum"
+3. Günlük Türkçe kullan: "falan", "mesela", "tamam", "yani", "bir bakıma", "hani"
+4. Cümleleri "Ve", "Ama", "Yani", "Aslında" ile başlat (insanlar böyle yazar)
+5. Küçük düzensizlikler: Gereksiz virgül, eksik virgül, konuşma diline yakın ifade
+6. Kelime çeşitliliği: Aynı kelimeyi tekrar etme, eş anlamlı kullan
+7. Biraz gereksiz söz: İnsanlar her zaman öz yazmaz, ara sıra dolgu ekle
+8. Hafif tekrar: İnsanlar bazen aynı fikri farklı kelimelerle iki kez söyler
+9. Paragraf yapısını boz: Bazen tek cümle paragraf, bazen uzun
+10. Konuya göre ton: Resmi metinse hafif resmi kal ama robot gibi değil; günlükse rahat yaz
+
+ÇIKTI: Sadece dönüştürülmüş metni yaz. Hiçbir açıklama ekleme. Orijinal anlamı ve bilgiyi koru.`;
         break;
       case "formal":
         systemPrompt = `Sen profesyonel bir editörsün. Görevin, verilen metni daha resmi ve kurumsal bir dile çevirmek.
@@ -141,13 +150,17 @@ Sadece dönüştürülmüş metni yaz, ek açıklama ekleme.`;
         break;
     }
 
+    const model = transformationType === "humanize" ? "gpt-4o" : "gpt-4o-mini";
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model,
       messages: [
         { role: "system", content: systemPrompt },
-        { role: "user", content: `Bu metni ${transformation.label.toLowerCase()}:\n\n${text}` },
+        { role: "user", content: transformationType === "humanize"
+          ? `Aşağıdaki metni sanki sen kendi aklından yazmışsın gibi yeniden yaz. Sadece yeni metni ver:\n\n${text}`
+          : `Bu metni ${transformation.label.toLowerCase()}:\n\n${text}` },
       ],
       max_tokens: 2000,
+      ...(transformationType === "humanize" && { temperature: 0.9 }),
     });
 
     const result =
