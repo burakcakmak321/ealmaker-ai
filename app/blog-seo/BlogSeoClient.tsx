@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 import ToneSelector from "@/components/ToneSelector";
 import HumanizeButton from "@/components/HumanizeButton";
 import type { TonePreset } from "@/lib/tone-presets";
@@ -12,10 +11,10 @@ import type { TonePreset } from "@/lib/tone-presets";
 type ToolType = "outline" | "meta" | "title" | "keywords";
 
 const TOOLS = [
-  { id: "outline" as ToolType, label: "Blog Ana Hatlari (Outline)", icon: "📑", desc: "Anahtar kelimeye dayali detayli icerik plani" },
-  { id: "meta" as ToolType, label: "Meta Aciklama", icon: "🔍", desc: "SEO uyumlu meta description" },
-  { id: "title" as ToolType, label: "Baslik Onerileri", icon: "✏️", desc: "Tiklanma orani yuksek basliklar" },
-  { id: "keywords" as ToolType, label: "Anahtar Kelime Analizi", icon: "🔑", desc: "Iliskili anahtar kelimeler ve oneriler" },
+  { id: "outline" as ToolType, label: "Blog Yazisi Plani", icon: "📑", desc: "Yazinin basliklar, alt basliklar ve icerik taslagi" },
+  { id: "meta" as ToolType, label: "Google Aciklamasi", icon: "🔍", desc: "Google arama sonuclarinda gorunecek kisa tanitim" },
+  { id: "title" as ToolType, label: "Baslik Onerileri", icon: "✏️", desc: "Dikkat cekici, tiklanma orani yuksek basliklar" },
+  { id: "keywords" as ToolType, label: "Anahtar Kelime Bul", icon: "🔑", desc: "Insanlarin aradigi iliskili kelimeler" },
 ];
 
 const BLOG_CATEGORIES = [
@@ -25,7 +24,7 @@ const BLOG_CATEGORIES = [
   { id: "egitim", label: "Egitim" },
   { id: "yasam", label: "Yasam / Lifestyle" },
   { id: "pazarlama", label: "Dijital Pazarlama" },
-  { id: "girişim", label: "Girisimcilik" },
+  { id: "girisimcilik", label: "Girisimcilik" },
   { id: "diger", label: "Diger" },
 ];
 
@@ -104,17 +103,39 @@ export default function BlogSeoClient() {
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
       <PageHeader
         title="Blog & SEO Araclari"
-        description="Anahtar kelime odakli blog ana hatlari, meta aciklamalari ve SEO uyumlu basliklar olusturun."
+        description="Blog yazisi planlama, Google icin aciklama yazma, baslik onerme ve anahtar kelime bulma araclari."
         icon="📝"
       />
 
-      <Disclaimer />
+      <div className="mb-8 rounded-2xl border border-blue-200 bg-gradient-to-r from-blue-50 to-indigo-50 p-6">
+        <h3 className="flex items-center gap-2 font-bold text-blue-800">
+          <span>💡</span> Bu sayfa ne ise yarar?
+        </h3>
+        <ul className="mt-3 space-y-2 text-sm text-blue-700">
+          <li className="flex items-start gap-2">
+            <span>📑</span>
+            <span><strong>Blog Yazisi Plani:</strong> Yazmak istediginiz konunun basliklar, alt basliklar ve icerik taslagini cikarir.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span>🔍</span>
+            <span><strong>Google Aciklamasi:</strong> Siteniz Google&apos;da ciktiginda altinda gorunen kisa tanitim yazilarini olusturur.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span>✏️</span>
+            <span><strong>Baslik Onerileri:</strong> Insanlarin tiklamak isteyecegi dikkat cekici basliklar olusturur.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span>🔑</span>
+            <span><strong>Anahtar Kelime Bul:</strong> Insanlarin Google&apos;da ne arattigini bulur, iceriginizi ona gore yazarsiniz.</span>
+          </li>
+        </ul>
+      </div>
 
       <div className="space-y-6">
         <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-3">
-              <label className="block text-sm font-medium text-slate-700">Arac Secin</label>
+              <label className="block text-sm font-medium text-slate-700">Ne olusturmak istiyorsunuz?</label>
               <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                 {TOOLS.map((t) => {
                   const isSelected = tool === t.id;
@@ -146,13 +167,13 @@ export default function BlogSeoClient() {
 
             <div>
               <label className="mb-1.5 block text-sm font-medium text-slate-700">
-                Ana Anahtar Kelime <span className="text-red-500">*</span>
+                Konu veya Anahtar Kelime <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={anahtarKelime}
                 onChange={(e) => setAnahtarKelime(e.target.value)}
-                placeholder="Orn: dijital pazarlama stratejileri, saglikli beslenme, react native gelistirme"
+                placeholder="Orn: dijital pazarlama, saglikli beslenme, ev dekorasyonu, kilo verme"
                 className="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20"
                 required
               />

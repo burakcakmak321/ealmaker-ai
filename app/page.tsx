@@ -8,10 +8,11 @@ import {
 } from "@/lib/data";
 
 export const metadata: Metadata = {
-  title: "AI Destekli Metin Asistani | E-Ticaret, Sosyal Medya, Resmi Yazi, SEO",
+  title: "Dilekçe Nasıl Yazılır | Metin Dönüştürücü | AI Destekli Metin Platformu",
   description:
-    "E-ticaret urun aciklamasi, sosyal medya icerigi, blog SEO araclari, dilekce, fatura itirazi ve CV taslagi. Turkiye geneli KVKK uyumlu AI destekli metin platformu.",
-  keywords: "e-ticaret urun aciklamasi, sosyal medya icerik, blog seo, dilekce, fatura itirazi, cv olusturucu, metin donusturucu, yapay zeka yazi, ai metin",
+    "Dilekçe nasıl yazılır, metin dönüştürücü, fatura itirazı, pazarlık mesajı. E-ticaret ürün açıklaması, sosyal medya içerik, blog SEO. Türkiye geneli AI destekli metin platformu.",
+  keywords:
+    "dilekçe nasıl yazılır, dilekçe örneği, metin dönüştürücü, fatura itirazı, resmi yazı nasıl yazılır, AI metin yazma, e-ticaret ürün açıklaması, cv oluşturucu, metin insanlaştırma",
 };
 
 const CATEGORIES = [
@@ -53,11 +54,10 @@ const CATEGORIES = [
 ];
 
 const QUICK_TOOLS = [
-  { title: "Trendyol Urun Aciklamasi", href: "/e-ticaret", icon: "🛒" },
-  { title: "Instagram Icerik", href: "/sosyal-medya", icon: "📸" },
-  { title: "Metin Insanlastir", href: "/metin-donusturucu", icon: "🧑" },
-  { title: "Blog Outline", href: "/blog-seo", icon: "📑" },
-  { title: "Fatura Itirazi", href: "/fatura", icon: "📄" },
+  { title: "E-Ticaret Aciklama", href: "/e-ticaret", icon: "🛒" },
+  { title: "Sosyal Medya", href: "/sosyal-medya", icon: "📸" },
+  { title: "Metin Donusturucu", href: "/metin-donusturucu", icon: "🔄" },
+  { title: "Resmi Yazı", href: "/dilekce", icon: "📄" },
   { title: "CV Olustur", href: "/cv", icon: "📋" },
 ];
 

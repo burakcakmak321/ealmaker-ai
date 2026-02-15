@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 import PlatformSelector from "@/components/PlatformSelector";
 import ToneSelector from "@/components/ToneSelector";
 import HumanizeButton from "@/components/HumanizeButton";
@@ -109,8 +108,6 @@ export default function EticaretClient() {
         description="Pazar yeri algoritmalarına uygun SEO dostu başlık ve açıklama oluşturun. Trendyol, Hepsiburada, Amazon ve daha fazlası."
         icon="🛒"
       />
-
-      <Disclaimer />
 
       <div className="space-y-6">
         <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">

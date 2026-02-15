@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 import ToneSelector from "@/components/ToneSelector";
 import HumanizeButton from "@/components/HumanizeButton";
 import { SOCIAL_PLATFORMS, CONTENT_TYPES } from "@/lib/social-media-config";
@@ -129,8 +128,6 @@ export default function SosyalMedyaClient() {
         description="Viral hooklar, video senaryoları, dikkat çekici captionlar ve etkili CTA'lar. Konunuza özel, profesyonel içerikler."
         icon="📱"
       />
-
-      <Disclaimer />
 
       <div className="mb-8 rounded-2xl border border-emerald-200 bg-gradient-to-r from-emerald-50 to-teal-50 p-6">
         <h3 className="flex items-center gap-2 font-bold text-emerald-800">

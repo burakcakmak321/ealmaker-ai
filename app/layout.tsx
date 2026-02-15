@@ -9,6 +9,7 @@ import AuthNav from "@/components/AuthNav";
 import CookieConsent from "@/components/CookieConsent";
 import { SITE_NAME, BUSINESS } from "@/lib/brand";
 import { ToastProvider } from "@/components/Toast";
+import NavDropdown from "@/components/NavDropdown";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -26,7 +27,9 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "E-ticaret urun aciklamasi, sosyal medya icerigi, blog SEO, dilekce, fatura itirazi ve CV. Turkiye geneli AI destekli metin platformu.",
+    "Dilekçe nasıl yazılır, metin dönüştürücü, fatura itirazı, e-ticaret ürün açıklaması. AI destekli metin platformu. Türkiye geneli KVKK uyumlu.",
+  keywords:
+    "dilekçe nasıl yazılır, metin dönüştürücü, fatura itirazı, dilekçe örneği, resmi yazı nasıl yazılır, AI metin, e-ticaret ürün açıklaması, cv oluşturucu",
   openGraph: {
     type: "website",
     url: SITE_URL,
@@ -55,9 +58,8 @@ const navLinks = [
   { href: "/e-ticaret", label: "E-Ticaret" },
   { href: "/sosyal-medya", label: "Sosyal Medya" },
   { href: "/blog-seo", label: "Blog & SEO" },
-  { href: "/metin-donusturucu", label: "Metin Donustur" },
-  { href: "/fatura", label: "Fatura" },
-  { href: "/dilekce", label: "Dilekce" },
+  { href: "/metin-donusturucu", label: "Metin Dönüştür" },
+  { href: "/cv", label: "CV" },
   { href: "/fiyatlandirma", label: "Fiyat" },
 ];
 
@@ -137,6 +139,20 @@ export default function RootLayout({
             }),
           }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              name: SITE_NAME,
+              applicationCategory: "BusinessApplication",
+              operatingSystem: "Web",
+              description: "Dilekçe nasıl yazılır, metin dönüştürücü, fatura itirazı, e-ticaret ürün açıklaması. AI destekli metin platformu.",
+              offers: { "@type": "Offer", price: "0", priceCurrency: "TRY" },
+            }),
+          }}
+        />
       </head>
       <body className="min-h-screen antialiased font-sans bg-slate-50">
         <ToastProvider>
@@ -153,7 +169,17 @@ export default function RootLayout({
                 <span>{SITE_NAME}</span>
               </Link>
               <nav className="flex flex-wrap items-center justify-end gap-0.5 sm:gap-1" aria-label="Ana menü">
-                {navLinks.map(({ href, label }) => (
+                {navLinks.slice(0, 3).map(({ href, label }) => (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="rounded-lg px-3.5 py-2.5 text-sm font-medium text-slate-600 transition hover:bg-brand-50/80 hover:text-brand-700"
+                  >
+                    {label}
+                  </Link>
+                ))}
+                <NavDropdown />
+                {navLinks.slice(3).map(({ href, label }) => (
                   <Link
                     key={href}
                     href={href}

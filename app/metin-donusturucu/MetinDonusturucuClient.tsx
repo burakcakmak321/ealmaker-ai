@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 import { TRANSFORMATION_TYPES, type TransformationType } from "@/lib/tone-presets";
 import { CopyButton } from "@/components/CopyButton";
 
@@ -72,8 +71,6 @@ export default function MetinDonusturucuClient() {
         description="Metninizi resmi, sade, profesyonel veya insan yazısı gibi dönüştürün. AI tarafından yazılmış metinleri doğallaştırın."
         icon="🔄"
       />
-
-      <Disclaimer />
 
       <div className="mb-8 rounded-2xl border border-purple-200 bg-gradient-to-r from-purple-50 to-indigo-50 p-6">
         <h3 className="flex items-center gap-2 font-bold text-purple-800">

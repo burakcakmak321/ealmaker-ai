@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 
 export default function PazarlikClient() {
   const { user, loading: authLoading } = useAuth();
@@ -78,8 +77,6 @@ export default function PazarlikClient() {
         description="Sahibinden, mağaza veya online platformlar için pazarlık mesajı. Hedef fiyata uygun, profesyonel metin oluşturur."
         icon="💬"
       />
-
-      <Disclaimer />
 
       <div className="rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_4px_24px_-4px_rgba(0,0,0,.08)] sm:p-8">
         <form onSubmit={handleSubmit} className="space-y-5">

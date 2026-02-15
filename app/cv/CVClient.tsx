@@ -4,7 +4,6 @@ import { useState, useRef, useCallback } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 
 const HAZIR_POZISYONLAR = [
   "Yazılım Geliştirici",
@@ -111,8 +110,6 @@ export default function CVClient() {
         description="Deneyim, eğitim ve becerilerinizi girin; AI destekli profesyonel CV taslağı oluşturalım. Kendi ihtiyaçlarınıza göre düzenleyebilirsiniz."
         icon="📋"
       />
-
-      <Disclaimer />
 
       <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 shadow-[0_1px_3px_rgba(0,0,0,.04)]">
         <p className="mb-3 text-sm font-semibold text-slate-700">Hızlı örnek pozisyonlar</p>

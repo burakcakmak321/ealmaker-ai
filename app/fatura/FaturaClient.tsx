@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useAuth } from "@/components/AuthGuard";
 import ResultWithBlur from "@/components/ResultWithBlur";
 import PageHeader from "@/components/PageHeader";
-import Disclaimer from "@/components/Disclaimer";
 
 export default function FaturaClient() {
   const { user, loading: authLoading } = useAuth();
@@ -76,8 +75,6 @@ export default function FaturaClient() {
         description="İnternet, banka veya operatör faturanız için AI destekli indirim veya iade talebi taslağı. Kurumun dilinde, profesyonel ifadelerle oluşturulur."
         icon="📄"
       />
-
-      <Disclaimer />
 
       <div className="mb-8 rounded-2xl border border-slate-200/80 bg-slate-50/60 p-6 shadow-[0_1px_3px_rgba(0,0,0,.04)]">
         <p className="mb-3 text-sm font-semibold text-slate-700">Hızlı senaryo</p>
