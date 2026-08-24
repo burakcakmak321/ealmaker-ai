@@ -6,7 +6,13 @@ module.exports = {
     'src/core/rng.js',
     'src/core/math2d.js',
     'src/core/pool.js',
+    'src/core/intmap.js',
     'src/core/loop.js',
+    'src/physics/shapes.js',
+    'src/physics/body.js',
+    'src/physics/collision.js',
+    'src/physics/solver.js',
+    'src/physics/world.js',
     'src/game/schema.js',
     'src/game/levels.js'
   ],

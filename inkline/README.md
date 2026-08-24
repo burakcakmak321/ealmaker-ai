@@ -8,8 +8,8 @@ teslim tek `dist/index.html` dosyasidir.
 ```
 inkline/
   src/
-    core/    config.js  rng.js  math2d.js  pool.js  loop.js
-    physics/ (Faz 1)  world.js  body.js  shapes.js  collision.js  solver.js
+    core/    config.js  rng.js  math2d.js  pool.js  intmap.js  loop.js
+    physics/ shapes.js  body.js  collision.js  solver.js  world.js
     game/    schema.js  levels.js   (Faz 2: ink.js  entities.js  rules.js)
     render/  (Faz 3)  renderer.js  palette.js  particles.js  camera.js
     audio/   (Faz 5)  synth.js
@@ -21,10 +21,11 @@ inkline/
     build.js      template + kaynaklar -> dist/index.html, teslim denetimi
     verify.js     spec 12. bolumdeki bes zorunlu kontrol
     test.js       birim test kosucusu (tests/*.test.js)
+    bench.js      adim maliyeti + ana dongu alokasyon olcumu
     smoke.js      dist/index.html'i gercek Chromium'da file:// ile acar
     template.html WebView sertlestirilmis kabuk
   tests/
-    core.test.js  schema.test.js
+    core.test.js  intmap.test.js  schema.test.js  physics.test.js
   dist/           uretilen cikti (Faz 6'ya kadar git'e girmez)
 ```
 
@@ -48,10 +49,11 @@ Render katmani fizige bakar, fizik render'a asla bakmaz.
 
 | Komut | Ne yapar |
 |---|---|
-| `npm test` | Birim testler (31 test) |
+| `npm test` | Birim testler (79 test) |
 | `npm run verify` | Bes zorunlu kontrol + kapsama, ozet tablo |
 | `npm run build` | `dist/index.html` uretir, teslim kurallarini denetler |
 | `npm run smoke` | Ciktiyi Chromium'da `file://` ile acar, konsolu denetler |
+| `npm run bench` | Fizik butcesi ve alokasyon raporu |
 | `npm run check` | Hepsi, sirayla |
 
 `build.js` ciktida su kaliplari arar ve bulursa derlemeyi basarisiz sayar:
@@ -125,14 +127,67 @@ Ortak: `x`, `y`, opsiyonel `angle`.
    yuvarlanmayi birakmaz; kazanma kosulu `|v| < 0.5` oldugu icin kedinin
    durabilmesi gerekiyor.
 
+## Fizik motoru
+
+Sabit adim `dt = 1/120`, kare basina en fazla 4 substep, accumulator 0.25s'de
+kirpilir. Cizim ve render katmanindan tamamen bagimsiz: `verify.js` motoru
+canvas olmadan kosturur.
+
+| Parca | Yaklasim |
+|---|---|
+| Sekiller | `Circle`, `ConvexPolygon` (max 8 kose, giris hangi yonde olursa olsun CCW'ye normalize edilir) |
+| Compound | Bir body birden fazla shape tasir; konum daima kutle merkezidir, orijin/COM ikiligi yok |
+| Broadphase | Sabit uniform izgara (1.0 birim hucre), sayma siralamasi, tamamen typed array — adim basina sifir alokasyon |
+| Narrowphase | circle-circle, circle-polygon (yuz + kose bolgeleri), polygon-polygon (SAT + Sutherland-Hodgman, max 2 nokta) |
+| Warm starting | Kararli temas ID'leri (refFace, incFace, clipIndex, flip) |
+| Cozucu | Sequential impulse, 8 hiz + 3 pozisyon iterasyonu, Coulomb surtunmesi `sqrt(fA*fB)` |
+| Sekme | Hiz iterasyonlarindan sonra ayri gecis, yaklasma hizi uzerinden |
+| Uyku | Union-find ada tespiti; ada topluca uyur, topluca uyanir |
+| Tunelleme | Supurulmus AABB + spekulatif temas (marj = goreli hiz x dt) |
+
+### Dogrulanmis davranislar
+
+`npm test` (79 test) sunlari kanitliyor:
+
+- Kutle/atalet analitik degerlerle birebir (kutu, cember, compound)
+- Bes kutuluk yigin 10 saniye ayakta, sonra hepsi uyuyor; dinlenirken
+  titreme `< 1e-4` birim
+- 20-200 birim/s araliginda hicbir hizda ince duvar delinmiyor
+  (hem cember hem kutu)
+- Ayni girdi 600 ve 900 adim sonra ayni state hash'i — ayni surecte ve
+  ayri Node sureclerinde
+- Cisim icinde dogan murekkep cizgisi sonsuz kuvvet uretmiyor, NaN cikmiyor
+- `world.clear()` sonrasi manifold, body ve shape id sizintisi yok
+- NaN enjeksiyonu: dev modda hata firlatir, prod modda guvenli state'e doner
+
+### Butce (`npm run bench`)
+
+| Sahne | Adim | 60 fps karesi | Alokasyon |
+|---|---|---|---|
+| Gercekci (uyku acik, 32 body / 102 shape) | 13 us | 0.03 ms (%0.2) | 0.2 bayt/adim |
+| En kotu (hicbir sey uyumuyor) | 199 us | 0.40 ms (%2.4) | 24 bayt/adim |
+
+Kalan 24 bayt V8'in double kutulamasi (heap number); oyun nesnesi
+alokasyonu yok. Bu bir masaustu olcumu — orta seviye Android icin 5-10x
+carpan varsayilsa bile kare butcesinin altinda kaliyor.
+
+### Spec'ten sapma: Baumgarte'nin yeri
+
+Spec `beta = 0.2` ve 3 pozisyon iterasyonu istiyor. Ikisini birden
+(hiz cozucusunde bias + ayrica pozisyon gecisi) uygulamak sisteme enerji
+ekler ve titreme uretir. Sayilar aynen korundu, duzeltme dogru yerde:
+`beta` pozisyon cozucusunun katsayisi, hiz cozucusu yalnizca spekulatif
+temas ve sekmeyle ilgileniyor.
+
 ## Faz durumu
 
 - **Faz 0 — bitti**: mimari, config, sema + dogrulayici, build/verify/test/smoke
-  hatti, WebView sertlestirilmis kabuk, Bolum 1 (sema capasi ve Faz 2 test bolumu).
-- **Faz 1 — sirada**: fizik motoru + birim testleri. Gorselsiz.
-- Faz 2 cizim sistemi, Faz 3 render, Faz 4 50 bolum + verify, Faz 5 UI/ses,
-  Faz 6 tek dosya sertlestirme ve kabul listesi.
+  hatti, WebView sertlestirilmis kabuk, Bolum 1.
+- **Faz 1 — bitti**: fizik motoru + 79 birim test. Gorselsiz, deterministik,
+  butce icinde.
+- **Faz 2 — sirada**: cizim sistemi, oyun dongusu, debug render.
+- Faz 3 render, Faz 4 50 bolum + verify, Faz 5 UI/ses, Faz 6 tek dosya.
 
 `verify.js` su anda 1., 2. ve 3. kontrolu `INK.Sim` yuklu olmadigi icin
-ATLANDI raporluyor ve "TESLIME HAZIR: HAYIR" diyor — Faz 1/2 gelince
-kendiliginden devreye girecekler.
+ATLANDI raporluyor ve "TESLIME HAZIR: HAYIR" diyor — Faz 2'de kosucu
+gelince kendiliginden devreye girecekler.

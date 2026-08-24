@@ -8,6 +8,7 @@
     "verify": "node tools/verify.js",
     "test": "node tools/test.js",
     "smoke": "node tools/smoke.js",
-    "check": "node tools/test.js && node tools/verify.js && node tools/build.js && node tools/smoke.js"
+    "check": "node tools/test.js && node tools/verify.js && node tools/build.js && node tools/smoke.js",
+    "bench": "node --expose-gc tools/bench.js"
   }
 }

@@ -54,7 +54,20 @@ var config = {
      dunyada anlamli karsiligi ~1 birim (referans portre ende ~64 px). */
   broadphase: {
     cellSize: 1.0,
-    maxCells: 4096
+    aabbMargin: 0.02,        // AABB sismesi, gereksiz yeniden hesaplamayi keser
+    gridMinX: -2, gridMinY: -2,
+    gridMaxX: WORLD_W + 2, gridMaxY: WORLD_H + 2
+  },
+
+  /* --- Carpisma marji ---
+     Spekulatif temas: cisimler henuz degmeden temas uretilir, cozucu
+     yaklasma hizini sinirlar. Tunellemenin asil panzehiri bu. */
+  collision: {
+    speculativeDistance: 0.05,
+    /* Tavan, bir adimda alinabilecek en buyuk yolun (maxLinearVelocity * dt
+       = 1.667 birim) uzerinde olmali; altinda kalirsa hizli cisim ince
+       duvarin icine ornekleyip gecebiliyor. */
+    maxSpeculative: 1.8
   },
 
   /* --- Cizim / murekkep --- */
