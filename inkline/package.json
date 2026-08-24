@@ -1,0 +1,13 @@
+{
+  "name": "inkline",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Inkline — tek dosyalik, offline 2D fizik bulmaca oyunu (Android WebView)",
+  "scripts": {
+    "build": "node tools/build.js",
+    "verify": "node tools/verify.js",
+    "test": "node tools/test.js",
+    "smoke": "node tools/smoke.js",
+    "check": "node tools/test.js && node tools/verify.js && node tools/build.js && node tools/smoke.js"
+  }
+}

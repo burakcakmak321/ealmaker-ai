@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#14161F">
+<meta name="color-scheme" content="dark">
+<title>Inkline</title>
+<style>
+  :root {
+    --bg: #14161F;
+    --pad-top: env(safe-area-inset-top, 0px);
+    --pad-bottom: env(safe-area-inset-bottom, 0px);
+    --pad-left: env(safe-area-inset-left, 0px);
+    --pad-right: env(safe-area-inset-right, 0px);
+  }
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%;
+    background: var(--bg);
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+    -webkit-user-select: none; user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+    color: #EDEFF5;
+  }
+  #stage {
+    position: fixed; inset: 0;
+    padding: var(--pad-top) var(--pad-right) var(--pad-bottom) var(--pad-left);
+    display: flex; align-items: center; justify-content: center;
+  }
+  /* 9:16 disi ekranlarda letterbox — dunya olcegi hic bozulmaz */
+  #game { display: block; touch-action: none; background: var(--bg); }
+  #boot-error {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    padding: 12px 16px calc(12px + var(--pad-bottom));
+    background: #3A1620; color: #FFD3DE; font-size: 13px; line-height: 1.4;
+    white-space: pre-wrap; display: none;
+  }
+</style>
+</head>
+<body>
+<div id="stage"><canvas id="game"></canvas></div>
+<div id="boot-error"></div>
+<script>
+/*__INKLINE_SOURCES__*/
+</script>
+<script>
+(function () {
+  'use strict';
+  var canvas = document.getElementById('game');
+  var errBox = document.getElementById('boot-error');
+
+  function fail(e) {
+    errBox.style.display = 'block';
+    errBox.textContent = 'Baslatma hatasi: ' + (e && e.message ? e.message : e);
+  }
+  window.addEventListener('error', function (ev) { fail(ev.error || ev.message); });
+
+  /* WebView sertlestirmesi */
+  document.addEventListener('contextmenu', function (e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('dblclick', function (e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('gesturestart', function (e) { e.preventDefault(); }, { passive: false });
+  document.addEventListener('touchmove', function (e) {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+
+  /* Donanim geri tusu: uygulamadan cikma, menuye don */
+  try {
+    history.pushState({ ink: 1 }, '');
+    window.addEventListener('popstate', function () {
+      history.pushState({ ink: 1 }, '');
+      if (window.INK && INK.app && INK.app.onBack) INK.app.onBack();
+    });
+  } catch (e) { /* file:// altinda history kisitli olabilir */ }
+
+  window.addEventListener('visibilitychange', function () {
+    if (window.INK && INK.app && INK.app.onVisibility) INK.app.onVisibility(!document.hidden);
+  });
+  document.addEventListener('visibilitychange', function () {
+    if (window.INK && INK.app && INK.app.onVisibility) INK.app.onVisibility(!document.hidden);
+  });
+
+  function resize() {
+    var stage = document.getElementById('stage');
+    var availW = stage.clientWidth, availH = stage.clientHeight;
+    var aspect = INK.config.world.aspect;             // 9/16
+    var cssW = availW, cssH = Math.round(availW / aspect);
+    if (cssH > availH) { cssH = availH; cssW = Math.round(availH * aspect); }
+    var dpr = Math.min(window.devicePixelRatio || 1, INK.config.render.maxDPR);
+    canvas.style.width = cssW + 'px';
+    canvas.style.height = cssH + 'px';
+    canvas.width = Math.round(cssW * dpr);
+    canvas.height = Math.round(cssH * dpr);
+    if (INK.app && INK.app.onResize) INK.app.onResize(cssW, cssH, dpr);
+  }
+  window.addEventListener('resize', resize);
+  window.addEventListener('orientationchange', resize);
+
+  try {
+    if (!window.INK) throw new Error('INK yuklenmedi');
+    resize();
+    if (typeof INK.boot === 'function') INK.boot(canvas);
+  } catch (e) { fail(e); }
+})();
+</script>
+</body>
+</html>
