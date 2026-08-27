@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "etsy:check": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/ts-resolver.mjs scripts/etsy-validate-demo.mjs",
+    "etsy:analyze": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --import ./scripts/ts-resolver.mjs scripts/etsy-analyze-demo.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.8.0",
