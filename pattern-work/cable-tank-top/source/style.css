@@ -1,0 +1,87 @@
+/* Cable Tank Top - print stylesheet (Chromium, US Letter) */
+:root {
+  --green: #124c3a;
+  --alt: #f5f7f6;
+  --note: #eaf2ee;
+  --text: #222;
+}
+
+@page {
+  size: letter portrait;
+  margin: 14mm 15mm 18mm 15mm;
+  @bottom-center {
+    content: "MadeByShk | Cable Tank Top | M & L";
+    font-family: Carlito, "DejaVu Sans", sans-serif;
+    font-size: 8pt;
+    color: #666;
+  }
+  @bottom-right {
+    content: "Page " counter(page) " of " counter(pages);
+    font-family: Carlito, "DejaVu Sans", sans-serif;
+    font-size: 8pt;
+    color: #666;
+  }
+}
+@page landscape {
+  size: letter landscape;
+  margin: 11mm 11mm 15mm 11mm;
+}
+.landscape { page: landscape; }
+
+html { font-family: Carlito, "DejaVu Sans", sans-serif; font-size: 10.2pt; color: var(--text); line-height: 1.32; }
+body { margin: 0; }
+
+section.page { break-before: page; }
+section.page:first-of-type { break-before: auto; }
+
+h1 { color: var(--green); font-size: 26pt; text-align: center; margin: 2mm 0 1mm; letter-spacing: 0.5pt; }
+.subtitle { text-align: center; font-weight: bold; color: #333; font-size: 11pt; margin: 0 0 4mm; }
+h2 { color: var(--green); font-size: 19pt; margin: 0 0 2.5mm; }
+h2 .num { margin-right: 3mm; }
+h3 { color: var(--green); font-size: 12.5pt; margin: 3.5mm 0 1.2mm; }
+p { margin: 0 0 1.8mm; }
+ul { margin: 0 0 2mm; padding-left: 6mm; }
+li { margin-bottom: 1mm; }
+
+table { width: 100%; border-collapse: collapse; margin: 1mm 0 2.5mm; font-size: 9.4pt; }
+th { background: var(--green); color: #fff; text-align: left; font-weight: bold; padding: 1.4mm 2mm; text-transform: uppercase; font-size: 8.6pt; }
+td { padding: 1.2mm 2mm; vertical-align: top; }
+tbody tr:nth-child(even) td { background: var(--alt); }
+table.cols3 th:first-child, table.cols3 td:first-child { width: 34%; }
+table.cols3 th:nth-child(2), table.cols3 td:nth-child(2) { width: 33%; }
+td.sym { width: 30mm; vertical-align: middle; }
+td.sym img { display: block; }
+
+.note { background: var(--note); padding: 2mm 3mm; margin: 2mm 0 2.5mm; break-inside: avoid; }
+.note b:first-child { color: var(--green); text-transform: uppercase; margin-right: 1.5mm; }
+
+.cover-photo { display: block; margin: 0 auto; width: 118mm; }
+.caption { text-align: center; font-size: 8.4pt; font-style: italic; color: #555; margin: 1.5mm 8mm 3mm; }
+
+.schematics { display: flex; justify-content: space-between; margin: 0 0 1mm; }
+.schematics img { width: 92mm; }
+.fig-note { font-size: 8.4pt; color: #555; text-align: center; margin: 0 0 2mm; }
+
+.panelmap { display: flex; width: 100%; margin: 2mm 0 1mm; font-size: 8.2pt; text-align: center; }
+.panelmap div { border: 0.3mm solid var(--green); border-right: none; padding: 1mm 0; }
+.panelmap div:last-child { border-right: 0.3mm solid var(--green); }
+.panelmap .p { background: #e3e8e5; }
+.panelmap .m { background: #d3e5da; font-weight: bold; }
+.panelmap span { display: block; font-weight: normal; color: #444; }
+
+.abbr { columns: 2; column-gap: 8mm; font-size: 9.2pt; margin: 1mm 0 2mm; }
+.abbr div { break-inside: avoid; padding: 0.5mm 0; display: flex; }
+.abbr b { flex: 0 0 19mm; color: var(--green); }
+
+.motifs { display: flex; justify-content: space-around; align-items: flex-end; margin: 3mm 0 2mm; }
+.motifs figure { margin: 0; text-align: center; }
+.motifs figcaption { font-weight: bold; color: var(--green); font-size: 11pt; margin-bottom: 1mm; }
+
+.fullchart { text-align: center; margin: 1mm 0 1mm; }
+.fullchart img { width: 254mm; }
+.legend-row { display: flex; flex-wrap: wrap; gap: 2mm 6mm; font-size: 8.8pt; align-items: center; margin: 1mm 0 2mm; }
+.legend-row span { display: inline-flex; align-items: center; gap: 1.5mm; }
+.legend-row img { height: 4.5mm; }
+
+.small { font-size: 8.8pt; }
+.licence { font-size: 8.8pt; margin-top: 3mm; }
