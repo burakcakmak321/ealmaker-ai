@@ -26,3 +26,14 @@ Principle: keep design, sizes M & L, all stitch counts, row map and measurements
 | D19 (G) | finishing | weaving in ends missing; band BO; final blocking | Add: weave in ends on WS along seams; light steam/wet block bands. | – | finishing |
 
 Everything else (size table, row map, cable definitions, written panel table, pp.8–9 tables, pick-ups, QC checklist, problem solving, support/licence text, footer "MadeByShk | Cable Tank Top | M & L") is kept, with copy-edits only.
+
+## Round 2 (from 04-audit.md and 05-layout.md)
+| ID | Source | Decision |
+|---|---|---|
+| D20 | A1 | Keep pick-up counts (92/104). Reword: "Along row-end edges pick up slightly fewer than 3 sts for every 4 rows, as given in the table, so the band sits snugly." Remove the claim that totals are "matched to the stated gauge". |
+| D21 | A2 + layout | Renumber chart columns conventionally: column 1 = RIGHTMOST cell (first stitch worked on RS rows). Update all text: "RS rows: read right to left starting at column 1". Motif charts and full chart. |
+| D22 | A3 | "The block layout is symmetrical; work the cables exactly as charted/written (cable directions are not mirrored)." |
+| D23 | A4 | 900 m / 984 yd. |
+| D24 | A5 | Add once (size table note): "Lengths are measured before the shoulder bind-off row." |
+| D25 | layout p.3, p.6 | Minimum label size ≈ 8 pt on schematic and charts (column numbers ≥ ~7 pt); check no label collisions after enlarging. |
+| D26 | layout page count | Force page breaks only where sensible (cover, 01, 04 charts, 05 landscape chart, and where a section would otherwise split badly); let other sections flow; keep headings with following content; no split tables/notes/figures. Target ~10 pages. Optional: cover photo width 135 mm. |
