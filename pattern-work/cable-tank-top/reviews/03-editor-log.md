@@ -45,3 +45,21 @@ Notes / not applied
 - All decisions D1–D19 applied. D16 and D17: no change, by decision.
 - Fibre content and yarn brand are not in the original and were not added.
 - Fonts: original Lato is not installed; Carlito (embedded) used. All symbols (×, →, –) render in Carlito.
+
+## Round 2 (D20–D26)
+
+| # | Location | Old | New | Reason (ID) |
+|---|---|---|---|---|
+| R1 | Sec. 10 neckline band, text under table | "distribute approximately 3 stitches for every 4 rows … matched to the stated 18-st / 24-row gauge" | "Along row-end edges pick up slightly fewer than 3 sts for every 4 rows, as given in the table, so the band sits snugly. The totals are multiples of 4 for the 2×2 rib." Counts 92/104 unchanged | D20 |
+| R2 | All charts (`build_figures.py` `draw_chart`) | Column 1 = leftmost; full chart numbered 1…54 left→right | Printed column 1 = RIGHTMOST cell (first st of RS rows); full chart labels 54, 50, 45 … 5, 1; motif charts n…1. New assert: printed column number of every RS element = its working-order st number | D21 |
+| R3 | Sec. 03 chart key, sec. 04 intro, sec. 05 intro | "read right to left (start at column 54)"; "Numbers under each chart are the stitch numbers within the motif" | "Chart columns are numbered from the right: column 1 is the rightmost cell…"; RS rows "read right to left, starting at column 1"; "column numbers within the motif; column 1 is the rightmost cell" | D21 |
+| R4 | Sec. 03 panel map text | "The panel is symmetrical, so it reads the same in working order." | "The block layout is symmetrical; work the cables exactly as charted/written (cable directions are not mirrored)." | D22 |
+| R5 | Sec. 01 materials | 900 m / 985 yd | 900 m / 984 yd | D23 |
+| R6 | Sec. 01, under size table | – | "Lengths are measured before the shoulder bind-off row." (once) | D24 |
+| R7 | Full chart labels | Row numbers 2.5 mm (7 pt), block labels 6–6.7 pt, column numbers 5.6 pt | Row numbers and block labels 3.0 mm (≈8.5 pt), column numbers 2.85 mm (≈8 pt). `text()` now asserts a minimum of 2.85 mm for every chart/schematic label | D25 |
+| R8 | Motif charts | 6.5 mm cells, shrunk by layout | 5.6 mm cells at native size, row numbers 3.1 mm, column numbers 2.85 mm | D25 |
+| R9 | Schematics | Labels 2.5 mm (≈7 pt) | All labels 2.85 mm (≈8 pt); armhole and to-underarm labels split into name + value lines; back-neck block = "Back neck / width / depth"; label offsets widened; padding enlarged; ligatures disabled in SVG text (no "ﬁ" in copied text). Checked at 200 dpi: no collisions | D25 |
+| R10 | `style.css`, `pattern.html` | Forced page break before every section | Forced breaks only on cover, 01, 04, 05 (landscape) and 06 (follows the landscape page); 02→03 and 07→11 flow. h2/h3 kept with following content; tables, rows, notes, figures, list items not split; section heads of 07 (row-13 block), 08, 09 and 11 wrapped with their intro and first table so no heading is stranded | D26 |
+| R11 | Cover photo | 118 mm wide | 135 mm wide | D26 (optional) |
+
+Round-2 result: 12 pages (page 6 landscape). Not met: the D26 target of about 10 pages. The flow version produced 11 pages only when the headings of 08 and 09 were stranded at page bottoms with their tables on the next page. Keeping headings with their tables, with no table split (both D26 rules), gives 12. Tighter spacing (10 pt body, smaller paddings) was tested and still gave 12, so I reverted it to keep the original look. To reach 10–11 pages, the shaping tables in 08/09 would have to be allowed to split between rows, or content would have to move between sections. Both need a manager decision.

@@ -1,26 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="92mm" height="106.92mm" viewBox="0 0 92 106.92">
+<svg xmlns="http://www.w3.org/2000/svg" width="92mm" height="109.92mm" viewBox="0 0 92 109.92">
 <defs><marker id="a" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0.5 L5.5,3 L0,5.5 z" fill="#333"/></marker></defs>
-<polygon points="13.06,93.92 76.94,93.92 76.94,48.08 74.17,48.08 74.17,47.04 71.39,43.4 71.39,21 56.11,21 56.11,25.17 33.89,25.17 33.89,21 18.61,21 18.61,43.4 15.83,47.04 15.83,48.08 13.06,48.08" fill="#f2f6f4" stroke="#124c3a" stroke-width="0.6" stroke-linejoin="round"/>
-<polyline points="33.89,21 33.89,29.85 36.67,33.5 36.67,34.54 53.33,34.54 53.33,33.5 56.11,29.85 56.11,21" fill="none" stroke="#124c3a" stroke-width="0.5" stroke-dasharray="1.4,1"/>
-<line x1="13.06" y1="98.92" x2="76.94" y2="98.92" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="45" y="103.42" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">Width 51.1 cm / 20.1 in</text>
-<line x1="8.06" y1="93.92" x2="8.06" y2="21" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="6.76" y="57.46" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222" transform="rotate(-90 6.76 57.46)">Length 58.3 cm / 23.0 in</text>
-<line x1="81.44" y1="93.92" x2="81.44" y2="48.08" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="84.64" y="71" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222" transform="rotate(90 84.64 71)">To underarm 36.7 cm / 14.4 in</text>
-<line x1="81.44" y1="48.08" x2="81.44" y2="21" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="84.64" y="34.54" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222" transform="rotate(90 84.64 34.54)">Armhole 21.7 cm / 8.5 in</text>
-<line x1="56.11" y1="18" x2="71.39" y2="18" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="65.75" y="12.4" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">Shoulder</text>
-<text x="65.75" y="15.6" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">12.2 cm / 4.8 in</text>
-<line x1="33.89" y1="18" x2="56.11" y2="18" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="42" y="9.2" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">Back neck</text>
-<text x="42" y="12.4" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">17.8 cm / 7.0 in wide</text>
-<text x="42" y="15.6" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">3.3 cm / 1.3 in deep</text>
-<line x1="45" y1="21" x2="45" y2="34.54" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
-<text x="45" y="38.14" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">Front neck depth</text>
-<text x="45" y="41.14" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.5" text-anchor="middle" font-weight="normal" fill="#222">10.8 cm / 4.3 in</text>
-<text x="45" y="73.29" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.62" text-anchor="middle" font-weight="bold" fill="#124c3a">54-st cable panel</text>
-<text x="45" y="76.69" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.38" text-anchor="middle" font-weight="normal" fill="#222">seed-stitch side fields</text>
-<text x="46" y="4.2" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="3.6" text-anchor="middle" font-weight="bold" fill="#124c3a">SIZE L</text>
+<polygon points="12.06,95.92 75.94,95.92 75.94,50.08 73.17,50.08 73.17,49.04 70.39,45.4 70.39,23 55.11,23 55.11,27.17 32.89,27.17 32.89,23 17.61,23 17.61,45.4 14.83,49.04 14.83,50.08 12.06,50.08" fill="#f2f6f4" stroke="#124c3a" stroke-width="0.6" stroke-linejoin="round"/>
+<polyline points="32.89,23 32.89,31.85 35.67,35.5 35.67,36.54 52.33,36.54 52.33,35.5 55.11,31.85 55.11,23" fill="none" stroke="#124c3a" stroke-width="0.5" stroke-dasharray="1.4,1"/>
+<line x1="12.06" y1="100.92" x2="75.94" y2="100.92" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="44" y="105.72" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">Width 51.1 cm / 20.1 in</text>
+<line x1="7.06" y1="95.92" x2="7.06" y2="23" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="5.76" y="59.46" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none" transform="rotate(-90 5.76 59.46)">Length 58.3 cm / 23.0 in</text>
+<line x1="80.44" y1="95.92" x2="80.44" y2="50.08" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="86.64" y="73" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none" transform="rotate(90 86.64 73)">To underarm</text>
+<text x="83.24" y="73" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none" transform="rotate(90 83.24 73)">36.7 cm / 14.4 in</text>
+<line x1="80.44" y1="50.08" x2="80.44" y2="23" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="86.64" y="36.54" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none" transform="rotate(90 86.64 36.54)">Armhole</text>
+<text x="83.24" y="36.54" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none" transform="rotate(90 83.24 36.54)">21.7 cm / 8.5 in</text>
+<line x1="55.11" y1="20" x2="70.39" y2="20" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="67.75" y="13.2" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">Shoulder</text>
+<text x="67.75" y="16.6" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">12.2 cm / 4.8 in</text>
+<line x1="32.89" y1="20" x2="55.11" y2="20" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="39" y="9.8" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">Back neck</text>
+<text x="39" y="13.2" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">17.8 cm / 7.0 in</text>
+<text x="39" y="16.6" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">depth 3.3 cm / 1.3 in</text>
+<line x1="44" y1="23" x2="44" y2="36.54" stroke="#333" stroke-width="0.25" marker-start="url(#a)" marker-end="url(#a)"/>
+<text x="44" y="40.34" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">Front neck depth</text>
+<text x="44" y="43.74" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">10.8 cm / 4.3 in</text>
+<text x="44" y="75.29" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.99" text-anchor="middle" font-weight="bold" fill="#124c3a" style="font-variant-ligatures:none">54-st cable panel</text>
+<text x="44" y="78.89" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="2.85" text-anchor="middle" font-weight="normal" fill="#222" style="font-variant-ligatures:none">seed-stitch side fields</text>
+<text x="46" y="4.2" font-family="Carlito, 'DejaVu Sans', sans-serif" font-size="3.6" text-anchor="middle" font-weight="bold" fill="#124c3a" style="font-variant-ligatures:none">SIZE L</text>
 </svg>

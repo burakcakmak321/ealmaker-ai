@@ -31,8 +31,14 @@
 html { font-family: Carlito, "DejaVu Sans", sans-serif; font-size: 10.2pt; color: var(--text); line-height: 1.32; }
 body { margin: 0; }
 
-section.page { break-before: page; }
+/* Forced page breaks only where marked .newpage (cover, 01, 04, 05, 06); other sections flow. */
+section.page { break-before: auto; margin-top: 5mm; }
+section.page.newpage { break-before: page; margin-top: 0; }
 section.page:first-of-type { break-before: auto; }
+h2, h3 { break-after: avoid; }
+table, tr, .note, .schematics, .motifs, .fullchart, .legend-row, .panelmap, .abbr, li, figure { break-inside: avoid; }
+h3 + p, h3 + ul, h3 + table { break-before: avoid; }
+.keep { break-inside: avoid; }
 
 h1 { color: var(--green); font-size: 26pt; text-align: center; margin: 2mm 0 1mm; letter-spacing: 0.5pt; }
 .subtitle { text-align: center; font-weight: bold; color: #333; font-size: 11pt; margin: 0 0 4mm; }
@@ -55,7 +61,7 @@ td.sym img { display: block; }
 .note { background: var(--note); padding: 2mm 3mm; margin: 2mm 0 2.5mm; break-inside: avoid; }
 .note b:first-child { color: var(--green); text-transform: uppercase; margin-right: 1.5mm; }
 
-.cover-photo { display: block; margin: 0 auto; width: 118mm; }
+.cover-photo { display: block; margin: 0 auto; width: 135mm; }
 .caption { text-align: center; font-size: 8.4pt; font-style: italic; color: #555; margin: 1.5mm 8mm 3mm; }
 
 .schematics { display: flex; justify-content: space-between; margin: 0 0 1mm; }

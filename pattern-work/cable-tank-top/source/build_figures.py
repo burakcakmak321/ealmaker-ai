@@ -15,8 +15,11 @@ Before anything is written the script
   * checks that the written-panel table in pattern.html matches WRITTEN.
 
 Charts are drawn from the simulation, so chart and text cannot diverge.
-Chart convention: column 1 = leftmost column. RS (odd) rows are read right to
-left, so the first stitch worked on an RS row is chart column 54.
+Chart convention (printed column numbers): column 1 = RIGHTMOST cell = first
+stitch worked on an RS row, so printed column n = working-order stitch n.
+RS (odd) rows are read right to left starting at column 1; WS rows left to right.
+Internally, drawing positions `c` are counted from the left edge
+(printed number = last column of the slice - c + 1).
 
 Usage:  python3 build_figures.py      (writes SVG files into img/)
 """
@@ -180,6 +183,11 @@ def chart_rows(model):
             for i, s in enumerate(m[1]):
                 items.append((s, col_of(i)))
         rows[r] = items
+    # printed column number (55 - c) of every RS element equals its working-order st number
+    for r in range(1, ROWS + 1, 2):
+        for (op, i, w, seg, res), it in zip(model[r][1], rows[r]):
+            left = it[1]
+            assert PANEL_W - (left + w - 1) + 1 == i + 1, f"row {r}: column numbering mismatch"
     # glyph-direction assertions (D3): knit strand of T3F travels left, T3B right
     for r, items in rows.items():
         for it in items:
@@ -262,10 +270,15 @@ def cable_svg(op, x, y, cs, a=None, b=None):
     return s
 
 
+MIN_TEXT = 2.85     # mm, approx. 8 pt - minimum label size on charts and schematic (D25)
+
+
 def text(x, y, t, size, anchor="middle", weight="normal", fill="#222", rotate=None):
+    assert size >= MIN_TEXT - 1e-9, f"label '{t}' below minimum size ({size:.2f} mm)"
     tr = f' transform="rotate({rotate} {f(x)} {f(y)})"' if rotate is not None else ""
     return (f'<text x="{f(x)}" y="{f(y)}" font-family="{FONT}" font-size="{f(size)}" '
-            f'text-anchor="{anchor}" font-weight="{weight}" fill="{fill}"{tr}>{t}</text>')
+            f'text-anchor="{anchor}" font-weight="{weight}" fill="{fill}" '
+            f'style="font-variant-ligatures:none"{tr}>{t}</text>')
 
 
 def svg_doc(w, h, body):
@@ -283,7 +296,7 @@ def draw_chart(rows, c0, c1, cs, title_blocks=True, col_numbers="all", repeat_bo
     H = top + ROWS * cs + bottom
     s = [f'<rect width="{f(W)}" height="{f(H)}" fill="#fff"/>']
     gx = gut
-    fs = cs * 0.55
+    fs = max(cs * 0.55, 3.0)
     for r in range(1, ROWS + 1):
         y = top + (ROWS - r) * cs
         for it in rows[r]:
@@ -313,17 +326,16 @@ def draw_chart(rows, c0, c1, cs, title_blocks=True, col_numbers="all", repeat_bo
             a, b = c, c + w - 1
             if a >= c0 and b <= c1:
                 xa, xb = gx + (a - c0) * cs, gx + (b - c0 + 1) * cs
-                s.append(text((xa + xb) / 2, top - cs * 0.55, name, fs * (0.95 if w > 2 else 0.85), weight="bold", fill=GREEN))
+                s.append(text((xa + xb) / 2, top - cs * 0.55, name, max(fs * 0.95, MIN_TEXT), weight="bold", fill=GREEN))
                 s.append(f'<line x1="{f(xa + cs * 0.1)}" y1="{f(top - cs * 0.3)}" x2="{f(xb - cs * 0.1)}" y2="{f(top - cs * 0.3)}" stroke="{GREEN}" stroke-width="{f(cs * 0.05)}"/>')
             c += w
     # column numbers
     yb = top + ROWS * cs + cs * 0.75
     for c in range(c0, c1 + 1):
-        local = c - c0 + 1
-        show = col_numbers == "all" or (col_numbers == "every5" and (c == c0 or c == c1 or c % 5 == 0))
+        num = c1 - c + 1            # printed number: 1 = rightmost cell (first st of RS rows)
+        show = col_numbers == "all" or (col_numbers == "every5" and (num in (1, ncol) or num % 5 == 0))
         if show:
-            lab = str(c) if col_numbers == "every5" else str(local)
-            s.append(text(gx + (c - c0 + 0.5) * cs, yb, lab, fs * 0.8))
+            s.append(text(gx + (c - c0 + 0.5) * cs, yb, str(num), max(fs * 0.8, MIN_TEXT)))
     return svg_doc(W, H, s)
 
 
@@ -380,7 +392,7 @@ def schematic(S, scale, maxw, maxh):
     """Front/back outline to scale. Units: mm. x in sts, y in rows from hem."""
     d, p = SIZES[S], PRINTED[S]
     sx, sy = scale / STS_PER_CM, scale / ROWS_PER_CM   # mm per st / per row
-    padL, padR, padT, padB = 13.0, 15.0, 21.0, 13.0
+    padL, padR, padT, padB = 13.0, 17.0, 23.0, 14.0
     W = maxw
     H = padT + maxh + padB
     ox = padL + (maxw - padL - padR - SIZES["L"]["co"] * sx) / 2 + (SIZES["L"]["co"] - d["co"]) * sx / 2
@@ -408,7 +420,7 @@ def schematic(S, scale, maxw, maxh):
     fneck = [(nl, top), (nl, nd[-1]), (fl, nd[0] - 1), (fl, fs_), (fr, fs_), (fr, nd[0] - 1), (nr, nd[-1]), (nr, top)]
     pts = " ".join(f"{f(a)},{f(b)}" for a, b in (P(*q) for q in fneck))
     s.append(f'<polyline points="{pts}" fill="none" stroke="{GREEN}" stroke-width="0.5" stroke-dasharray="1.4,1"/>')
-    fsz = 2.5
+    fsz = MIN_TEXT
 
     def arrow(x1, y1, x2, y2):
         out = [f'<line x1="{f(x1)}" y1="{f(y1)}" x2="{f(x2)}" y2="{f(y2)}" stroke="#333" stroke-width="0.25" '
@@ -423,7 +435,7 @@ def schematic(S, scale, maxw, maxh):
     # width
     x0, y0 = P(0, 0); x1, _ = P(co, 0)
     s += arrow(x0, y0 + 5, x1, y0 + 5)
-    s.append(text((x0 + x1) / 2, y0 + 9.5, f"Width {cmin('width')}", fsz))
+    s.append(text((x0 + x1) / 2, y0 + 9.8, f"Width {cmin('width')}", fsz))
     # total length (left)
     _, yt = P(0, top)
     s += arrow(x0 - 5, y0, x0 - 5, yt)
@@ -432,28 +444,30 @@ def schematic(S, scale, maxw, maxh):
     xr = x1 + 4.5
     _, yu = P(co, ls)
     s += arrow(xr, y0, xr, yu)
-    s.append(text(xr + 3.2, (y0 + yu) / 2, f"To underarm {cmin('underarm')}", fsz, rotate=90))
+    s.append(text(xr + 6.2, (y0 + yu) / 2, "To underarm", fsz, rotate=90))
+    s.append(text(xr + 2.8, (y0 + yu) / 2, cmin('underarm'), fsz, rotate=90))
     s += arrow(xr, yu, xr, yt)
-    s.append(text(xr + 3.2, (yu + yt) / 2, f"Armhole {cmin('armhole')}", fsz, rotate=90))
+    s.append(text(xr + 6.2, (yu + yt) / 2, "Armhole", fsz, rotate=90))
+    s.append(text(xr + 2.8, (yu + yt) / 2, cmin('armhole'), fsz, rotate=90))
     # shoulder (top, right shoulder of drawing) and back neck
     xs0, _ = P(nr, top); xs1, _ = P(co - inset, top)
     s += arrow(xs0, yt - 3, xs1, yt - 3)
-    s.append(text((xs0 + xs1) / 2 + 2, yt - 8.6, "Shoulder", fsz))
-    s.append(text((xs0 + xs1) / 2 + 2, yt - 5.4, cmin("shoulder"), fsz))
+    s.append(text((xs0 + xs1) / 2 + 5, yt - 9.8, "Shoulder", fsz))
+    s.append(text((xs0 + xs1) / 2 + 5, yt - 6.4, cmin("shoulder"), fsz))
     xn0, _ = P(nl, top); xn1, _ = P(nr, top)
     s += arrow(xn0, yt - 3, xn1, yt - 3)
-    s.append(text((xn0 + xn1) / 2 - 3, yt - 11.8, "Back neck", fsz))
-    s.append(text((xn0 + xn1) / 2 - 3, yt - 8.6, cmin("back_neck") + " wide", fsz))
-    s.append(text((xn0 + xn1) / 2 - 3, yt - 5.4, cmin("back_depth") + " deep", fsz))
+    s.append(text((xn0 + xn1) / 2 - 5, yt - 13.2, "Back neck", fsz))
+    s.append(text((xn0 + xn1) / 2 - 5, yt - 9.8, cmin("back_neck"), fsz))
+    s.append(text((xn0 + xn1) / 2 - 5, yt - 6.4, "depth " + cmin("back_depth"), fsz))
     # front neck depth: arrow at centre
     xc, yf = P(co / 2, fs_)
     s += arrow(xc, yt, xc, yf)
-    s.append(text(xc, yf + 3.6, "Front neck depth", fsz))
-    s.append(text(xc, yf + 6.6, cmin("front_depth"), fsz))
+    s.append(text(xc, yf + 3.8, "Front neck depth", fsz))
+    s.append(text(xc, yf + 7.2, cmin("front_depth"), fsz))
     # centre label
     xm, ym = P(co / 2, ls * 0.45)
     s.append(text(xm, ym, "54-st cable panel", fsz * 1.05, weight="bold", fill=GREEN))
-    s.append(text(xm, ym + 3.4, "seed-stitch side fields", fsz * 0.95))
+    s.append(text(xm, ym + 3.6, "seed-stitch side fields", fsz))
     # title
     s.append(text(W / 2, 4.2, f"SIZE {S}", 3.6, weight="bold", fill=GREEN))
     return svg_doc(W, H, s)
@@ -533,7 +547,7 @@ def main():
         c += wd
     for kind in ("rope", "diamond", "honeycomb"):
         a, b = spans[kind]
-        w(f"chart-{kind}.svg", draw_chart(rows, a, b, 6.5, title_blocks=False, col_numbers="all"))
+        w(f"chart-{kind}.svg", draw_chart(rows, a, b, 5.6, title_blocks=False, col_numbers="all"))
     for k, v in legend_symbols().items():
         w(f"sym-{k}.svg", v)
     maxh = SIZES["L"]["last_ws"] / ROWS_PER_CM * 1.25
