@@ -114,6 +114,10 @@ BASE_ABBR = {
 }
 
 TECH = {
+    "bump": {"name": "Working in the back bumps of a chain",
+             "how": "Turn the chain over: each chain has a small horizontal bar (the back bump) on the back. Insert "
+                    "the hook under that bar only. The front of the chain stays as a neat V edge, and later you can "
+                    "work along the other side of the chain into the remaining loops."},
     "MR": {"name": "Magic ring (MR)",
            "how": "Wrap the yarn twice around two fingers, insert the hook under both strands, "
                   "pull up a loop and ch 1 (does not count as a stitch). Work the stitches of "
@@ -185,8 +189,8 @@ def tassel_section(spec, cord_cm):
     ]
     return {"title": "Tassel", "kicker": spec["kicker"], "shape": "none",
             "blocks": [{"type": "paragraph", "text":
-                        "The tassel is made first: the hanging cord is tied into its top, so the "
-                        "cord runs through the whole ornament and is anchored in the tassel."},
+                        "Make the tassel when the crochet pieces are finished. The hanging cord is tied "
+                        "into its top, so it runs up through the whole ornament and is anchored in the tassel."},
                        {"type": "steps", "steps": steps}]}
 
 def assembly_section(stack, through, finishing=None, extra_blocks=None):
@@ -225,17 +229,17 @@ def bead_item(gold, wood, wood10=0):
             ". Both cord strands must pass through each bead together — test before you start."}
 
 COMMON_NOTES = [
-    "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with "
-    "ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
-    "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, "
-    "choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
-    "US crochet terms are used throughout.",
-    "The number in parentheses at the end of a row or round is the number of stitches you should "
+    "Terms: US crochet terms are used throughout; UK makers: US sc is the UK double crochet.",
+    "Stitch counts: the number in parentheses at the end of a row or round is the number of stitches you "
     "have when it is finished. Tick the box when you finish each step.",
-    "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring "
-    "are worked in continuous spirals unless the round says \"join\".",
-    "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends "
-    "on the wrong side as you go.",
+    "Spiral rounds (magic-ring pieces with no \"Join\"): do not join or turn; mark the first stitch of each "
+    "round and move the marker up.",
+    "Joined rounds (the round says \"Join\"): unless the round says otherwise, start with ch 1 (does not count "
+    "as a stitch) and finish with a sl st into the first stitch.",
+    "Rows: ch 1 at the end of a row, before turning, does not count as a stitch.",
+    "Right side: for pieces in rounds, the outside of the rounds; for pieces in rows, choose the neater side "
+    "and mark it. \"Wrong sides together\" means the marked right sides face out.",
+    "Tails: leave a 20 cm (8 in) tail on pieces that will be sewn; weave in all other ends as you go.",
 ]
 
 def base(title, subtitle, desc, size_text, yarn_summary, materials, abbr_keys, tech_keys,
@@ -248,8 +252,37 @@ def base(title, subtitle, desc, size_text, yarn_summary, materials, abbr_keys, t
                 vr("Gold beads", f"{gn} in the bead stacks", f"{gn}", "Yes", gn, gn, "count"),
                 vr("Wooden beads", f"{wn} in the bead stacks", f"{wn}", "Yes", wn, wn, "count")]
     abbr = [[k, BASE_ABBR[k]] for k in abbr_keys]
+    pieces = [x["title"] for x in sections if x["title"] not in ("Tassel", "Assembly & Finishing")]
+    order = ["Read Before You Begin and gather the beads; check that both cord strands pass through every bead."]
+    order += [f"Crochet: {p}." for p in pieces]
+    order += ["Make the tassel and tie the hanging cord into it (Tassel).",
+              "String beads and pieces on the cord, tie the knot and the hanging loop (Assembly & Finishing)."]
+    sections.insert(0, {"title": "Order of Work", "shape": "none",
+                        "blocks": [{"type": "bullets", "items": order}]})
+    rows = []
+    for sec in sections:
+        for b in sec["blocks"]:
+            if b.get("type") != "steps":
+                continue
+            st_ = [x for x in b["steps"] if x.get("label") and x.get("count") not in ("", None)]
+            for k, x in enumerate(st_):
+                last = k == len(st_) - 1 or st_[k + 1].get("reset")
+                if x.get("reset") or last:
+                    rows.append([b.get("title") or sec["title"], x["label"], str(x["count"])])
+    sections.append({"title": "Checkpoints & Troubleshooting", "shape": "none", "blocks": [
+        {"type": "paragraph", "text": "Count your stitches at these points; the numbers match the rows above."},
+        {"type": "table", "headers": ["Piece", "After", "Stitches"], "rows": rows, "col_widths_cm": [6, 4, 3]},
+        {"type": "bullets", "items": [
+            "One stitch too many or too few: check the last increase or decrease round, and that you did not "
+            "work into the slip-stitch join or the ch 1 at the start of a row.",
+            "Piece cups or ripples: your tension differs from the gauge; change hook size by 0.25–0.5 mm rather "
+            "than the stitch counts.",
+            "Stuffing shows through: use a smaller hook, or stuff a little less firmly.",
+            "Flat pieces curl: pin them out, mist with water (or starch) and let them dry flat.",
+            "Cord will not pass through a bead: thread one strand at a time with a fine needle, or use beads with larger holes."]}]})
     if not title.startswith("Pink Tulip"):
         sections[0]["new_page"] = True
+    sections[1]["new_page"] = False
     return {
         "title": title, "subtitle": subtitle, "craft": "crochet", "terminology": "US",
         "designer": "", "copyright": "",
@@ -262,6 +295,7 @@ def base(title, subtitle, desc, size_text, yarn_summary, materials, abbr_keys, t
         "glance": [["SKILL LEVEL", "Intermediate"], ["FINISHED SIZE", size_text],
                    ["YARN", yarn_summary], ["HOOK", "2.5 mm (US B/1–C/2)"]],
         "checkboxes": True,
+        "checkpoints": False,
         "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; "
                       "for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel "
                       "length can be changed freely.",
@@ -328,11 +362,11 @@ def heart():
         st("Row 3", "inc, sc 3, inc. Ch 1, turn.", 7, ops="inc, sc 3, inc", inc=2),
         st("Row 4", "inc, sc 5, inc. Ch 1, turn.", 9, ops="inc, sc 5, inc", inc=2),
         st("Rows 5–6", "sc 9. Ch 1, turn (2 rows).", 9, ops=["sc 9", "sc 9"], rounds=2),
-        st("Row 7", "First lobe: sc 4; leave the remaining 5 sts unworked. Ch 1, turn.", 4, dec=5),
-        st("Row 8", "sc2tog twice. Fasten off.", 2, ops="sc2tog x2", dec=2),
-        st("Row 7", "Second lobe: skip the next (centre) st of Row 6 and join the yarn in the "
+        st("Row 7 (lobe 1)", "First lobe: sc 4; leave the remaining 5 sts unworked. Ch 1, turn.", 4, dec=5),
+        st("Row 8 (lobe 1)", "sc2tog twice. Fasten off.", 2, ops="sc2tog x2", dec=2),
+        st("Row 7 (lobe 2)", "Second lobe: skip the next (centre) st of Row 6 and join the yarn in the "
                     "following st with a standing sc; sc in the last 3 sts. Ch 1, turn.", 4, reset=True),
-        st("Row 8", "sc2tog twice. Fasten off and weave in the ends.", 2, ops="sc2tog x2", dec=2),
+        st("Row 8 (lobe 2)", "sc2tog twice. Fasten off and weave in the ends.", 2, ops="sc2tog x2", dec=2),
     ]
     join = [
         st("Rnd 1", "Place the two pieces wrong sides together, lobes at the top. Join the yarn at "
@@ -641,7 +675,7 @@ def flower():
                 "cord above a cream tassel.",
                 "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 4 colours", mats,
                 ["ch", "sc", "inc", "sl st", "hdc", "dc", "tr", "MR", "st(s)", "rnd(s)", "rep"],
-                ["MR", "tassel"], sections, meas, photo)
+                ["MR", "bump", "tassel"], sections, meas, photo)
 
 # ======================================================================================
 # 5. RAINBOW & CLOUD
@@ -869,7 +903,7 @@ def tulip():
                 "cream tassel. The cord runs through the stem tube.",
                 "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 3 colours", mats,
                 ["ch", "sc", "inc", "sc2tog", "sl st", "hdc", "dc", "MR", "st(s)", "rnd(s)", "( ) xN"],
-                ["MR", "spiral", "sc2tog", "tassel"], sections, meas, photo)
+                ["MR", "spiral", "sc2tog", "bump", "tassel"], sections, meas, photo)
 
 # ======================================================================================
 # 7. SNOWFLAKE

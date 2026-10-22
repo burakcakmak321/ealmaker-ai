@@ -32,6 +32,7 @@
   ]
  ],
  "checkboxes": true,
+ "checkpoints": false,
  "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel length can be changed freely.",
  "gauge_numbers": {
   "sts_per_10cm": 22,
@@ -142,14 +143,32 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
-  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
-  "US crochet terms are used throughout.",
-  "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
-  "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
-  "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends on the wrong side as you go."
+  "Terms: US crochet terms are used throughout; UK makers: US sc is the UK double crochet.",
+  "Stitch counts: the number in parentheses at the end of a row or round is the number of stitches you have when it is finished. Tick the box when you finish each step.",
+  "Spiral rounds (magic-ring pieces with no \"Join\"): do not join or turn; mark the first stitch of each round and move the marker up.",
+  "Joined rounds (the round says \"Join\"): unless the round says otherwise, start with ch 1 (does not count as a stitch) and finish with a sl st into the first stitch.",
+  "Rows: ch 1 at the end of a row, before turning, does not count as a stitch.",
+  "Right side: for pieces in rounds, the outside of the rounds; for pieces in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
+  "Tails: leave a 20 cm (8 in) tail on pieces that will be sewn; weave in all other ends as you go."
  ],
  "sections": [
+  {
+   "title": "Order of Work",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "bullets",
+     "items": [
+      "Read Before You Begin and gather the beads; check that both cord strands pass through every bead.",
+      "Crochet: Wings.",
+      "Crochet: Body and Antennae.",
+      "Make the tassel and tie the hanging cord into it (Tassel).",
+      "String beads and pieces on the cord, tie the knot and the hanging loop (Assembly & Finishing)."
+     ]
+    }
+   ],
+   "new_page": true
+  },
   {
    "title": "Wings",
    "kicker": "Yarn B (pink) and Yarn A (cream)",
@@ -200,7 +219,7 @@
      ]
     }
    ],
-   "new_page": true
+   "new_page": false
   },
   {
    "title": "Body and Antennae",
@@ -236,7 +255,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "The tassel is made first: the hanging cord is tied into its top, so the cord runs through the whole ornament and is anchored in the tassel."
+     "text": "Make the tassel when the crochet pieces are finished. The hanging cord is tied into its top, so it runs up through the whole ornament and is anchored in the tassel."
     },
     {
      "type": "steps",
@@ -289,6 +308,61 @@
      "label": "Safety",
      "tone": "warning",
      "text": "This is a decoration, not a toy, and not suitable for children under 3 years. Beads and cords are a choking and strangling hazard: hang it out of reach of babies, young children and pets."
+    }
+   ]
+  },
+  {
+   "title": "Checkpoints & Troubleshooting",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Count your stitches at these points; the numbers match the rows above."
+    },
+    {
+     "type": "table",
+     "headers": [
+      "Piece",
+      "After",
+      "Stitches"
+     ],
+     "rows": [
+      [
+       "Upper wings (make 2)",
+       "Rnd 1",
+       "11"
+      ],
+      [
+       "Upper wings (make 2)",
+       "Rnd 2",
+       "15"
+      ],
+      [
+       "Lower wings (make 2)",
+       "Rnd 1",
+       "8"
+      ],
+      [
+       "Lower wings (make 2)",
+       "Rnd 2",
+       "11"
+      ]
+     ],
+     "col_widths_cm": [
+      6,
+      4,
+      3
+     ]
+    },
+    {
+     "type": "bullets",
+     "items": [
+      "One stitch too many or too few: check the last increase or decrease round, and that you did not work into the slip-stitch join or the ch 1 at the start of a row.",
+      "Piece cups or ripples: your tension differs from the gauge; change hook size by 0.25–0.5 mm rather than the stitch counts.",
+      "Stuffing shows through: use a smaller hook, or stuff a little less firmly.",
+      "Flat pieces curl: pin them out, mist with water (or starch) and let them dry flat.",
+      "Cord will not pass through a bead: thread one strand at a time with a fine needle, or use beads with larger holes."
+     ]
     }
    ]
   }
