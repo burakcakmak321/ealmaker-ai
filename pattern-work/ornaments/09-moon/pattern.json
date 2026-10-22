@@ -1,0 +1,471 @@
+{
+ "title": "Cream Moon & Star Ornament",
+ "subtitle": "A stuffed crochet crescent moon and flat star on a beaded cord",
+ "craft": "crochet",
+ "terminology": "US",
+ "designer": "",
+ "copyright": "",
+ "cover_image": "src/hero.png",
+ "cover_crop": "auto",
+ "gallery_images": [],
+ "skill_level": "Intermediate",
+ "finished_size": "≈ 25 cm (10 in) plus an 8 cm loop",
+ "yarn_summary": "DK cotton · 2 colours",
+ "tools_summary": "2.5 mm hook (US B/1–C/2)",
+ "description": "A plump crescent moon made from two curved pieces joined with sc and stuffed, with a flat mustard star below, strung on a beaded cord above a cream tassel.",
+ "glance": [
+  [
+   "SKILL LEVEL",
+   "Intermediate"
+  ],
+  [
+   "FINISHED SIZE",
+   "≈ 25 cm (10 in) plus an 8 cm loop"
+  ],
+  [
+   "YARN",
+   "DK cotton · 2 colours"
+  ],
+  [
+   "HOOK",
+   "2.5 mm (US B/1–C/2)"
+  ]
+ ],
+ "checkboxes": true,
+ "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel length can be changed freely.",
+ "gauge_numbers": {
+  "sts_per_10cm": 22,
+  "rows_per_10cm": 24
+ },
+ "gauge": "22 sc and 24 rows/rnds = 10 cm (4 in) in single crochet with a 2.5 mm hook. Gauge is not critical for an ornament, but work firmly so that stuffing does not show and flat pieces keep their shape; sizes depend on your tension.",
+ "swatch": "Optional density check: ch 12, then work 10 rows of sc on 11 sts. The square should measure about 5 cm (2 in) wide and 4 cm (1.6 in) tall. If it is larger or you see gaps between stitches, use a smaller hook.",
+ "materials": [
+  {
+   "item": "Yarn A (moon, tassel, cord)",
+   "detail": "DK (#3) cotton, cream — approx. 17 m (19 yd), about 8 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn B (star)",
+   "detail": "DK (#3) cotton, mustard gold — approx. 3 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Hook",
+   "detail": "2.5 mm (US B/1–C/2)"
+  },
+  {
+   "item": "Beads",
+   "detail": "4 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
+  },
+  {
+   "item": "Notions",
+   "detail": "fiberfill (a small handful), tapestry needle, stiff card, pins, scissors"
+  }
+ ],
+ "measurements": {
+  "headers": [
+   "Part",
+   "Width",
+   "Height"
+  ],
+  "rows": [
+   [
+    "Moon (stuffed)",
+    "≈ 4.5 cm (1.8 in)",
+    "≈ 6.5 cm (2.6 in)"
+   ],
+   [
+    "Star",
+    "≈ 4.2 cm (1.7 in)",
+    "≈ 4 cm (1.6 in)"
+   ],
+   [
+    "Tassel",
+    "–",
+    "9 cm (3.5 in)"
+   ]
+  ]
+ },
+ "abbreviations": [
+  [
+   "ch",
+   "chain"
+  ],
+  [
+   "sc",
+   "single crochet"
+  ],
+  [
+   "inc",
+   "2 sc in the same stitch"
+  ],
+  [
+   "sc2tog",
+   "single crochet 2 together"
+  ],
+  [
+   "sl st",
+   "slip stitch"
+  ],
+  [
+   "MR",
+   "magic ring"
+  ],
+  [
+   "st(s)",
+   "stitch(es)"
+  ],
+  [
+   "rnd(s)",
+   "round(s)"
+  ],
+  [
+   "( ) xN",
+   "work the sequence in brackets N times"
+  ]
+ ],
+ "special_stitches": [],
+ "techniques": [
+  {
+   "name": "Magic ring (MR)",
+   "how": "Wrap the yarn twice around two fingers, insert the hook under both strands, pull up a loop and ch 1 (does not count as a stitch). Work the stitches of Rnd 1 over both strands, then pull the tail firmly to close the centre."
+  },
+  {
+   "name": "sc2tog (flat pieces)",
+   "how": "Insert the hook in the next st, yo and pull up a loop; insert in the following st, yo and pull up a loop (3 loops on hook); yo and draw through all 3."
+  },
+  {
+   "name": "Joining two pieces with sc",
+   "how": "Hold the pieces wrong sides together with the edges matching. Insert the hook through the stitch or row-end of BOTH pieces at once and work the sc as usual, so one round of sc joins and edges them."
+  },
+  {
+   "name": "Tassel neck wrap",
+   "how": "Lay a 5 cm loop of the wrapping strand along the tassel, pointing down. Wrap the long end tightly around tassel and loop, from the top down. Pass the end through the loop, then pull the short tail at the top until the loop disappears under the wraps. Trim both ends and hide them in the skirt."
+  }
+ ],
+ "notes": [
+  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "US crochet terms are used throughout.",
+  "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
+  "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
+  "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends on the wrong side as you go."
+ ],
+ "sections": [
+  {
+   "title": "Moon",
+   "kicker": "Yarn A (cream) · make 2 pieces, then join",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Each crescent piece is worked in rows from the inner curve outwards. Increases in the middle of each row make the piece curve, and the sc2tog at both ends of each row shape the pointed tips."
+    },
+    {
+     "type": "steps",
+     "title": "Moon piece (make 2)",
+     "steps": [
+      {
+       "label": "Row 1",
+       "text": "With Yarn A, ch 15. Sc in 2nd ch from hook and in each ch across. Ch 1, turn.",
+       "count": 14,
+       "reset": true,
+       "piece": "Moon piece",
+       "flattened": true
+      },
+      {
+       "label": "Row 2",
+       "text": "sc2tog, (sc 1, inc) x2, sc 2, (inc, sc 1) x2, sc2tog. Ch 1, turn.",
+       "count": 16,
+       "ops": [
+        "sc2tog, (sc 1, inc) x2, sc 2, (inc, sc 1) x2, sc2tog"
+       ],
+       "inc": 4,
+       "dec": 2
+      },
+      {
+       "label": "Row 3",
+       "text": "sc2tog, sc 2, (inc, sc 3) x2, inc, sc 1, sc2tog. Ch 1, turn.",
+       "count": 17,
+       "ops": [
+        "sc2tog, sc 2, (inc, sc 3) x2, inc, sc 1, sc2tog"
+       ],
+       "inc": 3,
+       "dec": 2
+      },
+      {
+       "label": "Row 4",
+       "text": "sc2tog, sc 2, (inc, sc 3) x2, inc, sc 2, sc2tog. Ch 1, turn.",
+       "count": 18,
+       "ops": [
+        "sc2tog, sc 2, (inc, sc 3) x2, inc, sc 2, sc2tog"
+       ],
+       "inc": 3,
+       "dec": 2
+      },
+      {
+       "label": "Row 5",
+       "text": "sc2tog, sc 2, inc, sc 4, inc, sc 3, inc, sc 2, sc2tog. Fasten off.",
+       "count": 19,
+       "ops": [
+        "sc2tog, sc 2, inc, sc 4, inc, sc 3, inc, sc 2, sc2tog"
+       ],
+       "inc": 3,
+       "dec": 2
+      }
+     ]
+    },
+    {
+     "type": "steps",
+     "title": "Joining round",
+     "steps": [
+      {
+       "label": "Rnd 1",
+       "text": "Hold the two pieces wrong sides together. Join Yarn A in the last st of Row 5 and work through both layers: sc in each of 5 row-ends down the side, 3 sc in the tip, sc in each of the 14 foundation ch along the inner curve, 3 sc in the other tip, sc in each of 5 row-ends up the side, sc in each of the 19 sts of Row 5 along the outer curve.",
+       "count": 49,
+       "reset": true
+      },
+      {
+       "label": "",
+       "text": "Stuff the moon firmly, tips first, before you close the last 8 sts. Join with a sl st to the first sc and fasten off; hide the end inside.",
+       "count": ""
+      }
+     ]
+    }
+   ],
+   "new_page": true
+  },
+  {
+   "title": "Star",
+   "kicker": "Yarn B (mustard) · make 1",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "A small sc circle is worked first; the five points are then worked one after the other directly on its edge, without cutting the yarn, and a slip-stitch edge sharpens the outline."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Rnd 1",
+       "text": "10 sc in MR. Join.",
+       "count": 10,
+       "ops": [
+        "10 sc in MR"
+       ],
+       "reset": true,
+       "piece": "Star",
+       "flattened": true
+      },
+      {
+       "label": "Rnd 2",
+       "text": "(sc 1, inc) x5. Join. Do not fasten off; continue with the points.",
+       "count": 15,
+       "ops": [
+        "(sc 1, inc) x5"
+       ],
+       "inc": 5
+      },
+      {
+       "label": "",
+       "text": "Points: each point is worked in rows over 3 sts of Rnd 2; after each point you slip stitch down its side and start the next point in the next st.",
+       "count": ""
+      },
+      {
+       "label": "Row 1",
+       "text": "Point: sc in each of the next 3 sts; leave the rest of the round unworked. Ch 1, turn.",
+       "count": 3,
+       "reset": true,
+       "piece": "Star point",
+       "flattened": true
+      },
+      {
+       "label": "Row 2",
+       "text": "sc2tog, sc 1. Ch 1, turn.",
+       "count": 2,
+       "ops": [
+        "sc2tog, sc 1"
+       ],
+       "dec": 1
+      },
+      {
+       "label": "Row 3",
+       "text": "sc2tog. Ch 1; sl st in each of the 2 row-ends down the side of the point, then sl st in the last st used for Row 1 of this point.",
+       "count": 1,
+       "ops": [
+        "sc2tog"
+       ],
+       "dec": 1
+      },
+      {
+       "label": "",
+       "text": "Repeat Rows 1–3 four more times, starting each point in the next st of Rnd 2 (5 points).",
+       "count": ""
+      },
+      {
+       "label": "Edge",
+       "text": "Sl st evenly around the whole star: 1 sl st in each st and row-end, (sl st, ch 1, sl st) in the top of each point. Fasten off and weave in.",
+       "count": ""
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Tip",
+     "text": "Pin the star flat, spray it lightly with water or starch and let it dry so the points stay straight."
+    }
+   ]
+  },
+  {
+   "title": "Tassel",
+   "kicker": "Yarn A (cream)",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The tassel is made first: the hanging cord is tied into its top, so the cord runs through the whole ornament and is anchored in the tassel."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Step 1",
+       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "count": ""
+      },
+      {
+       "label": "Step 2",
+       "text": "Cut the hanging cord: one 120 cm (47 in) length of Yarn A. Slide it under all the wraps along the top edge of the card so that its middle sits there, and tie it in a tight square knot around the wraps. Both cord ends now point upwards.",
+       "count": ""
+      },
+      {
+       "label": "Step 3",
+       "text": "Cut through all the wraps along the bottom edge of the card and remove the card. Let the strands hang down from the cord knot.",
+       "count": ""
+      },
+      {
+       "label": "Step 4",
+       "text": "Tassel neck: cut a 70 cm length of Yarn A. Measure 2 cm down from the top fold and wrap it tightly 8 times around the bundle (see Tassel neck wrap in Techniques).",
+       "count": ""
+      },
+      {
+       "label": "Step 5",
+       "text": "Trim the skirt evenly to 9 cm (3.5 in) from the top fold. Hold it over steam (or dampen it) and comb the strands straight with your fingers; let it dry hanging.",
+       "count": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Assembly & Finishing",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "bullets",
+     "items": [
+      "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
+      "String, from the tassel upwards: 1 wooden bead → 1 gold bead → the star → 1 gold bead → the moon → 1 gold bead → 1 wooden bead → 1 gold bead.",
+      "Star: hang it with one point up and pass the needle from the bottom valley up through the back of the stitches and out at the top point.",
+      "Moon: hang it with the opening facing right. Pass the needle up through the lower tip from its underside, across the opening, and up through the upper tip, so the moon hangs level.",
+      "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
+      "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Safety",
+     "tone": "warning",
+     "text": "This is a decoration, not a toy, and not suitable for children under 3 years. Beads and cords are a choking and strangling hazard: hang it out of reach of babies, young children and pets."
+    }
+   ]
+  }
+ ],
+ "photo_analysis": {
+  "summary": "One product photo plus infographic steps; scale from the wooden beads.",
+  "observations": [
+   {
+    "feature": "Moon",
+    "evidence": "Stuffed cream crescent with a sc edge seam",
+    "conclusion": "Two flat crescent pieces joined with sc and stuffed",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Crescent shaping",
+    "evidence": "Thick middle, pointed tips",
+    "conclusion": "Rows curved by middle increases, tips by sc2tog at row ends",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Star",
+    "evidence": "Mustard five-point star below the moon",
+    "conclusion": "Same star as the star ornament",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Hanging cord and beads",
+    "evidence": "Cream cord loop above a gold–wood–gold bead stack; same stack below the piece",
+    "conclusion": "Cord tied into the tassel top and threaded up through beads and piece",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Tassel",
+    "evidence": "Long full tassel with a rounded head and a wrapped neck",
+    "conclusion": "Wrapped-card tassel, about 40 wraps, neck wrapped 8 times",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   }
+  ],
+  "visual_review": [
+   {
+    "feature": "Moon height : width",
+    "photo": "1.20",
+    "pattern": "6.5 / 4.5 = 1.44",
+    "match": "Close",
+    "photo_value": 1.2,
+    "pattern_value": 1.44,
+    "kind": "ratio",
+    "reason": "the photographed crescent is slightly wider; one more row would make the tips blunt"
+   },
+   {
+    "feature": "Star : moon height",
+    "photo": "0.66",
+    "pattern": "4.0 / 6.5 = 0.62",
+    "match": "Close",
+    "photo_value": 0.66,
+    "pattern_value": 0.62,
+    "kind": "ratio"
+   },
+   {
+    "feature": "Gold beads",
+    "photo": "4 in the bead stacks",
+    "pattern": "4",
+    "match": "Yes",
+    "photo_value": 4,
+    "pattern_value": 4,
+    "kind": "count"
+   },
+   {
+    "feature": "Wooden beads",
+    "photo": "2 in the bead stacks",
+    "pattern": "2",
+    "match": "Yes",
+    "photo_value": 2,
+    "pattern_value": 2,
+    "kind": "count"
+   }
+  ],
+  "accuracy": {
+   "confidence": "Medium",
+   "text": "Sizes are scaled from the 12 mm beads. The crescent geometry is calculated, so check the curve after Row 3 of the first piece; the photo looks rendered."
+  },
+  "assumptions": [
+   "Crescent row counts are calculated from the photographed curve, not counted from a sample."
+  ]
+ },
+ "closing_note": "Thank you for making this ornament. Happy crocheting!",
+ "yarn_evidence": "area estimate"
+}

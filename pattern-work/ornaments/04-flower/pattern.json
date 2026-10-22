@@ -1,0 +1,405 @@
+{
+ "title": "Blush Flower Tassel Ornament",
+ "subtitle": "A layered crochet flower with two leaves on a beaded cord",
+ "craft": "crochet",
+ "terminology": "US",
+ "designer": "",
+ "copyright": "",
+ "cover_image": "src/hero.png",
+ "cover_crop": "auto",
+ "gallery_images": [],
+ "skill_level": "Intermediate",
+ "finished_size": "≈ 22 cm (8.7 in) plus an 8 cm loop",
+ "yarn_summary": "DK cotton · 4 colours",
+ "tools_summary": "2.5 mm hook (US B/1–C/2)",
+ "description": "A flat layered flower — yellow centre, six pink petals and six large cream petals worked on chain loops behind them — with two small leaves below, strung on a beaded cord above a cream tassel.",
+ "glance": [
+  [
+   "SKILL LEVEL",
+   "Intermediate"
+  ],
+  [
+   "FINISHED SIZE",
+   "≈ 22 cm (8.7 in) plus an 8 cm loop"
+  ],
+  [
+   "YARN",
+   "DK cotton · 4 colours"
+  ],
+  [
+   "HOOK",
+   "2.5 mm (US B/1–C/2)"
+  ]
+ ],
+ "checkboxes": true,
+ "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel length can be changed freely.",
+ "gauge_numbers": {
+  "sts_per_10cm": 22,
+  "rows_per_10cm": 24
+ },
+ "gauge": "22 sc and 24 rows/rnds = 10 cm (4 in) in single crochet with a 2.5 mm hook. Gauge is not critical for an ornament, but work firmly so that stuffing does not show and flat pieces keep their shape; sizes depend on your tension.",
+ "swatch": "Optional density check: ch 12, then work 10 rows of sc on 11 sts. The square should measure about 5 cm (2 in) wide and 4 cm (1.6 in) tall. If it is larger or you see gaps between stitches, use a smaller hook.",
+ "materials": [
+  {
+   "item": "Yarn A (outer petals, tassel, cord)",
+   "detail": "DK (#3) cotton, cream — approx. 13 m (14 yd), about 6 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn B (inner petals)",
+   "detail": "DK (#3) cotton, blush pink — approx. 3 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn C (leaves)",
+   "detail": "DK (#3) cotton, sage green — approx. 3 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn D (centre)",
+   "detail": "DK (#3) cotton, mustard yellow — approx. 3 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Hook",
+   "detail": "2.5 mm (US B/1–C/2)"
+  },
+  {
+   "item": "Beads",
+   "detail": "5 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
+  },
+  {
+   "item": "Notions",
+   "detail": "tapestry needle, stiff card for the tassel, scissors"
+  }
+ ],
+ "measurements": {
+  "headers": [
+   "Part",
+   "Width",
+   "Height"
+  ],
+  "rows": [
+   [
+    "Flower",
+    "≈ 4.6 cm (1.8 in)",
+    "≈ 4.6 cm (1.8 in)"
+   ],
+   [
+    "Leaf (each)",
+    "≈ 1.7 cm (0.7 in)",
+    "≈ 2.7 cm (1.1 in)"
+   ],
+   [
+    "Tassel",
+    "–",
+    "8 cm (3.1 in)"
+   ]
+  ]
+ },
+ "abbreviations": [
+  [
+   "ch",
+   "chain"
+  ],
+  [
+   "sc",
+   "single crochet"
+  ],
+  [
+   "inc",
+   "2 sc in the same stitch"
+  ],
+  [
+   "sl st",
+   "slip stitch"
+  ],
+  [
+   "hdc",
+   "half double crochet"
+  ],
+  [
+   "dc",
+   "double crochet"
+  ],
+  [
+   "tr",
+   "treble crochet (yo twice)"
+  ],
+  [
+   "MR",
+   "magic ring"
+  ],
+  [
+   "st(s)",
+   "stitch(es)"
+  ],
+  [
+   "rnd(s)",
+   "round(s)"
+  ],
+  [
+   "rep",
+   "repeat"
+  ]
+ ],
+ "special_stitches": [],
+ "techniques": [
+  {
+   "name": "Magic ring (MR)",
+   "how": "Wrap the yarn twice around two fingers, insert the hook under both strands, pull up a loop and ch 1 (does not count as a stitch). Work the stitches of Rnd 1 over both strands, then pull the tail firmly to close the centre."
+  },
+  {
+   "name": "Tassel neck wrap",
+   "how": "Lay a 5 cm loop of the wrapping strand along the tassel, pointing down. Wrap the long end tightly around tassel and loop, from the top down. Pass the end through the loop, then pull the short tail at the top until the loop disappears under the wraps. Trim both ends and hide them in the skirt."
+  }
+ ],
+ "notes": [
+  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "US crochet terms are used throughout.",
+  "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
+  "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
+  "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends on the wrong side as you go."
+ ],
+ "sections": [
+  {
+   "title": "Flower",
+   "kicker": "Yarns D, B and A · make 1",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The flower is worked in joined rounds: a yellow centre, a ring of six pink petals, then a round of chain loops behind them that carries the six large cream petals."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Rnd 1",
+       "text": "With Yarn D, 6 sc in MR. Join.",
+       "count": 6,
+       "ops": [
+        "6 sc in MR"
+       ],
+       "reset": true,
+       "piece": "Flower",
+       "flattened": true
+      },
+      {
+       "label": "Rnd 2",
+       "text": "inc x6. Join and fasten off Yarn D.",
+       "count": 12,
+       "ops": [
+        "inc x6"
+       ],
+       "inc": 6
+      },
+      {
+       "label": "Rnd 3",
+       "text": "Inner petals: join Yarn B with a sl st in any st. *(sc, hdc, dc) in next st, (dc, hdc, sc) in next st*; rep from * 5 more times. Join with a sl st to the first sc. Fasten off Yarn B.",
+       "count": 36,
+       "inc": 24
+      },
+      {
+       "label": "Rnd 4",
+       "text": "Petal base loops, worked behind Rnd 3: fold the pink petals forwards. Join Yarn A with a sl st around the post of a Rnd 2 st at the gap between two petals. *Ch 5, sl st around the post of the Rnd 2 st at the next gap between petals*; rep from * 5 more times, the last sl st in the first sl st.",
+       "count": "6 ch-5 loops",
+       "reset": true,
+       "piece": "Petal loops",
+       "flattened": true
+      },
+      {
+       "label": "Rnd 5",
+       "text": "Outer petals: in each ch-5 loop work (sc, hdc, 2 dc, tr, 2 dc, hdc, sc). Join with a sl st to the first sc and fasten off.",
+       "count": 54,
+       "reset": true,
+       "piece": "Outer petals",
+       "flattened": true
+      }
+     ]
+    }
+   ],
+   "new_page": true
+  },
+  {
+   "title": "Leaves",
+   "kicker": "Yarn C (sage green) · make 2",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Leaf",
+       "text": "Foundation: make a chain of 7. Working in the back bumps: sl st in 2nd ch from hook, sc in next ch, hdc in next ch, dc in next 2 ch, 3 sc in last ch; working along the other side of the chain: dc in next 2 ch, hdc in next ch, sc in next ch, sl st in the last ch (the tip). Ch 2, sl st in 2nd ch from hook (tiny point). Fasten off, leaving a 20 cm tail.",
+       "count": 13,
+       "reset": true,
+       "piece": "Leaf",
+       "flattened": true
+      }
+     ]
+    },
+    {
+     "type": "paragraph",
+     "text": "Place the two leaves side by side with their 3-sc bases touching and the tips pointing down and outwards (a V). Sew the bases together over 5 mm with the tails."
+    }
+   ]
+  },
+  {
+   "title": "Tassel",
+   "kicker": "Yarn A (cream)",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The tassel is made first: the hanging cord is tied into its top, so the cord runs through the whole ornament and is anchored in the tassel."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Step 1",
+       "text": "Cut a piece of stiff card 17 cm (6.7 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "count": ""
+      },
+      {
+       "label": "Step 2",
+       "text": "Cut the hanging cord: one 110 cm (43 in) length of Yarn A. Slide it under all the wraps along the top edge of the card so that its middle sits there, and tie it in a tight square knot around the wraps. Both cord ends now point upwards.",
+       "count": ""
+      },
+      {
+       "label": "Step 3",
+       "text": "Cut through all the wraps along the bottom edge of the card and remove the card. Let the strands hang down from the cord knot.",
+       "count": ""
+      },
+      {
+       "label": "Step 4",
+       "text": "Tassel neck: cut a 70 cm length of Yarn A. Measure 2 cm down from the top fold and wrap it tightly 8 times around the bundle (see Tassel neck wrap in Techniques).",
+       "count": ""
+      },
+      {
+       "label": "Step 5",
+       "text": "Trim the skirt evenly to 8 cm (3.1 in) from the top fold. Hold it over steam (or dampen it) and comb the strands straight with your fingers; let it dry hanging.",
+       "count": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Assembly & Finishing",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "bullets",
+     "items": [
+      "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
+      "String, from the tassel upwards: 1 gold bead → 1 wooden bead → 1 gold bead → the leaves → 1 gold bead → the flower → 1 gold bead → 1 wooden bead → 1 gold bead.",
+      "Leaves: pass the needle up through the sewn bases of the two leaves.",
+      "Flower: enter at the base of the lowest outer petal, run the needle up behind the stitches on the back, through the centre, and out at the top of the highest outer petal.",
+      "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
+      "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Safety",
+     "tone": "warning",
+     "text": "This is a decoration, not a toy, and not suitable for children under 3 years. Beads and cords are a choking and strangling hazard: hang it out of reach of babies, young children and pets."
+    }
+   ]
+  }
+ ],
+ "photo_analysis": {
+  "summary": "One product photo plus infographic steps; scale from the wooden beads.",
+  "observations": [
+   {
+    "feature": "Construction",
+    "evidence": "Yellow centre, 6 pink petals, 6 larger cream petals behind",
+    "conclusion": "Layered flower in joined rounds",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Centre",
+    "evidence": "Infographic: 6 sc in MR, increase to 12",
+    "conclusion": "Rnds 1–2",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Leaves",
+    "evidence": "Two green leaves in a V below the flower",
+    "conclusion": "Two small leaves worked around a chain",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Hanging cord and beads",
+    "evidence": "Cream cord loop above a gold–wood–gold bead stack; same stack below the piece",
+    "conclusion": "Cord tied into the tassel top and threaded up through beads and piece",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Tassel",
+    "evidence": "Long full tassel with a rounded head and a wrapped neck",
+    "conclusion": "Wrapped-card tassel, about 40 wraps, neck wrapped 8 times",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   }
+  ],
+  "visual_review": [
+   {
+    "feature": "Inner petals",
+    "photo": "6",
+    "pattern": "6",
+    "match": "Yes",
+    "photo_value": 6,
+    "pattern_value": 6,
+    "kind": "count"
+   },
+   {
+    "feature": "Outer petals",
+    "photo": "6",
+    "pattern": "6",
+    "match": "Yes",
+    "photo_value": 6,
+    "pattern_value": 6,
+    "kind": "count"
+   },
+   {
+    "feature": "Flower width / bead",
+    "photo": "≈ 3.8",
+    "pattern": "46 / 12 = 3.8",
+    "match": "Yes",
+    "photo_value": 3.8,
+    "pattern_value": 3.8,
+    "kind": "ratio"
+   },
+   {
+    "feature": "Gold beads",
+    "photo": "5 in the bead stacks",
+    "pattern": "5",
+    "match": "Yes",
+    "photo_value": 5,
+    "pattern_value": 5,
+    "kind": "count"
+   },
+   {
+    "feature": "Wooden beads",
+    "photo": "2 in the bead stacks",
+    "pattern": "2",
+    "match": "Yes",
+    "photo_value": 2,
+    "pattern_value": 2,
+    "kind": "count"
+   }
+  ],
+  "accuracy": {
+   "confidence": "Medium",
+   "text": "Sizes are scaled from the photo using the 12 mm wooden beads as the reference; the photos look like rendered images, so stitch counts are a design reconstruction, not a count from a real sample. Make the piece once and compare before selling the pattern."
+  },
+  "assumptions": [
+   "Petal stitch groups are a design choice that gives the photographed petal sizes."
+  ]
+ },
+ "closing_note": "Thank you for making this ornament. Happy crocheting!",
+ "yarn_evidence": "area estimate"
+}

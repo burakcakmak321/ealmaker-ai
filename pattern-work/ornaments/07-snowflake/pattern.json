@@ -1,0 +1,331 @@
+{
+ "title": "Cream Snowflake Hanging Ornament",
+ "subtitle": "A starched lace crochet snowflake on a beaded cord with a tassel",
+ "craft": "crochet",
+ "terminology": "US",
+ "designer": "",
+ "copyright": "",
+ "cover_image": "src/hero.png",
+ "cover_crop": "auto",
+ "gallery_images": [],
+ "skill_level": "Intermediate",
+ "finished_size": "≈ 17 cm (6.7 in) plus an 8 cm loop",
+ "yarn_summary": "DK cotton · 1 colour",
+ "tools_summary": "2.5 mm hook (US B/1–C/2)",
+ "description": "A six-arm lace snowflake in three joined rounds — dc ring, dc and chain spaces, then picot-tipped arms — starched flat and hung on a beaded cord above a cream tassel.",
+ "glance": [
+  [
+   "SKILL LEVEL",
+   "Intermediate"
+  ],
+  [
+   "FINISHED SIZE",
+   "≈ 17 cm (6.7 in) plus an 8 cm loop"
+  ],
+  [
+   "YARN",
+   "DK cotton · 1 colour"
+  ],
+  [
+   "HOOK",
+   "2.5 mm (US B/1–C/2)"
+  ]
+ ],
+ "checkboxes": true,
+ "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel length can be changed freely.",
+ "gauge_numbers": {
+  "sts_per_10cm": 22,
+  "rows_per_10cm": 24
+ },
+ "gauge": "22 sc and 24 rows/rnds = 10 cm (4 in) in single crochet with a 2.5 mm hook. Gauge is not critical for an ornament, but work firmly so that stuffing does not show and flat pieces keep their shape; sizes depend on your tension.",
+ "swatch": "Optional density check: ch 12, then work 10 rows of sc on 11 sts. The square should measure about 5 cm (2 in) wide and 4 cm (1.6 in) tall. If it is larger or you see gaps between stitches, use a smaller hook.",
+ "materials": [
+  {
+   "item": "Yarn A",
+   "detail": "DK (#3) cotton, cream or white — approx. 14 m (16 yd), about 7 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Hook",
+   "detail": "2.5 mm (US B/1–C/2)"
+  },
+  {
+   "item": "Beads",
+   "detail": "3 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
+  },
+  {
+   "item": "Notions",
+   "detail": "fabric starch or white craft glue, rust-proof pins, blocking board, tapestry needle, stiff card, scissors"
+  }
+ ],
+ "measurements": {
+  "headers": [
+   "Part",
+   "Width",
+   "Height"
+  ],
+  "rows": [
+   [
+    "Snowflake (blocked, tip to tip)",
+    "≈ 5.6 cm (2.2 in)",
+    "≈ 6.4 cm (2.5 in)"
+   ],
+   [
+    "Tassel",
+    "–",
+    "9 cm (3.5 in)"
+   ]
+  ]
+ },
+ "abbreviations": [
+  [
+   "ch",
+   "chain"
+  ],
+  [
+   "sc",
+   "single crochet"
+  ],
+  [
+   "sl st",
+   "slip stitch"
+  ],
+  [
+   "dc",
+   "double crochet"
+  ],
+  [
+   "MR",
+   "magic ring"
+  ],
+  [
+   "sp",
+   "space"
+  ],
+  [
+   "st(s)",
+   "stitch(es)"
+  ],
+  [
+   "rnd(s)",
+   "round(s)"
+  ],
+  [
+   "rep",
+   "repeat"
+  ]
+ ],
+ "special_stitches": [],
+ "techniques": [
+  {
+   "name": "Magic ring (MR)",
+   "how": "Wrap the yarn twice around two fingers, insert the hook under both strands, pull up a loop and ch 1 (does not count as a stitch). Work the stitches of Rnd 1 over both strands, then pull the tail firmly to close the centre."
+  },
+  {
+   "name": "Picot",
+   "how": "Ch 3, then sl st into the 3rd ch from the hook (the first of the three chains)."
+  },
+  {
+   "name": "Tassel neck wrap",
+   "how": "Lay a 5 cm loop of the wrapping strand along the tassel, pointing down. Wrap the long end tightly around tassel and loop, from the top down. Pass the end through the loop, then pull the short tail at the top until the loop disappears under the wraps. Trim both ends and hide them in the skirt."
+  }
+ ],
+ "notes": [
+  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "US crochet terms are used throughout.",
+  "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
+  "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
+  "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends on the wrong side as you go."
+ ],
+ "sections": [
+  {
+   "title": "Snowflake",
+   "kicker": "Yarn A (cream) · make 1",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "Three joined rounds: a dc ring, a round of dc and ch-2 spaces, and a round with six arms (each ending in a three-picot tip) alternating with six small picot points."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Rnd 1",
+       "text": "Ch 3 (counts as the first dc), 11 dc in MR. Join with a sl st to the top of the ch-3.",
+       "count": 12,
+       "reset": true,
+       "piece": "Snowflake",
+       "flattened": true
+      },
+      {
+       "label": "Rnd 2",
+       "text": "Ch 5 (counts as dc + ch 2), *dc in next dc, ch 2*; rep from * 10 more times. Join with a sl st to the 3rd ch of the ch-5.",
+       "count": "12 dc, 12 ch-2 sps"
+      },
+      {
+       "label": "Rnd 3",
+       "text": "Sl st into the first ch-2 sp. *In this ch-2 sp work the arm: sc, ch 6, sl st in 4th ch from hook, (ch 3, sl st in the same ch) twice, sl st in each of the next 2 ch, sc in the same ch-2 sp. In the next ch-2 sp work a small point: sc, picot, sc*; rep from * 5 more times. Join with a sl st to the first sc and fasten off.",
+       "count": "6 arms, 6 small points"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Blocking",
+     "text": "Pin the snowflake on a board, pinning every arm tip and each tip picot. Spray with fabric starch (or dab on a mix of 1 part white craft glue and 1 part water) and let it dry completely before unpinning."
+    }
+   ],
+   "new_page": true
+  },
+  {
+   "title": "Tassel",
+   "kicker": "Yarn A (cream)",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The tassel is made first: the hanging cord is tied into its top, so the cord runs through the whole ornament and is anchored in the tassel."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Step 1",
+       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "count": ""
+      },
+      {
+       "label": "Step 2",
+       "text": "Cut the hanging cord: one 90 cm (35 in) length of Yarn A. Slide it under all the wraps along the top edge of the card so that its middle sits there, and tie it in a tight square knot around the wraps. Both cord ends now point upwards.",
+       "count": ""
+      },
+      {
+       "label": "Step 3",
+       "text": "Cut through all the wraps along the bottom edge of the card and remove the card. Let the strands hang down from the cord knot.",
+       "count": ""
+      },
+      {
+       "label": "Step 4",
+       "text": "Tassel neck: cut a 70 cm length of Yarn A. Measure 2 cm down from the top fold and wrap it tightly 8 times around the bundle (see Tassel neck wrap in Techniques).",
+       "count": ""
+      },
+      {
+       "label": "Step 5",
+       "text": "Trim the skirt evenly to 9 cm (3.5 in) from the top fold. Hold it over steam (or dampen it) and comb the strands straight with your fingers; let it dry hanging.",
+       "count": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Assembly & Finishing",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "bullets",
+     "items": [
+      "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
+      "String, from the tassel upwards: 1 wooden bead → 1 gold bead → the snowflake → 1 gold bead → 1 wooden bead → 1 gold bead.",
+      "Snowflake: hang it with one arm pointing up. Pass the needle through the chain stem of the bottom arm, weave through 3 dc of the centre ring on the back, and out through the chain stem of the top arm.",
+      "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
+      "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Safety",
+     "tone": "warning",
+     "text": "This is a decoration, not a toy, and not suitable for children under 3 years. Beads and cords are a choking and strangling hazard: hang it out of reach of babies, young children and pets."
+    }
+   ]
+  }
+ ],
+ "photo_analysis": {
+  "summary": "One product photo plus infographic steps; scale from the wooden beads.",
+  "observations": [
+   {
+    "feature": "Centre",
+    "evidence": "Infographic: ch 3 + 11 dc in MR (12 dc)",
+    "conclusion": "Rnd 1 as given",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Second round",
+    "evidence": "Infographic text is inconsistent (first st gets 2 dc)",
+    "conclusion": "Corrected: 12 dc each followed by ch 2",
+    "basis": "Inferred",
+    "confidence": "High"
+   },
+   {
+    "feature": "Arms",
+    "evidence": "6 arms with clustered picot tips and small points between them",
+    "conclusion": "6 arms with a 3-picot tip + 6 small picot points; the infographic's 12-space/6-point mismatch is resolved by alternating",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Hanging cord and beads",
+    "evidence": "Cream cord loop above a gold–wood–gold bead stack; same stack below the piece",
+    "conclusion": "Cord tied into the tassel top and threaded up through beads and piece",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Tassel",
+    "evidence": "Long full tassel with a rounded head and a wrapped neck",
+    "conclusion": "Wrapped-card tassel, about 40 wraps, neck wrapped 8 times",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   }
+  ],
+  "visual_review": [
+   {
+    "feature": "Arms",
+    "photo": "6",
+    "pattern": "6",
+    "match": "Yes",
+    "photo_value": 6,
+    "pattern_value": 6,
+    "kind": "count"
+   },
+   {
+    "feature": "Height : width",
+    "photo": "1.10",
+    "pattern": "6.4 / 5.6 = 1.14",
+    "match": "Yes",
+    "photo_value": 1.1,
+    "pattern_value": 1.14,
+    "kind": "ratio"
+   },
+   {
+    "feature": "Gold beads",
+    "photo": "3 in the bead stacks",
+    "pattern": "3",
+    "match": "Yes",
+    "photo_value": 3,
+    "pattern_value": 3,
+    "kind": "count"
+   },
+   {
+    "feature": "Wooden beads",
+    "photo": "2 in the bead stacks",
+    "pattern": "2",
+    "match": "Yes",
+    "photo_value": 2,
+    "pattern_value": 2,
+    "kind": "count"
+   }
+  ],
+  "accuracy": {
+   "confidence": "Medium",
+   "text": "Sizes are scaled from the photo using the 12 mm wooden beads as the reference; the photos look like rendered images, so stitch counts are a design reconstruction, not a count from a real sample. Make the piece once and compare before selling the pattern."
+  },
+  "assumptions": [
+   "The photographed side branches on each arm are simplified to a three-picot tip."
+  ]
+ },
+ "closing_note": "Thank you for making this ornament. Happy crocheting!",
+ "yarn_evidence": "area estimate"
+}

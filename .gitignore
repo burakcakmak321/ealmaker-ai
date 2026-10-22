@@ -6,3 +6,7 @@ node_modules
 .DS_Store
 .vercel
 pattern-work/*/work/
+pattern-work/ornaments/*/preview/
+pattern-work/ornaments/*/finalize.log
+pattern-work/ornaments/*/shape_check.png
+pattern-work/ornaments/*/cover_auto.jpg

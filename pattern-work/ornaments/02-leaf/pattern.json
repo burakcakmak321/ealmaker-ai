@@ -1,0 +1,429 @@
+{
+ "title": "Sage Leaf Hanging Ornament",
+ "subtitle": "Two ribbed crochet leaves with embroidered veins on a beaded cord",
+ "craft": "crochet",
+ "terminology": "US",
+ "designer": "",
+ "copyright": "",
+ "cover_image": "src/hero.png",
+ "cover_crop": "auto",
+ "gallery_images": [],
+ "skill_level": "Intermediate",
+ "finished_size": "≈ 25 cm (10 in) plus an 8 cm loop",
+ "yarn_summary": "DK cotton · 3 colours",
+ "tools_summary": "2.5 mm hook (US B/1–C/2)",
+ "description": "Two leaves worked in back-loop single-crochet rows around a foundation chain, which gives the chevron ridges, finished with an embroidered vein and strung with wooden and gold beads above a cream tassel.",
+ "glance": [
+  [
+   "SKILL LEVEL",
+   "Intermediate"
+  ],
+  [
+   "FINISHED SIZE",
+   "≈ 25 cm (10 in) plus an 8 cm loop"
+  ],
+  [
+   "YARN",
+   "DK cotton · 3 colours"
+  ],
+  [
+   "HOOK",
+   "2.5 mm (US B/1–C/2)"
+  ]
+ ],
+ "checkboxes": true,
+ "size_guide": "One size. For a larger ornament use light worsted (#4) cotton and a 3 mm hook; for a smaller one use sport-weight cotton and a 2 mm hook. Beads and tassel length can be changed freely.",
+ "gauge_numbers": {
+  "sts_per_10cm": 22,
+  "rows_per_10cm": 24
+ },
+ "gauge": "22 sc and 24 rows/rnds = 10 cm (4 in) in single crochet with a 2.5 mm hook. Gauge is not critical for an ornament, but work firmly so that stuffing does not show and flat pieces keep their shape; sizes depend on your tension.",
+ "swatch": "Optional density check: ch 12, then work 10 rows of sc on 11 sts. The square should measure about 5 cm (2 in) wide and 4 cm (1.6 in) tall. If it is larger or you see gaps between stitches, use a smaller hook.",
+ "materials": [
+  {
+   "item": "Yarn A (main leaf)",
+   "detail": "DK (#3) cotton, dark sage green — approx. 4 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn B (accent leaf)",
+   "detail": "DK (#3) cotton, light sage green — approx. 3 m (4 yd), about 2 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Yarn C (veins, tassel, cord)",
+   "detail": "DK (#3) cotton, cream — approx. 12 m (13 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
+  },
+  {
+   "item": "Hook",
+   "detail": "2.5 mm (US B/1–C/2)"
+  },
+  {
+   "item": "Beads",
+   "detail": "3 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm); 1 natural wooden bead 10 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
+  },
+  {
+   "item": "Notions",
+   "detail": "tapestry needle, stiff card for the tassel, 2 stitch markers, scissors"
+  }
+ ],
+ "measurements": {
+  "headers": [
+   "Part",
+   "Width",
+   "Length"
+  ],
+  "rows": [
+   [
+    "Main leaf (without stem)",
+    "≈ 5 cm (2 in)",
+    "≈ 7.5 cm (3 in)"
+   ],
+   [
+    "Accent leaf (without stem)",
+    "≈ 3.4 cm (1.3 in)",
+    "≈ 4.4 cm (1.7 in)"
+   ],
+   [
+    "Tassel",
+    "–",
+    "9 cm (3.5 in)"
+   ]
+  ]
+ },
+ "abbreviations": [
+  [
+   "ch",
+   "chain"
+  ],
+  [
+   "sc",
+   "single crochet"
+  ],
+  [
+   "sl st",
+   "slip stitch"
+  ],
+  [
+   "BLO",
+   "back loop only"
+  ],
+  [
+   "st(s)",
+   "stitch(es)"
+  ]
+ ],
+ "special_stitches": [],
+ "techniques": [
+  {
+   "name": "Embroidered vein (surface chain)",
+   "how": "Thread a tapestry needle with the vein colour. Bring it up at the base, make a chain stitch along the centre line (each stitch about 4 mm long) and finish at the tip; secure both ends on the back."
+  },
+  {
+   "name": "Tassel neck wrap",
+   "how": "Lay a 5 cm loop of the wrapping strand along the tassel, pointing down. Wrap the long end tightly around tassel and loop, from the top down. Pass the end through the loop, then pull the short tail at the top until the loop disappears under the wraps. Trim both ends and hide them in the skirt."
+  }
+ ],
+ "notes": [
+  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "US crochet terms are used throughout.",
+  "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
+  "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
+  "Leave a 20 cm (8 in) tail when you fasten off a piece that will be sewn; weave in all other ends on the wrong side as you go."
+ ],
+ "sections": [
+  {
+   "title": "Main Leaf",
+   "kicker": "Yarn A (dark green) · make 1",
+   "shape": "flat",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The leaf is worked in rows around both sides of a foundation chain. Each row goes up one side, round the tip and down the other side, and stops 3 sts short, so the base becomes pointed and the back-loop rows form chevron ridges."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Row 1",
+       "text": "Foundation: make a chain of 12. Sc in 2nd ch from hook and in next 9 ch, 3 sc in last ch; working along the other side of the chain, sc in next 10 ch. Ch 1, turn.",
+       "count": 23,
+       "reset": true,
+       "piece": "Main leaf",
+       "flattened": true
+      },
+      {
+       "label": "Row 2",
+       "text": "Working in BLO: sc in next 11 sts, 3 sc in next st (the centre tip st), sc in next 8 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 22,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 3",
+       "text": "Working in BLO: sc in next 9 sts, 3 sc in next st (the centre tip st), sc in next 9 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 21,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 4",
+       "text": "Working in BLO: sc in next 10 sts, 3 sc in next st (the centre tip st), sc in next 7 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 20,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 5",
+       "text": "Working in BLO: sc in next 8 sts, 3 sc in next st (the centre tip st), sc in next 8 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 19,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 6",
+       "text": "Working in BLO: sc in next 9 sts, 3 sc in next st (the centre tip st), sc in next 6 sts; leave the last 3 sts unworked. Do not turn.",
+       "count": 18,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "",
+       "text": "Stem: ch 5, sl st in 2nd ch from hook and in next 3 ch. Sl st into the base of the leaf and fasten off.",
+       "count": ""
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Tip",
+     "text": "Mark the centre tip st (the middle of each 3-sc group) with a stitch marker and move it up every row; it is the st that gets 3 sc in the next row."
+    }
+   ],
+   "new_page": true
+  },
+  {
+   "title": "Accent Leaf",
+   "kicker": "Yarn B (light green) · make 1",
+   "shape": "flat",
+   "blocks": [
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Row 1",
+       "text": "Foundation: make a chain of 7. Sc in 2nd ch from hook and in next 4 ch, 3 sc in last ch; working along the other side of the chain, sc in next 5 ch. Ch 1, turn.",
+       "count": 13,
+       "reset": true,
+       "piece": "Accent leaf",
+       "flattened": true
+      },
+      {
+       "label": "Row 2",
+       "text": "Working in BLO: sc in next 6 sts, 3 sc in next st (the centre tip st), sc in next 3 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 12,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 3",
+       "text": "Working in BLO: sc in next 4 sts, 3 sc in next st (the centre tip st), sc in next 4 sts; leave the last 3 sts unworked. Ch 1, turn.",
+       "count": 11,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "Row 4",
+       "text": "Working in BLO: sc in next 5 sts, 3 sc in next st (the centre tip st), sc in next 2 sts; leave the last 3 sts unworked. Do not turn.",
+       "count": 10,
+       "inc": 2,
+       "dec": 3
+      },
+      {
+       "label": "",
+       "text": "Stem: ch 4, sl st in 2nd ch from hook and in next 2 ch. Sl st into the base of the leaf and fasten off.",
+       "count": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Leaf Veins",
+   "kicker": "Yarn C (cream)",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "On the right side of each leaf, embroider a vein in surface chain (see Techniques) along the foundation chain, from the base of the stem to 5 mm below the tip."
+    }
+   ]
+  },
+  {
+   "title": "Tassel",
+   "kicker": "Yarn C (cream)",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "paragraph",
+     "text": "The tassel is made first: the hanging cord is tied into its top, so the cord runs through the whole ornament and is anchored in the tassel."
+    },
+    {
+     "type": "steps",
+     "steps": [
+      {
+       "label": "Step 1",
+       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn C (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "count": ""
+      },
+      {
+       "label": "Step 2",
+       "text": "Cut the hanging cord: one 110 cm (43 in) length of Yarn C. Slide it under all the wraps along the top edge of the card so that its middle sits there, and tie it in a tight square knot around the wraps. Both cord ends now point upwards.",
+       "count": ""
+      },
+      {
+       "label": "Step 3",
+       "text": "Cut through all the wraps along the bottom edge of the card and remove the card. Let the strands hang down from the cord knot.",
+       "count": ""
+      },
+      {
+       "label": "Step 4",
+       "text": "Tassel neck: cut a 70 cm length of Yarn C. Measure 2 cm down from the top fold and wrap it tightly 8 times around the bundle (see Tassel neck wrap in Techniques).",
+       "count": ""
+      },
+      {
+       "label": "Step 5",
+       "text": "Trim the skirt evenly to 9 cm (3.5 in) from the top fold. Hold it over steam (or dampen it) and comb the strands straight with your fingers; let it dry hanging.",
+       "count": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "title": "Assembly & Finishing",
+   "shape": "none",
+   "blocks": [
+    {
+     "type": "bullets",
+     "items": [
+      "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
+      "String, from the tassel upwards: 1 wooden bead 12 mm → 1 gold bead → the accent leaf (tip down) → 1 wooden bead 10 mm → 1 gold bead → the main leaf (tip down) → 1 gold bead → 1 wooden bead 12 mm.",
+      "To pass through a leaf: with the wrong side facing, run the needle under the stitches along the foundation chain on the back, entering at the tip and coming out at the stem, so the cord is hidden behind the vein. The leaves hang with the tip down and the stem up.",
+      "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
+      "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
+     ]
+    },
+    {
+     "type": "note",
+     "label": "Safety",
+     "tone": "warning",
+     "text": "This is a decoration, not a toy, and not suitable for children under 3 years. Beads and cords are a choking and strangling hazard: hang it out of reach of babies, young children and pets."
+    }
+   ]
+  }
+ ],
+ "photo_analysis": {
+  "summary": "One product photo plus infographic steps; scale from the wooden beads.",
+  "observations": [
+   {
+    "feature": "Craft and stitch",
+    "evidence": "Dense short stitches in diagonal ridges on both halves",
+    "conclusion": "Crochet, sc in back loops",
+    "basis": "Seen",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Construction",
+    "evidence": "Ridges run parallel to the edge on each half, pointed base",
+    "conclusion": "Rows worked around a foundation chain, stopping short each row",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Vein",
+    "evidence": "Cream line along the centre",
+    "conclusion": "Surface chain embroidery",
+    "basis": "Seen",
+    "confidence": "High"
+   },
+   {
+    "feature": "Main leaf size",
+    "evidence": "≈ 4.3 × 6.4 bead widths",
+    "conclusion": "≈ 5 × 7.6 cm",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Hanging cord and beads",
+    "evidence": "Cream cord loop above a gold–wood–gold bead stack; same stack below the piece",
+    "conclusion": "Cord tied into the tassel top and threaded up through beads and piece",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   },
+   {
+    "feature": "Tassel",
+    "evidence": "Long full tassel with a rounded head and a wrapped neck",
+    "conclusion": "Wrapped-card tassel, about 40 wraps, neck wrapped 8 times",
+    "basis": "Inferred",
+    "confidence": "Medium"
+   }
+  ],
+  "visual_review": [
+   {
+    "feature": "Main leaf length : width",
+    "photo": "1.49",
+    "pattern": "7.45 / 5.0 = 1.49",
+    "match": "Yes",
+    "photo_value": 1.49,
+    "pattern_value": 1.49,
+    "kind": "ratio"
+   },
+   {
+    "feature": "Accent : main leaf length",
+    "photo": "0.56",
+    "pattern": "4.4 / 7.45 = 0.59",
+    "match": "Close",
+    "photo_value": 0.56,
+    "pattern_value": 0.59,
+    "kind": "ratio",
+    "reason": "one chain shorter would make the accent leaf too narrow for its 4 rows"
+   },
+   {
+    "feature": "Leaves",
+    "photo": "2 leaves, dark above light",
+    "pattern": "Main leaf above accent leaf",
+    "match": "Yes",
+    "photo_value": 2,
+    "pattern_value": 2,
+    "kind": "count"
+   },
+   {
+    "feature": "Gold beads",
+    "photo": "3 in the bead stacks",
+    "pattern": "3",
+    "match": "Yes",
+    "photo_value": 3,
+    "pattern_value": 3,
+    "kind": "count"
+   },
+   {
+    "feature": "Wooden beads",
+    "photo": "3 in the bead stacks",
+    "pattern": "3",
+    "match": "Yes",
+    "photo_value": 3,
+    "pattern_value": 3,
+    "kind": "count"
+   }
+  ],
+  "accuracy": {
+   "confidence": "Medium",
+   "text": "Sizes are scaled from the photo using the 12 mm wooden beads as the reference; the photos look like rendered images, so stitch counts are a design reconstruction, not a count from a real sample. Make the piece once and compare before selling the pattern."
+  },
+  "assumptions": [
+   "The infographic text suggests sc/hdc/dc/tr; the photographed ridged texture is reproduced with back-loop sc rows instead (design choice).",
+   "Leaves hang tip down as in the photo."
+  ]
+ },
+ "closing_note": "Thank you for making this ornament. Happy crocheting!",
+ "yarn_evidence": "area estimate"
+}
