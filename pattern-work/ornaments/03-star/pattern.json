@@ -46,7 +46,7 @@
   },
   {
    "item": "Yarn B (tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 11 m (12 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 12 m (13 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Hook",
@@ -134,7 +134,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -180,7 +181,7 @@
       },
       {
        "label": "Row 1",
-       "text": "Point: sc in each of the next 3 sts; leave the rest of the round unworked. Ch 1, turn.",
+       "text": "Point: ch 1, sc in each of the next 3 sts (for the first point, start in the same st as the join); leave the rest of the round unworked. Ch 1, turn.",
        "count": 3,
        "reset": true,
        "piece": "Star point",
@@ -238,7 +239,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn B (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 10 cm (3.9 in) tall. Wrap Yarn B (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {

@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 25 cm (10 in) plus an 8 cm loop",
+ "finished_size": "≈ 24 cm (9.4 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 2 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "A plump crescent moon made from two curved pieces joined with sc and stuffed, with a flat mustard star below, strung on a beaded cord above a cream tassel.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 25 cm (10 in) plus an 8 cm loop"
+   "≈ 24 cm (9.4 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -42,7 +42,7 @@
  "materials": [
   {
    "item": "Yarn A (moon, tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 17 m (19 yd), about 8 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 18 m (19 yd), about 8 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Yarn B (star)",
@@ -143,7 +143,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -219,8 +220,8 @@
      "steps": [
       {
        "label": "Rnd 1",
-       "text": "Hold the two pieces wrong sides together. Join Yarn A in the last st of Row 5 and work through both layers: sc in each of 5 row-ends down the side, 3 sc in the tip, sc in each of the 14 foundation ch along the inner curve, 3 sc in the other tip, sc in each of 5 row-ends up the side, sc in each of the 19 sts of Row 5 along the outer curve.",
-       "count": 49,
+       "text": "Hold the two pieces wrong sides together. Join Yarn A in the last st of Row 5 and work through both layers: sc in each of 5 row-ends down the side, 3 sc in the first foundation ch (tip), sc in each of the next 12 foundation ch along the inner curve, 3 sc in the last foundation ch (other tip), sc in each of 5 row-ends up the side, sc in each of the 19 sts of Row 5 along the outer curve.",
+       "count": 47,
        "reset": true
       },
       {
@@ -272,7 +273,7 @@
       },
       {
        "label": "Row 1",
-       "text": "Point: sc in each of the next 3 sts; leave the rest of the round unworked. Ch 1, turn.",
+       "text": "Point: ch 1, sc in each of the next 3 sts (for the first point, start in the same st as the join); leave the rest of the round unworked. Ch 1, turn.",
        "count": 3,
        "reset": true,
        "piece": "Star point",
@@ -329,7 +330,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 10 cm (3.9 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {

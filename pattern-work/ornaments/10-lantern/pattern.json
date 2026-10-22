@@ -42,7 +42,7 @@
  "materials": [
   {
    "item": "Yarn A (body, tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 23 m (25 yd), about 10 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 24 m (26 yd), about 11 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Yarn B (rims, ribs)",
@@ -141,8 +141,8 @@
    "how": "Make a slip knot on the hook, insert the hook in the stitch, yo, pull up a loop, yo and draw through both loops. This sc counts as the first stitch."
   },
   {
-   "name": "Surface slip stitch",
-   "how": "Hold the yarn behind the work. Insert the hook from the front between two stitches, pull up a loop; insert one round higher, pull up a loop and draw it through the loop on the hook. Repeat, keeping the line straight and loose enough that the fabric does not pucker."
+   "name": "Surface chain (embroidered)",
+   "how": "Bring the needle out where the line starts. Insert it back into the same hole and bring it out one round (about 4 mm) higher with the yarn under the needle tip; pull through to form a loop. Repeat, each stitch starting inside the previous loop. Anchor the last loop with a tiny stitch."
   },
   {
    "name": "Tassel neck wrap",
@@ -150,7 +150,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -381,7 +382,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Ribs: mark 6 columns spaced 6 sts apart around Rnd 12 of the body. With Yarn B, work a line of surface slip stitch (see Techniques) up each column, from the bottom rim to the top rim, one sl st per round (Rnds 18 to 6). Fasten off at the rim and hide the ends inside."
+     "text": "Ribs: mark 6 columns spaced 6 sts apart around Rnd 12 of the body. Thread a tapestry needle with a 60 cm length of Yarn B. Bring it out under the bottom rim at the first column and embroider a line of surface chain (see Techniques) straight up the column, one chain stitch per round, to just under the top rim (Rnds 18 to 6). Take the needle back into the body and out at the next column; repeat for all 6 ribs. Hide the ends inside the stuffing."
     }
    ]
   },
@@ -399,7 +400,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 17 cm (6.7 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 9 cm (3.5 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {

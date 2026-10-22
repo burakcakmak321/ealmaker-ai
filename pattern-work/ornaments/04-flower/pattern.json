@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 22 cm (8.7 in) plus an 8 cm loop",
+ "finished_size": "≈ 21 cm (8.3 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 4 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "A flat layered flower — yellow centre, six pink petals and six large cream petals worked on chain loops behind them — with two small leaves below, strung on a beaded cord above a cream tassel.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 22 cm (8.7 in) plus an 8 cm loop"
+   "≈ 21 cm (8.3 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -42,7 +42,7 @@
  "materials": [
   {
    "item": "Yarn A (outer petals, tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 13 m (14 yd), about 6 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 14 m (15 yd), about 6 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Yarn B (inner petals)",
@@ -151,7 +151,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -227,7 +228,7 @@
      "steps": [
       {
        "label": "Leaf",
-       "text": "Foundation: make a chain of 7. Working in the back bumps: sl st in 2nd ch from hook, sc in next ch, hdc in next ch, dc in next 2 ch, 3 sc in last ch; working along the other side of the chain: dc in next 2 ch, hdc in next ch, sc in next ch, sl st in the last ch (the tip). Ch 2, sl st in 2nd ch from hook (tiny point). Fasten off, leaving a 20 cm tail.",
+       "text": "Leaving a 20 cm starting tail, make a chain of 7. Working in the back bumps: sl st in 2nd ch from hook, sc in next ch, hdc in next ch, dc in next 2 ch, 3 sc in last ch; working along the other side of the chain: dc in next 2 ch, hdc in next ch, sc in next ch, sl st in the last ch (the tip). Ch 2, sl st in 2nd ch from hook (tiny point). Fasten off and weave in this end.",
        "count": 13,
        "reset": true,
        "piece": "Leaf",
@@ -237,7 +238,7 @@
     },
     {
      "type": "paragraph",
-     "text": "Place the two leaves side by side with their 3-sc bases touching and the tips pointing down and outwards (a V). Sew the bases together over 5 mm with the tails."
+     "text": "Place the two leaves with their 3-sc bases touching and the tips pointing down and outwards (an upside-down V). Sew the bases together over 5 mm with the starting tails."
     }
    ]
   },
@@ -255,7 +256,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 17 cm (6.7 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 9 cm (3.5 in) tall. Wrap Yarn A (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {

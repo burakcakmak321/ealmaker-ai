@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 22 cm (8.7 in) plus an 8 cm loop",
+ "finished_size": "≈ 21 cm (8.3 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 3 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "A small stuffed tulip — a cup worked in spiral rounds with three pointed petals, plus an oval front petal — on a tube stem with one leaf, strung with beads above a cream tassel. The cord runs through the stem tube.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 22 cm (8.7 in) plus an 8 cm loop"
+   "≈ 21 cm (8.3 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -50,7 +50,7 @@
   },
   {
    "item": "Yarn C (tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 11 m (12 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 12 m (13 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Hook",
@@ -160,7 +160,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -228,12 +229,12 @@
       },
       {
        "label": "",
-       "text": "Petals: the 24 sts are divided into 3 groups of 8; each petal is worked in rows over one group.",
+       "text": "Petals: the 24 sts are divided into 3 groups of 8; place a marker in every 8th st so the groups are clear. Each petal is worked in rows over one group.",
        "count": ""
       },
       {
        "label": "Row 1",
-       "text": "First petal: ch 1, sc2tog, sc 4, sc2tog. Ch 1, turn.",
+       "text": "First petal: ch 1; starting in the same st as the sl st, sc2tog, sc 4, sc2tog over the first group of 8 sts. Ch 1, turn.",
        "count": 6,
        "reset": true,
        "piece": "Petal"
@@ -258,7 +259,7 @@
       },
       {
        "label": "Row 4",
-       "text": "sc2tog. Fasten off.",
+       "text": "sc2tog. Fasten off, leaving a 20 cm tail for sewing.",
        "count": 1,
        "ops": [
         "sc2tog"
@@ -272,7 +273,7 @@
       },
       {
        "label": "",
-       "text": "Stuff the cup firmly. Using the tails, sew the edges of neighbouring petals together along Rows 1–2 only, so the cup closes over the stuffing and the petal tips stay free.",
+       "text": "Stuff the cup firmly. Using the tails (sew down from each tip), sew the edges of neighbouring petals together along Rows 1–2 only, so the cup closes over the stuffing and the petal tips stay free.",
        "count": ""
       }
      ]
@@ -306,7 +307,7 @@
       },
       {
        "label": "Rnd 3",
-       "text": "Sl st in each st around, working (sl st, ch 2, sl st) in the centre st of the 3 incs at the rounded end (this becomes the top point). Fasten off, leaving a 30 cm tail.",
+       "text": "Sl st in each st around, working (sl st, ch 2, sl st) in the 4th of the 6 sts made by the inc x3 at the rounded end (this becomes the top point). Fasten off, leaving a 30 cm tail.",
        "count": "18"
       }
      ]
@@ -387,7 +388,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn C (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 10 cm (3.9 in) tall. Wrap Yarn C (cream) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {
@@ -432,8 +433,8 @@
       {
        "label": "Front petal",
        "shape": "ellipse",
-       "w": 2.0,
-       "h": 3.5
+       "w": 2.2,
+       "h": 4.0
       },
       {
        "label": "Stem",

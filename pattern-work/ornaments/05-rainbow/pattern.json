@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 21 cm (8.3 in) plus an 8 cm loop",
+ "finished_size": "≈ 20 cm (7.9 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 7 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "A five-colour rainbow arch worked in one piece in rows, set into a lightly stuffed cloud made from two joined pieces, hanging above a striped rainbow tassel.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 21 cm (8.3 in) plus an 8 cm loop"
+   "≈ 20 cm (7.9 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -155,7 +155,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -169,7 +170,7 @@
    "blocks": [
     {
      "type": "paragraph",
-     "text": "The arch is worked in one piece in rows, starting with the inner (blue) arc. Each row adds 3 sts in the middle while the first and last 4 sts stay straight, so the strip curves into an arch with straight legs. Change colour at the end of every row."
+     "text": "The arch is worked in one piece in rows, starting with the inner (blue) arc. Each row adds 3 sts in the middle while the first and last 5–6 sts stay straight, so the strip curves into an arch with straight legs. Change colour at the end of every row."
     },
     {
      "type": "steps",
@@ -297,7 +298,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 21 cm (8.3 in) tall. Wrap each of Yarns A, B, C, D, E and G around the card 7 times, one colour next to the other in rainbow order (42 wraps). Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 11 cm (4.3 in) tall. Wrap each of Yarns A, B, C, D, E and G around the card 7 times, one colour next to the other in rainbow order (42 wraps). Cut the yarn at the bottom edge.",
        "count": ""
       },
       {
@@ -333,7 +334,7 @@
      "items": [
       "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
       "String, from the tassel upwards: 1 wooden bead → 1 gold bead → the cloud and rainbow → 1 wooden bead.",
-      "Cloud and rainbow: push the needle up through the cloud from the centre of its bottom edge to the centre of the dip between the bumps, take the cord up through the opening of the arch and out through the top of the arch between the 2 middle sts of the last row.",
+      "Cloud and rainbow: push the needle up through the cloud from the centre of its bottom edge to the top of the middle bump, take the cord up through the opening of the arch and out through the top of the arch at the 14th (centre) st of Row 5.",
       "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
       "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
      ]

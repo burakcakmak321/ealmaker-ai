@@ -146,6 +146,11 @@ TECH = {
                        "stitches, pull up a loop; insert one round higher, pull up a loop and draw it "
                        "through the loop on the hook. Repeat, keeping the line straight and loose "
                        "enough that the fabric does not pucker."},
+    "chainstitch": {"name": "Surface chain (embroidered)",
+                    "how": "Bring the needle out where the line starts. Insert it back into the same hole and "
+                           "bring it out one round (about 4 mm) higher with the yarn under the needle tip; pull "
+                           "through to form a loop. Repeat, each stitch starting inside the previous loop. Anchor "
+                           "the last loop with a tiny stitch."},
     "embroider": {"name": "Embroidered vein (surface chain)",
                   "how": "Thread a tapestry needle with the vein colour. Bring it up at the base, "
                          "make a chain stitch along the centre line (each stitch about 4 mm long) "
@@ -162,7 +167,7 @@ TASSEL_TAIL = ("Tassel neck: cut a 70 cm length of {neck}. Measure {head} cm dow
 
 def tassel_section(spec, cord_cm):
     L = spec["length"]
-    card = 2 * L + 1
+    card = L + 1
     wraps_text = spec["wraps_text"]
     steps = [
         st("Step 1", f"Cut a piece of stiff card {card} cm ({card / 2.54:.1f} in) tall. "
@@ -220,8 +225,10 @@ def bead_item(gold, wood, wood10=0):
             ". Both cord strands must pass through each bead together — test before you start."}
 
 COMMON_NOTES = [
-    "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a "
-    "stitch, and finish it with a sl st into the first stitch.",
+    "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with "
+    "ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+    "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, "
+    "choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
     "US crochet terms are used throughout.",
     "The number in parentheses at the end of a row or round is the number of stitches you should "
     "have when it is finished. Tick the box when you finish each step.",
@@ -309,7 +316,7 @@ def tassel_spec(length, colour_name, cord_name, neck_name, head=2, wraps_text=No
             "kicker": kicker or colour_name}
 
 def tassel_tally(length, wraps=40):
-    return (wraps * (2 * length + 1) + 70) / 100.0  # metres
+    return (wraps * 2 * (length + 1) + 70) / 100.0  # metres: each wrap = 2 card heights
 
 # ======================================================================================
 # 1. HEART
@@ -368,7 +375,7 @@ def heart():
     meas = {"headers": ["Part", "Width", "Height"],
             "rows": [["Heart (stuffed)", "≈ 4.5 cm (1.8 in)", "≈ 4 cm (1.6 in)"],
                      ["Tassel", "–", "9 cm (3.5 in)"],
-                     ["Whole ornament without loop", "–", "≈ 19 cm (7.5 in)"]]}
+                     ["Whole ornament without loop", "–", "≈ 18 cm (7 in)"]]}
     photo = pa("One product photo (rendered look) plus an infographic with step images; no scale "
                "reference other than the beads.",
                [ob("Craft", "Short x-shaped stitches stacked like bricks", "Crochet, sc", "Seen", "High"),
@@ -386,7 +393,7 @@ def heart():
                 "A plump heart made from two single-crochet pieces joined with a round of sc and "
                 "stuffed, strung on a cord with wooden and gold beads above a full tassel. Worked "
                 "flat in rows; the tassel is tied directly onto the hanging cord.",
-                "≈ 19 cm (7.5 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
+                "≈ 18 cm (7 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
                 ["ch", "sc", "inc", "sc2tog", "sl st", "st(s)", "rnd(s)", "( ) xN"],
                 ["sc2tog", "standing", "join_sc", "tassel"], sections, meas, photo)
 
@@ -481,7 +488,7 @@ def leaf():
                 "Two leaves worked in back-loop single-crochet rows around a foundation chain, which "
                 "gives the chevron ridges, finished with an embroidered vein and strung with wooden "
                 "and gold beads above a cream tassel.",
-                "≈ 25 cm (10 in) plus an 8 cm loop", "DK cotton · 3 colours", mats,
+                "≈ 27 cm (10.6 in) plus an 8 cm loop", "DK cotton · 3 colours", mats,
                 ["ch", "sc", "sl st", "BLO", "st(s)"],
                 ["embroider", "tassel"], sections, meas, photo)
 
@@ -494,7 +501,8 @@ def star_steps(piece="Star"):
         st("Rnd 2", "(sc 1, inc) x5. Join. Do not fasten off; continue with the points.", 15, ops="(sc 1, inc) x5", inc=5),
         instr("Points: each point is worked in rows over 3 sts of Rnd 2; after each point you slip "
               "stitch down its side and start the next point in the next st."),
-        st("Row 1", "Point: sc in each of the next 3 sts; leave the rest of the round unworked. Ch 1, turn.", 3, reset=True, piece="Star point", flattened=True),
+        st("Row 1", "Point: ch 1, sc in each of the next 3 sts (for the first point, start in the same st as the join); "
+                    "leave the rest of the round unworked. Ch 1, turn.", 3, reset=True, piece="Star point", flattened=True),
         st("Row 2", "sc2tog, sc 1. Ch 1, turn.", 2, ops="sc2tog, sc 1", dec=1),
         st("Row 3", "sc2tog. Ch 1; sl st in each of the 2 row-ends down the side of the point, then sl st "
                     "in the last st used for Row 1 of this point.", 1, ops="sc2tog", dec=1),
@@ -574,10 +582,10 @@ def flower():
                     "sl st to the first sc and fasten off.", 54, reset=True, piece="Outer petals", flattened=True),
     ]
     lf = [
-        st("Leaf", "Foundation: make a chain of 7. Working in the back bumps: sl st in 2nd ch from hook, sc in next ch, hdc in "
+        st("Leaf", "Leaving a 20 cm starting tail, make a chain of 7. Working in the back bumps: sl st in 2nd ch from hook, sc in next ch, hdc in "
                    "next ch, dc in next 2 ch, 3 sc in last ch; working along the other side of the "
                    "chain: dc in next 2 ch, hdc in next ch, sc in next ch, sl st in the last ch (the tip). "
-                   "Ch 2, sl st in 2nd ch from hook (tiny point). Fasten off, leaving a 20 cm tail.",
+                   "Ch 2, sl st in 2nd ch from hook (tiny point). Fasten off and weave in this end.",
            13, reset=True, piece="Leaf", flattened=True),
     ]
     sections = [
@@ -589,8 +597,8 @@ def flower():
         {"title": "Leaves", "kicker": "Yarn C (sage green) · make 2", "shape": "none",
          "blocks": [{"type": "steps", "steps": lf},
                     {"type": "paragraph", "text":
-                     "Place the two leaves side by side with their 3-sc bases touching and the tips "
-                     "pointing down and outwards (a V). Sew the bases together over 5 mm with the tails."}]},
+                     "Place the two leaves with their 3-sc bases touching and the tips pointing down and "
+                     "outwards (an upside-down V). Sew the bases together over 5 mm with the starting tails."}]},
     ]
     ts = tassel_spec(8, "Yarn A (cream)", "Yarn A", "Yarn A")
     sections.append(tassel_section(ts, 110))
@@ -631,7 +639,7 @@ def flower():
                 "A flat layered flower — yellow centre, six pink petals and six large cream petals "
                 "worked on chain loops behind them — with two small leaves below, strung on a beaded "
                 "cord above a cream tassel.",
-                "≈ 22 cm (8.7 in) plus an 8 cm loop", "DK cotton · 4 colours", mats,
+                "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 4 colours", mats,
                 ["ch", "sc", "inc", "sl st", "hdc", "dc", "tr", "MR", "st(s)", "rnd(s)", "rep"],
                 ["MR", "tassel"], sections, meas, photo)
 
@@ -690,7 +698,7 @@ def rainbow():
         {"title": "Rainbow Arch", "kicker": "Yarns E, D, C, B, A · make 1", "shape": "none",
          "blocks": [{"type": "paragraph", "text":
                      "The arch is worked in one piece in rows, starting with the inner (blue) arc. "
-                     "Each row adds 3 sts in the middle while the first and last 4 sts stay straight, "
+                     "Each row adds 3 sts in the middle while the first and last 5–6 sts stay straight, "
                      "so the strip curves into an arch with straight legs. Change colour at the end of "
                      "every row."},
                     {"type": "steps", "steps": rb},
@@ -709,8 +717,8 @@ def rainbow():
     sections.append(assembly_section(
         ["1 wooden bead", "1 gold bead", "the cloud and rainbow", "1 wooden bead"],
         ["Cloud and rainbow: push the needle up through the cloud from the centre of its bottom edge "
-         "to the centre of the dip between the bumps, take the cord up through the opening of the arch "
-         "and out through the top of the arch between the 2 middle sts of the last row."]))
+         "to the top of the middle bump, take the cord up through the opening of the arch "
+         "and out through the top of the arch at the 14th (centre) st of Row 5."]))
     tal = lambda n: metres({"sc": n, "ch": 1})
     rows = [15, 18, 21, 24, 27]
     per = {c: tal(n) + tassel_tally(10, 7) - 0.6 for c, n in zip("EDCBA", rows)}
@@ -747,7 +755,7 @@ def rainbow():
                 "A crochet rainbow arch and puffy cloud on a beaded cord with a rainbow tassel",
                 "A five-colour rainbow arch worked in one piece in rows, set into a lightly stuffed "
                 "cloud made from two joined pieces, hanging above a striped rainbow tassel.",
-                "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 7 colours", mats,
+                "≈ 20 cm (7.9 in) plus an 8 cm loop", "DK cotton · 7 colours", mats,
                 ["ch", "sc", "inc", "sl st", "dc", "st(s)", "rnd(s)", "( ) xN"],
                 ["colour", "join_sc", "tassel"], sections, meas, photo)
 
@@ -761,14 +769,16 @@ def tulip():
         st("Rnd 3", "(sc 1, inc) x6.", 18, ops="(sc 1, inc) x6", inc=6),
         st("Rnd 4", "sc 1, inc, (sc 2, inc) x5, sc 1.", 24, ops="sc 1, inc, (sc 2, inc) x5, sc 1", inc=6),
         st("Rnds 5–6", "sc in each st around (2 rnds). Sl st in the next st; do not fasten off.", 24, ops=["sc in each st around"] * 2, rounds=2),
-        instr("Petals: the 24 sts are divided into 3 groups of 8; each petal is worked in rows over one group."),
-        st("Row 1", "First petal: ch 1, sc2tog, sc 4, sc2tog. Ch 1, turn.", 6, reset=True, piece="Petal"),
+        instr("Petals: the 24 sts are divided into 3 groups of 8; place a marker in every 8th st so the groups "
+              "are clear. Each petal is worked in rows over one group."),
+        st("Row 1", "First petal: ch 1; starting in the same st as the sl st, sc2tog, sc 4, sc2tog over the first "
+                    "group of 8 sts. Ch 1, turn.", 6, reset=True, piece="Petal"),
         st("Row 2", "sc2tog, sc 2, sc2tog. Ch 1, turn.", 4, ops="sc2tog, sc 2, sc2tog", dec=2),
         st("Row 3", "sc2tog x2. Ch 1, turn.", 2, ops="sc2tog x2", dec=2),
-        st("Row 4", "sc2tog. Fasten off.", 1, ops="sc2tog", dec=1),
+        st("Row 4", "sc2tog. Fasten off, leaving a 20 cm tail for sewing.", 1, ops="sc2tog", dec=1),
         instr("Second and third petals: join Yarn A with a standing sc… no — join with a sl st in the next "
               "unworked st of Rnd 6, ch 1 and work Rows 1–4 over the next 8 sts. Repeat for the last 8 sts."),
-        instr("Stuff the cup firmly. Using the tails, sew the edges of neighbouring petals together along "
+        instr("Stuff the cup firmly. Using the tails (sew down from each tip), sew the edges of neighbouring petals together along "
               "Rows 1–2 only, so the cup closes over the stuffing and the petal tips stay free."),
     ]
     # tidy the second/third petal sentence
@@ -779,8 +789,8 @@ def tulip():
                     "along the other side of the chain, sc in next 3 ch, 2 sc in the first ch (the same ch "
                     "as the first sc).", 12, reset=True, piece="Front petal", flattened=True),
         st("Rnd 2", "inc, sc 3, inc x3, sc 3, inc x2.", 18, ops="inc, sc 3, inc x3, sc 3, inc x2", inc=6),
-        st("Rnd 3", "Sl st in each st around, working (sl st, ch 2, sl st) in the centre st of the 3 incs "
-                    "at the rounded end (this becomes the top point). Fasten off, leaving a 30 cm tail.", "18"),
+        st("Rnd 3", "Sl st in each st around, working (sl st, ch 2, sl st) in the 4th of the 6 sts made by "
+                    "the inc x3 at the rounded end (this becomes the top point). Fasten off, leaving a 30 cm tail.", "18"),
     ]
     stem = [
         st("Rnd 1", "With Yarn B, 5 sc in MR.", 5, ops="5 sc in MR", reset=True, piece="Stem"),
@@ -823,7 +833,7 @@ def tulip():
         extra_blocks=[{"type": "schematic", "title": "Pieces at a glance",
                        "caption": "Approximate sizes; the cup is stuffed, the other pieces are flat.",
                        "pieces": [{"label": "Cup", "shape": "ellipse", "w": 3.4, "h": 3.9},
-                                  {"label": "Front petal", "shape": "ellipse", "w": 2.0, "h": 3.5},
+                                  {"label": "Front petal", "shape": "ellipse", "w": 2.2, "h": 4.0},
                                   {"label": "Stem", "shape": "rect", "w": 0.8, "h": 3.4},
                                   {"label": "Leaf", "shape": "ellipse", "w": 1.7, "h": 4.0}]}]))
     a = metres({"sc": 6 + 12 + 18 + 24 * 3 + 3 * (6 + 4 + 2 + 1) + 12 + 18, "sl": 22, "ch": 10})
@@ -857,7 +867,7 @@ def tulip():
                 "A small stuffed tulip — a cup worked in spiral rounds with three pointed petals, "
                 "plus an oval front petal — on a tube stem with one leaf, strung with beads above a "
                 "cream tassel. The cord runs through the stem tube.",
-                "≈ 22 cm (8.7 in) plus an 8 cm loop", "DK cotton · 3 colours", mats,
+                "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 3 colours", mats,
                 ["ch", "sc", "inc", "sc2tog", "sl st", "hdc", "dc", "MR", "st(s)", "rnd(s)", "( ) xN"],
                 ["MR", "spiral", "sc2tog", "tassel"], sections, meas, photo)
 
@@ -915,7 +925,7 @@ def snowflake():
                 "A starched lace crochet snowflake on a beaded cord with a tassel",
                 "A six-arm lace snowflake in three joined rounds — dc ring, dc and chain spaces, then "
                 "picot-tipped arms — starched flat and hung on a beaded cord above a cream tassel.",
-                "≈ 17 cm (6.7 in) plus an 8 cm loop", "DK cotton · 1 colour", mats,
+                "≈ 20 cm (7.9 in) plus an 8 cm loop", "DK cotton · 1 colour", mats,
                 ["ch", "sc", "sl st", "dc", "MR", "sp", "st(s)", "rnd(s)", "rep"],
                 ["MR", "picot", "tassel"], sections, meas, photo)
 
@@ -951,8 +961,8 @@ def butterfly():
                           "points also at the centre. Sew all four points together with the tails.", ""),
              st("Step 2", "Body: fold a 12 cm strand of Yarn A into a 3 cm bundle of 4 strands and lay it "
                           "vertically over the centre on the front. Wrap a 1 m length of Yarn A tightly "
-                          "round the bundle and the wing centres, from top to bottom, 14 times, each wrap "
-                          "next to the last, so the wraps cover 2.4 cm. Sew the end into the back.", ""),
+                          "round the bundle and the wing centres, from top to bottom, each wrap next to the "
+                          "last, until the wraps cover 2.4 cm (about 12–14 wraps). Sew the end into the back.", ""),
              st("Step 3", "Antennae: thread a 15 cm strand of Yarn A under the top wrap of the body so both "
                           "halves stand up. Tie an overhand knot in each half 1.5 cm from the body and trim "
                           "2 mm above the knot. A drop of fabric glue keeps the antennae upright.", ""),
@@ -964,16 +974,16 @@ def butterfly():
                      kicker="Yarn A (cream) and Yarn B (pink)")
     sections.append(tassel_section(ts, 90))
     sections.append(assembly_section(
-        ["1 wooden bead", "1 gold bead", "the butterfly", "1 gold bead", "1 wooden bead"],
+        ["1 wooden bead", "1 gold bead", "the butterfly", "1 gold bead", "1 wooden bead", "1 gold bead"],
         ["Butterfly: push the needle up through the body wraps from the bottom to the top, between the "
          "antennae."]))
-    a = metres({"sc": 2 * 15 + 2 * 11}) + 0.12 + 1.0 + 0.15 + (28 * 19 + 0) / 100 + 0.9
-    b = metres({"sc": 4 * 2, "hdc": 4 * 2, "dc": 2 * 4 + 2 * 4, "tr": 2 * 3, "ch": 8, "sl": 4}) + (12 * 19 + 70) / 100
+    a = metres({"sc": 2 * 15 + 2 * 11}) + 0.12 + 1.0 + 0.15 + (28 * 20) / 100 + 0.9
+    b = metres({"sc": 4 * 2, "hdc": 4 * 2, "dc": 2 * 4 + 2 * 4, "tr": 2 * 3, "ch": 8, "sl": 4}) + (12 * 20 + 70) / 100
     mats = [
         {"item": "Yarn A (wing edges, body, tassel, cord)", "detail": f"DK (#3) cotton, cream — {amount(a)}"},
         {"item": "Yarn B (wing centres, tassel)", "detail": f"DK (#3) cotton, dusty pink — {amount(b)}"},
         {"item": "Hook", "detail": "2.5 mm (US B/1–C/2)"},
-        bead_item(2, 2),
+        bead_item(3, 2),
         {"item": "Notions", "detail": "fabric glue (optional), tapestry needle, stiff card, scissors"},
     ]
     meas = {"headers": ["Part", "Width", "Height"],
@@ -993,7 +1003,7 @@ def butterfly():
                 "Four teardrop wings worked as stitch fans in a magic ring and edged in cream, joined "
                 "with a wrapped body and knotted antennae, and hung on a beaded cord above a "
                 "cream-and-pink tassel.",
-                "≈ 17 cm (6.7 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
+                "≈ 18 cm (7 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
                 ["ch", "sc", "inc", "sl st", "hdc", "dc", "tr", "MR", "st(s)", "rnd(s)", "( ) xN"],
                 ["MR", "standing", "tassel"], sections, meas, photo)
 
@@ -1007,9 +1017,10 @@ def moon():
         r["text"] = r["text"].replace(" Change to Yarn A in the last st; ch 1, turn.", " Ch 1, turn.")
     join = [
         st("Rnd 1", "Hold the two pieces wrong sides together. Join Yarn A in the last st of Row 5 and work "
-                    "through both layers: sc in each of 5 row-ends down the side, 3 sc in the tip, sc in each "
-                    "of the 14 foundation ch along the inner curve, 3 sc in the other tip, sc in each of 5 "
-                    "row-ends up the side, sc in each of the 19 sts of Row 5 along the outer curve.", 49, reset=True),
+                    "through both layers: sc in each of 5 row-ends down the side, 3 sc in the first foundation ch "
+                    "(tip), sc in each of the next 12 foundation ch along the inner curve, 3 sc in the last "
+                    "foundation ch (other tip), sc in each of 5 row-ends up the side, sc in each of the 19 sts "
+                    "of Row 5 along the outer curve.", 47, reset=True),
         instr("Stuff the moon firmly, tips first, before you close the last 8 sts. Join with a sl st to the "
               "first sc and fasten off; hide the end inside."),
     ]
@@ -1032,7 +1043,7 @@ def moon():
          "of the stitches and out at the top point.",
          "Moon: hang it with the opening facing right. Pass the needle up through the lower tip from its "
          "underside, across the opening, and up through the upper tip, so the moon hangs level."]))
-    a_moon = metres({"sc": 2 * (14 + 16 + 17 + 18 + 19) + 49, "ch": 30})
+    a_moon = metres({"sc": 2 * (14 + 16 + 17 + 18 + 19) + 47, "ch": 30})
     a = a_moon + tassel_tally(9) + 1.3
     b = metres(STAR_STS)
     mats = [
@@ -1061,7 +1072,7 @@ def moon():
                 "A stuffed crochet crescent moon and flat star on a beaded cord",
                 "A plump crescent moon made from two curved pieces joined with sc and stuffed, with a "
                 "flat mustard star below, strung on a beaded cord above a cream tassel.",
-                "≈ 25 cm (10 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
+                "≈ 24 cm (9.4 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
                 ["ch", "sc", "inc", "sc2tog", "sl st", "MR", "st(s)", "rnd(s)", "( ) xN"],
                 ["MR", "sc2tog", "join_sc", "tassel"], sections, meas, photo)
 
@@ -1111,9 +1122,11 @@ def lantern():
         {"title": "Rims and Ribs", "kicker": "Yarn B (mustard)", "shape": "none",
          "blocks": [{"type": "steps", "title": "Rims", "steps": rims},
                     {"type": "paragraph", "text":
-                     "Ribs: mark 6 columns spaced 6 sts apart around Rnd 12 of the body. With Yarn B, work a "
-                     "line of surface slip stitch (see Techniques) up each column, from the bottom rim to the "
-                     "top rim, one sl st per round (Rnds 18 to 6). Fasten off at the rim and hide the ends inside."}]},
+                     "Ribs: mark 6 columns spaced 6 sts apart around Rnd 12 of the body. Thread a tapestry needle "
+                     "with a 60 cm length of Yarn B. Bring it out under the bottom rim at the first column and "
+                     "embroider a line of surface chain (see Techniques) straight up the column, one chain stitch "
+                     "per round, to just under the top rim (Rnds 18 to 6). Take the needle back into the body and "
+                     "out at the next column; repeat for all 6 ribs. Hide the ends inside the stuffing."}]},
     ]
     ts = tassel_spec(8, "Yarn A (cream)", "Yarn A", "Yarn A")
     sections.append(tassel_section(ts, 110))
@@ -1149,7 +1162,7 @@ def lantern():
                 "ribs, hung on a beaded cord above a cream tassel.",
                 "≈ 21 cm (8.3 in) plus an 8 cm loop", "DK cotton · 2 colours", mats,
                 ["ch", "sc", "inc", "dec", "sl st", "MR", "BLO", "st(s)", "rnd(s)", "( ) xN"],
-                ["MR", "spiral", "dec", "standing", "surface", "tassel"], sections, meas, photo)
+                ["MR", "spiral", "dec", "standing", "chainstitch", "tassel"], sections, meas, photo)
 
 ITEMS = {"01-heart": heart, "02-leaf": leaf, "03-star": star, "04-flower": flower,
          "05-rainbow": rainbow, "06-tulip": tulip, "07-snowflake": snowflake,

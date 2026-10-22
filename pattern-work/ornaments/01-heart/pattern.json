@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 19 cm (7.5 in) plus an 8 cm loop",
+ "finished_size": "≈ 18 cm (7 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 2 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "A plump heart made from two single-crochet pieces joined with a round of sc and stuffed, strung on a cord with wooden and gold beads above a full tassel. Worked flat in rows; the tassel is tied directly onto the hanging cord.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 19 cm (7.5 in) plus an 8 cm loop"
+   "≈ 18 cm (7 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -81,7 +81,7 @@
    [
     "Whole ornament without loop",
     "–",
-    "≈ 19 cm (7.5 in)"
+    "≈ 18 cm (7 in)"
    ]
   ]
  },
@@ -139,7 +139,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -270,7 +271,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn A (dusty rose) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 10 cm (3.9 in) tall. Wrap Yarn A (dusty rose) around the card 40 times, keeping the wraps side by side and not too tight. Cut the yarn at the bottom edge.",
        "count": ""
       },
       {

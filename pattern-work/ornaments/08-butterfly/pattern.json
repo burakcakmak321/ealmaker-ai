@@ -9,7 +9,7 @@
  "cover_crop": "auto",
  "gallery_images": [],
  "skill_level": "Intermediate",
- "finished_size": "≈ 17 cm (6.7 in) plus an 8 cm loop",
+ "finished_size": "≈ 18 cm (7 in) plus an 8 cm loop",
  "yarn_summary": "DK cotton · 2 colours",
  "tools_summary": "2.5 mm hook (US B/1–C/2)",
  "description": "Four teardrop wings worked as stitch fans in a magic ring and edged in cream, joined with a wrapped body and knotted antennae, and hung on a beaded cord above a cream-and-pink tassel.",
@@ -20,7 +20,7 @@
   ],
   [
    "FINISHED SIZE",
-   "≈ 17 cm (6.7 in) plus an 8 cm loop"
+   "≈ 18 cm (7 in) plus an 8 cm loop"
   ],
   [
    "YARN",
@@ -42,7 +42,7 @@
  "materials": [
   {
    "item": "Yarn A (wing edges, body, tassel, cord)",
-   "detail": "DK (#3) cotton, cream — approx. 10 m (11 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
+   "detail": "DK (#3) cotton, cream — approx. 11 m (12 yd), about 5 g — 1 ball of 50 g (about 115 m) is enough"
   },
   {
    "item": "Yarn B (wing centres, tassel)",
@@ -54,7 +54,7 @@
   },
   {
    "item": "Beads",
-   "detail": "2 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
+   "detail": "3 gold-tone beads 6 mm (hole at least 2.5 mm); 2 natural wooden beads 12 mm (hole at least 3 mm). Both cord strands must pass through each bead together — test before you start."
   },
   {
    "item": "Notions",
@@ -142,7 +142,8 @@
   }
  ],
  "notes": [
-  "Joined rounds (where a round says \"Join\"): start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Joined rounds (where a round says \"Join\"): unless the round says otherwise, start the round with ch 1, which does not count as a stitch, and finish it with a sl st into the first stitch.",
+  "Right side: for pieces worked in rounds, the outside of the rounds; for pieces worked in rows, choose the neater side and mark it. \"Wrong sides together\" means the marked right sides face out.",
   "US crochet terms are used throughout.",
   "The number in parentheses at the end of a row or round is the number of stitches you should have when it is finished. Tick the box when you finish each step.",
   "Rows: ch 1 at the start of a row does not count as a stitch; rounds worked in a magic ring are worked in continuous spirals unless the round says \"join\".",
@@ -216,7 +217,7 @@
       },
       {
        "label": "Step 2",
-       "text": "Body: fold a 12 cm strand of Yarn A into a 3 cm bundle of 4 strands and lay it vertically over the centre on the front. Wrap a 1 m length of Yarn A tightly round the bundle and the wing centres, from top to bottom, 14 times, each wrap next to the last, so the wraps cover 2.4 cm. Sew the end into the back.",
+       "text": "Body: fold a 12 cm strand of Yarn A into a 3 cm bundle of 4 strands and lay it vertically over the centre on the front. Wrap a 1 m length of Yarn A tightly round the bundle and the wing centres, from top to bottom, each wrap next to the last, until the wraps cover 2.4 cm (about 12–14 wraps). Sew the end into the back.",
        "count": ""
       },
       {
@@ -242,7 +243,7 @@
      "steps": [
       {
        "label": "Step 1",
-       "text": "Cut a piece of stiff card 19 cm (7.5 in) tall. Wrap Yarn A around the card 28 times, then Yarn B 12 times spread across the card between the cream wraps (40 wraps). Cut the yarn at the bottom edge.",
+       "text": "Cut a piece of stiff card 10 cm (3.9 in) tall. Wrap Yarn A around the card 28 times, then Yarn B 12 times spread across the card between the cream wraps (40 wraps). Cut the yarn at the bottom edge.",
        "count": ""
       },
       {
@@ -277,7 +278,7 @@
      "type": "bullets",
      "items": [
       "Thread both cord ends together through a large-eye tapestry needle (or a bead needle with a big eye). Work upwards from the tassel.",
-      "String, from the tassel upwards: 1 wooden bead → 1 gold bead → the butterfly → 1 gold bead → 1 wooden bead.",
+      "String, from the tassel upwards: 1 wooden bead → 1 gold bead → the butterfly → 1 gold bead → 1 wooden bead → 1 gold bead.",
       "Butterfly: push the needle up through the body wraps from the bottom to the top, between the antennae.",
       "Push everything down snugly onto the tassel so there are no gaps. Holding both cord ends together, tie one overhand knot right above the top bead to lock the stack.",
       "Hanging loop: tie the two cord ends together with a square knot so that the loop measures 8 cm (3 in) from the overhand knot to the top. Trim the ends to 5 mm and add a drop of fabric glue to the knot if you like."
@@ -352,11 +353,11 @@
    },
    {
     "feature": "Gold beads",
-    "photo": "2 in the bead stacks",
-    "pattern": "2",
+    "photo": "3 in the bead stacks",
+    "pattern": "3",
     "match": "Yes",
-    "photo_value": 2,
-    "pattern_value": 2,
+    "photo_value": 3,
+    "pattern_value": 3,
     "kind": "count"
    },
    {
